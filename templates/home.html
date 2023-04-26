@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+<section class="text-dark p-5 p-lg-0 pt-lg-5 text-sm-start">
+    <div class="container d-none d-sm-block">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1>Some text here</h1>
+                <p class="lead my-4" style="font-size: 24px;">short description here...</p><br>
+                <div style="text-align: left;">
+                    <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button"
+                        style="border-radius: 11px; background-color: rgb(76, 0, 255) !important; border-color: rgb(76, 0, 255);">Get
+                        Started</a>
+                </div>
+            </div>
+            <img class="img-fluid w-50" src="{% static 'images/homepage_image.JPG' %}" alt="" />
+        </div>
+    </div>
+    <div class="d-block d-sm-none align-items-center">
+        <div style="text-align: center;">
+            <h1>Some text here</h1>
+            <p class="lead my-4" style="font-size: 24px;">
+                short description here...
+            </p><br>
+        </div>
+        <div style="text-align: center;">
+            <img class="img-fluid h-20" src="{% static 'images/homepage_image.JPG' %}" />
+            <br><br>
+            <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button"
+                style="border-radius: 11px; background-color: rgb(76, 0, 255) !important; border-color: rgb(76, 0, 255);">Get Started</a>
+        </div>
+    </div>
+    <br><br>
+</section>
+
+{% endblock content %}

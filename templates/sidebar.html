@@ -1,0 +1,51 @@
+<div class="sidebar">
+    <div class="sidebar_btn">
+        <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+        <li>
+            <i class='bx bx-search'></i>
+            <form method="GET" style="display: flex;">
+                <input type='text' name='search-area' placeholder="Search for an article..." value="{{search_input}}">
+            </form>
+            <span class="tooltip">Search</span>
+        </li>
+        <li>
+            <a href="{% url 'dashboard' %}">
+                <i class='bx bxs-inbox'></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+        {% if request.user.is_superuser %}
+            <li>
+                <a href="{% url 'create_article' %}">
+                    <i class='bx bx-plus' style="font-size: 29px;"></i>
+                    <span class="links_name">Write an Article</span>
+                </a>
+                <span class="tooltip">Write an Article</span>
+            </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'articles' %}">
+                <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 20px;"></i>
+                <span class="links_name">Articles</span>
+            </a>
+            <span class="tooltip">Articles</span>
+        </li>
+        <li>
+            <a href="{% url 'articles' %}">
+                <i class="fa fa-video-camera" aria-hidden="true"></i>
+                <span class="links_name">Videos</span>
+            </a>
+            <span class="tooltip">Videos</span>
+        </li>
+        <li class="" user_profile>
+            <a href="{% url 'logout' %}">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Sign Out</span>
+            </a>
+            <span class="tooltip">Sign Out</span>
+        </li>
+    </ul>
+</div>
