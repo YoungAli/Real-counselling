@@ -1,1 +1,87 @@
-# Counselling-System
+## TU Counsel
+
+# Guidelines on how to run locally 💻
+
+## Clone this repository
+
+```
+git clone https://github.com/YoungAli/Real-counselling.git
+```
+
+## Change directory
+Change your directory to where you cloned the repository
+
+```
+cd Real-counselling
+```
+
+## Create a virtual environment in the cheqqit directory
+Ensure you are in the cheqqit directory, run this command to create a virtual environment:
+```
+python -m venv .\venv
+```
+## Activate the virtual environment
+Activate the virtual environment using the following command: 
+```
+venv\scripts\activate
+```
+Note: Upon running the command **venv\scripts\activate**, if this error shows up:
+```
+venv\scripts\activate : File C:\Users\Training\Documents\New folder\venv\scripts\Activate.ps1 cannot be loaded because running scripts is 
+disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170.
+```
+Run this command: 
+``` 
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted 
+```
+Then run the command to activate the virtual environment
+## Install all necessary packages 
+
+```
+pip install -r requirements.txt
+```
+## Update the database 
+Copy this snippet and replace it with the database configuration settings, or if you are familiar with Postgres, create a new database and connect it to the app.
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+## Generate a new secret key
+Make use of [Djecrety](https://djecrety.ir/) to generate your secret key.
+
+## Make migrations
+Run the following commands separately to make migrations
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+## Create a new superuser
+Run the following command to create a new superuser
+```
+python manage.py createsuperuser
+```
+## Update debug settings in the project folder
+
+```
+if os.environ.get('DEBUG')=='TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') =='False':
+    DEBUG = False
+```
+Comment out the above snippet and add this below it   **DEBUG = True**
+
+## Run the project
+
+```
+python manage.py runserver
+```
+# Contribution 🌟
+Are you interested in making any contribution to the project?. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) while making your contributions. If you love this project, kindly give it a star ⭐ and share it with others 🤗.
+
+# License 🔐
+Thsi project is under an [MIT LICENSE](LICENSE)
