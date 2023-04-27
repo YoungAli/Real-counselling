@@ -24,11 +24,13 @@
     <section class="home-section" style="background-color: white;" id="btn">
         <div class="text" style="margin-left: 34px;">
             <legend>Videos<br /></legend>
-            {% for article in articles %}
-            <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
-            <div style="margin-left: 25.5px; color: lightslategrey;">{{ article.subtitle|truncatechars:50 }}</div>
-            <p>{{ article.content }} || {{ article.tags }}</p>
-            <hr>
+            {% for video in videos %}
+                <h2>{{ video.title }}</h2>
+                <p>{{ video.description }}</p>
+                <!-- <p>{{ video.thumbnail.url }}</p> -->
+                <iframe width="425" height="349" src="http://www.youtube.com/embed/{{ video.id }}" 
+                    frameborder="0" allowfullscreen></iframe>
+                <hr>
             {% endfor %}
         </div>
 
