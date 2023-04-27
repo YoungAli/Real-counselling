@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
 from .decorators import for_admins
 from googleapiclient.discovery import build
 from decouple import config
+import random
 
 
 class HomePageView(TemplateView):
@@ -20,22 +21,35 @@ class DashboardView(TemplateView):
 
 @login_required(login_url='login')
 def all_videos(request):
-    search_input = request.GET.get('search-area') or ''
-    if search_input:
-        context = {}
-        youtube = build('youtube', 'v3', developerKey=config('YOUTUBE_API_KEY'))
-        request = youtube.search().list(q=f'{search_input}', part='snippet', type='video', maxResults=50)
-        response = request.execute()
-        for i in res['items']:
-            video_id, video_title = i['id']['videoId'], i['snippet']['title']
-            video_description, video_thumbnail = i['snippet']['description'], i['snippet']['thumbnails']['default']
-            context[video_id] = {'title': video_title, 'description': video_description, 'thumbnail': video_thumbnail}
-
+    search_input = request.GET.get('search-area')
+    youtube = build('youtube', 'v3', developerKey=config('YOUTUBE_API_KEY'))
+    print('search...', search_input)
+    if search_input == None:
+        keywords = ['anxiety', 'relationship', 'career', 'addiction','education', 'anger', 'mental health', 'spiritual']
+        search_input = random.choice(keywords)
+        req = youtube.search().list(q=f'{search_input} counselling', part='snippet', type='video', maxResults=50)
+        res= req.execute()
+    else:
+        req = youtube.search().list(q=f'{search_input}', part='snippet', type='video', maxResults=50)
+        res = req.execute()
+    videos = []
+    for i in res['items']:
+        video_id = i['id']['videoId']
+        video_title = i['snippet']['title']
+        video_description = i['snippet']['description']
+        video_thumbnail = i['snippet']['thumbnails']['default']
+        videos.append({'id': video_id, 'title': video_title, 'description': video_description, 'thumbnail': video_thumbnail})
+    context = {'videos': videos}
     return render(request, 'videos.html', context)
 
 @login_required(login_url='login')
 def all_articles(request):
-    articles = Article.objects.all()
+    search_input = request.GET.get('search-area')
+    print('search......',search_input)
+    if search_input == None:
+        articles = Article.objects.all()
+    else:
+        articles = Article.objects.filter(title__contains=search_input)
     context = {'articles': articles}
     return render(request, 'articles.html', context)
 

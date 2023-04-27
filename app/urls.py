@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, DashboardView, create_article, all_articles,  article_detail, delete_article, edit_article
+from .views import HomePageView, DashboardView, create_article, all_articles,  article_detail, delete_article, edit_article, all_videos
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
@@ -9,7 +9,7 @@ urlpatterns = [
     path('articles/view/<slug:slug>', article_detail, name='article_detail'),
     path('articles/edit/<slug:slug>', edit_article, name='edit_article'),
     path('articles/delete/<slug:slug>', delete_article, name='delete_article'),
-    # path('videos', VideosView.as_view(), name='videos'),
+    path('videos', all_videos, name='videos'),
     # path('request_counsel', RequestCounselView.as_view(), name='request_counsel'),
 
 ]
