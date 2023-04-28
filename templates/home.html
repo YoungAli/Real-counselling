@@ -2,37 +2,86 @@
 {% load static %}
 
 {% block content %}
-<br>
-<section class="text-dark p-5 p-lg-0 pt-lg-5 text-sm-start">
-    <div class="container d-none d-sm-block">
-        <div class="d-sm-flex align-items-center justify-content-between">
-            <div>
-                <h1>Some text here</h1>
-                <p class="lead my-4" style="font-size: 24px;">short description here...</p><br>
-                <div style="text-align: left;">
-                    <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button"
-                        style="border-radius: 11px; background-color: rgb(76, 0, 255) !important; border-color: rgb(76, 0, 255);">Get
-                        Started</a>
-                </div>
-            </div>
-            <img class="img-fluid w-50" src="{% static 'images/homepage_image.JPG' %}" alt="" />
-        </div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&display=swap');
+    body{
+        margin: 0;
+    }
+     #hero{
+        height: 100vh;
+        background-image: url('/static/images/homebg.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+    }
+    .hero-txt-small{
+        color: #1BB291;
+        font-weight: 900;
+        margin-block:3px ;
+        font-size: 1.2em;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        animation: fade-up 1s;
+    }
+    .hero-txt-big{
+        color: black;
+        font-size: 3em;
+        font-weight: 800;
+        font-family: 'Jost', sans-serif;
+        line-height: 1em;
+        margin-block:3px ;
+        animation: fade-up 1s;
+    }
+    .hero-txt-big > span{
+        text-decoration: underline #1BB291;
+    }
+    .hero-btn{
+        padding: 10px 0px;
+        border-radius: 15px;
+        width:100%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.4em;
+        border: none;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    #hero-btn-container{
+        display: flex;
+        width: 400px;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 25px;
+        animation: fade-up 1s;
+    }
+    #get-started{
+        background: linear-gradient(180deg, #41f1cb, #065847);
+        color: white;
+    }
+    #log-in{
+        border: 4px solid #1BB291;
+        color: #1BB291;
+    }
+    @keyframes fade-up {
+        0%{
+            opacity: 0.3;
+            transform: translateY(23px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+</style>
+<div id="hero">
+    <p class="hero-txt-small">Let's help you</p>
+    <p class="hero-txt-big">Discover your strength,<br>conquer your fears,<br>
+        & live your <span>best life.</span></p>
+    <div id="hero-btn-container">
+        <button id="get-started" class="hero-btn">Get Started</button>
+        <button id="log-in" class="hero-btn">Log in</button>
     </div>
-    <div class="d-block d-sm-none align-items-center">
-        <div style="text-align: center;">
-            <h1>Some text here</h1>
-            <p class="lead my-4" style="font-size: 24px;">
-                short description here...
-            </p><br>
-        </div>
-        <div style="text-align: center;">
-            <img class="img-fluid h-20" src="{% static 'images/homepage_image.JPG' %}" />
-            <br><br>
-            <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button"
-                style="border-radius: 11px; background-color: rgb(76, 0, 255) !important; border-color: rgb(76, 0, 255);">Get Started</a>
-        </div>
-    </div>
-    <br><br>
-</section>
+</div>
 
 {% endblock content %}
