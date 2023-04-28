@@ -46,6 +46,7 @@
         font-size: 1.4em;
         border: none;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-decoration: none;
     }
     #hero-btn-container{
         display: flex;
@@ -79,9 +80,13 @@
     <p class="hero-txt-big">Discover your strength,<br>conquer your fears,<br>
         & live your <span>best life.</span></p>
     <div id="hero-btn-container">
-        <button id="get-started" class="hero-btn">Get Started</button>
-        <button id="log-in" class="hero-btn">Log in</button>
+        <a id="get-started" href="{% url 'signup' %}" class="hero-btn">Get Started</a>
+
+        <a id="log-in" href="{% url 'login' %}" class="hero-btn">Log in</a>
     </div>
 </div>
+
+
+
 
 {% endblock content %}

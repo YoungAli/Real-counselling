@@ -1,22 +1,32 @@
+const menuBtn = document.querySelector('#menu-button');
+const mobileMenu = document.querySelector('#mobile-nav');
+const menuBack = document.querySelector("#back-button");
+const mobileNavLink = document.querySelectorAll('.mobile-nav-links');
+const mobileNavBlind = document.querySelector('#mobile-nav-blind');
 
-let sidebar = document.querySelector(".sidebar");
-let closeBtn = document.querySelector("#btn");
-let sectionArea = document.querySelector(".home-section");
+menuBtn.addEventListener('click', () =>{
+mobileMenu.style.display = 'flex';
 
-closeBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    menuBtnChange();
-});
+mobileMenu.style.animation ='slide-left 0.7s';
 
-sectionArea.addEventListener("click", () => {
-    sidebar.classList.remove("open");
-    menuBtnChange();
-});
+mobileNavBlind.style.display ="unset"
 
-function menuBtnChange() {
-    if (sidebar.classList.contains("open")) {
-        closeBtn.classList.replace("bx-menu", "bx-x")
-    } else {
-        closeBtn.classList.replace("bx-x", "bx-menu")
-    }
+})
+
+const menuClose = () =>{
+mobileMenu.style.animation ='slide-right 0.7s';
+
+mobileNavBlind.style.display ="none"
+setTimeout(()=>{
+    mobileMenu.style.display = 'none'
+
+}, 650)
 }
+
+
+mobileNavBlind.addEventListener('click', menuClose);
+
+mobileNavLink.forEach(link => {
+    link.addEventListener('click', menuClose)
+});
+menuBack.addEventListener('click', menuClose);
