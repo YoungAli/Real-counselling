@@ -1,22 +1,30 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light" box-shadow="none">
-    <div class="container-fluid">
-        <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'images/counsel.jpg' %}" height="56px"
-                alt="logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            style="outline: none; border: none; box-shadow: none;"><span><i class='bx bx-menu'
-                    style="font-size: 35px; color: black;"></i></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <div class="dropdown-divider"></div>
-                <li class="navbar-item">
-                    <a href="{% url 'login' %}" class="nav-link">Login</a>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li class="navbar-item">
-                    <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>
-                </li>
-            </ul>
-        </div>
+<head>
+    <link rel="stylesheet" href="{% static 'static\css\styles.css' %}">
+</head>
+<nav id="main-nav">
+    <div id="menu-button">
+        <img src="/static/images/menu-bar.png" alt="menu">
+    </div>
+    <ul>
+        <li><a class="nav--links" href="#">About</a></li>
+        <li><a class="nav--links" href="#">FAQs</a></li>
+        <li><a class="nav--links" href="#">Contact</a></li>
+    </ul>
+    <a id="home-link" href=""><img src="static\images\tucounsel-logo.png" alt=""></a>
+</nav>
+<nav id="mobile-nav">
+    <ul>
+        <li><a class="mobile-nav-links" href="#">About</a></li>
+        <hr>
+        <li><a class="mobile-nav-links" href="#">FAQs</a></li>
+        <hr>
+        <li><a class="mobile-nav-links" href="#">Contact</a></li>
+    </ul>
+    <hr>
+     <a href="https://github.com/YoungAli/Real-counselling/"><img style="height: 30px;" src="/static/images/github.png" alt=""></a>
     </div>
 </nav>
+<div id="mobile-nav-blind"></div>
+
+<script src="{% static 'js/script.js' %}"></script>
