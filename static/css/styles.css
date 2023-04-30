@@ -22,12 +22,18 @@
     }
     #main-nav{
         display: flex;
-        margin: 20px 0 0 0;
         position: fixed;
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        padding-inline: 20px;
+        padding: 20px 20px 10px 20px;
+        transition: 0.3s;
+        z-index: 998;
+    }
+    .main-nav-bg{
+        background: rgba(255, 255, 255, 0.795);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.644);
+        backdrop-filter: blur(10px);
     }
     #home-link{
         order: 3;
@@ -54,7 +60,7 @@
     right: 0px;
     width: 50vw;
     height: 100vh;
-    z-index: 2;
+    z-index: 999;
     animation: slide-left 0.7s;
     box-shadow: 0 0 1350px black;
     display: none;

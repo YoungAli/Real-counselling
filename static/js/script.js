@@ -3,6 +3,7 @@ const mobileMenu = document.querySelector('#mobile-nav');
 const menuBack = document.querySelector("#back-button");
 const mobileNavLink = document.querySelectorAll('.mobile-nav-links');
 const mobileNavBlind = document.querySelector('#mobile-nav-blind');
+const navBar = document.querySelector('#main-nav');
 
 menuBtn.addEventListener('click', () =>{
 mobileMenu.style.display = 'flex';
@@ -29,4 +30,12 @@ mobileNavBlind.addEventListener('click', menuClose);
 mobileNavLink.forEach(link => {
     link.addEventListener('click', menuClose)
 });
-menuBack.addEventListener('click', menuClose);
+
+window.addEventListener('scroll', ()=>{
+    if(this.scrollY >= 40){
+        navBar.classList.add('main-nav-bg');
+    }
+    else{
+        navBar.classList.remove('main-nav-bg');  
+    }
+})
