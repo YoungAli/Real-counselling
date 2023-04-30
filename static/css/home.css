@@ -69,6 +69,7 @@
     #about{
         height: 100vh;
         display: flex;
+        flex-wrap: wrap-reverse;
         justify-content: space-evenly;
         background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 47.5px 47.5px, linear-gradient(#d3ffee 3.8000000000000003px, transparent 3.8000000000000003px) 0 -1.9000000000000001px, linear-gradient(90deg, #d3ffee 3.8000000000000003px, #ffffff 3.8000000000000003px) -1.9000000000000001px 0;
         background-size: 95px 95px, 95px 95px, 47.5px 47.5px, 47.5px 47.5px;
@@ -117,7 +118,61 @@
         animation: fade-up 0.5s;
     }
     #faqs{
-        height: 100vh;
+        min-height: 100vh;
+        color: #d3ffee;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    #faq-images{
+        display: flex;
+        justify-content: space-between;
+        padding: 80px 80px 0 70px;
+        align-items: center;
+    }
+    #faq-img-1{
+        height: 50px;
+    }
+    #faq-img-2{
+        height: 150px;
+    }
+    #faq-container{
+        min-height: 65vh;
+        margin: 20px 0 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        padding-inline: 20px;
+        flex-wrap: wrap;
+    }
+    .q-wraps{
+        height:350px;
+        background:rgb(216, 216, 216) ;
+        width: 30%;
+        min-width: 270px;
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 3px 3px 1px 1px #1BB291;
+        border-radius: 2px;
+        color: black;
+        padding: 5px 20px 5px 25px;
+        gap: 10px;
+    }
+    #q-ans{
+        max-width: 400px;
+        min-width: 400px;
+    }
+    .q-wraps > p{
+        line-height: 1em;
+        background: #ffffff;
+        padding: 8px;
+        box-shadow: -5px 0 0 0 #1BB291;
+        margin: 0;
+        font-weight: 700;
+        cursor: pointer;
     }
     @keyframes fade-up {
         0%{
