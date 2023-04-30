@@ -5,27 +5,32 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
+<main>
+    <section id="hero">
+        <div id="hero-txt">
+            <p class="hero-txt-small">Let's help you</p>
+            <p class="hero-txt-big">Discover your strength,<br>conquer your fears,<br>
+                & live your <span>best life</span></p>
+            <div id="hero-btn-container">
+                <a id="get-started" href="{% url 'signup' %}" class="hero-btn">Get Started</a>
 
-<section id="hero">
-    <div id="hero-txt">
-        <p class="hero-txt-small">Let's help you</p>
-        <p class="hero-txt-big">Discover your strength,<br>conquer your fears,<br>
-            & live your <span>best life</span></p>
-        <div id="hero-btn-container">
-            <a id="get-started" href="{% url 'signup' %}" class="hero-btn">Get Started</a>
-
-            <a id="log-in" href="{% url 'login' %}" class="hero-btn">Log in</a>
+                <a id="log-in" href="{% url 'login' %}" class="hero-btn">Log in</a>
+            </div>
         </div>
-    </div>
-</section>
-<section id="about">
-    <img src="{% static 'images\about-illustration.png' %}" alt="">
-    <section id="about-text">
-        <h2>About</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nam nostrum ducimus ea expedita molestiae ipsum inventore laborum corporis voluptate nihil illum ab praesentium tempore, obcaecati modi mollitia iure et consequuntur quisquam veniam nulla. Sint molestias tenetur autem ab fugit provident odio non nobis iusto. Eveniet temporibus enim vitae fugiat.</p>
     </section>
-</section>
+    <section id="about">
+        <img src="{% static 'images\about-illustration.png' %}" alt="">
+        <div id="about-text-wrap">
+            <section id="about-text">
+                <h2>About</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nam nostrum ducimus ea expedita molestiae ipsum inventore laborum corporis voluptate nihil illum ab praesentium tempore, obcaecati modi mollitia iure et consequuntur quisquam veniam nulla. Sint molestias tenetur autem ab fugit provident odio non nobis iusto. Eveniet temporibus enim vitae fugiat.</p>
+            </section>
+        </div>
+    </section>
+    <section id="faqs">
 
+    </section>
+</main>
 
 
 

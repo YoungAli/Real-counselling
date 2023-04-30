@@ -2,6 +2,9 @@
     body{
         margin: 0;
     }
+    main{
+        
+    }
      #hero{
         height: 100vh;
         background: url("/static/images/homebg.jpg") 0 no-repeat fixed;
@@ -66,14 +69,47 @@
     #about{
         height: 100vh;
         display: flex;
-        flex-basis: 1fr 1fr;
+        justify-content: space-evenly;
     }
-    #about-txt{
+    #about-text-wrap{
+        
+        filter: drop-shadow(-1px 6px 6px rgba(50, 50, 0, 0.5));
+    }
+    #about-text{
+        margin-top: 70px;
         clip-path: ellipse(47% 37% at 50% 50%);
-        background: #1BB291;
+        background: #cccccc;
+        height: 500px;
+        min-width: 500px;
+        max-width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        z-index: 1;
+        transform: rotate(-20deg);
+        padding: 30px;
+        box-shadow: 10px 10px 10px black;
+        scale: 1.2;
+    }
+    #about-text > p{
+        transform: rotate(20deg);
+        padding-inline: 40px;
+    }
+    #about-text > h2{
+        transform: rotate(20deg);
+        font-family: Jost;
+        font-weight: 900;
+        font-size: 2.5em;
+        margin: -20px -10px 0 100px;
+        text-decoration: underline #1BB291 4px;
     }
     #about > img{
-        height: 100px;
+        height: 300px;
+        align-self: self-end;
+        justify-self: center;
+        margin-bottom: 100px;
     }
     @keyframes fade-up {
         0%{
