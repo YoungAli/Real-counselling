@@ -70,15 +70,17 @@
         height: 100vh;
         display: flex;
         justify-content: space-evenly;
+        background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 47.5px 47.5px, linear-gradient(#d3ffee 3.8000000000000003px, transparent 3.8000000000000003px) 0 -1.9000000000000001px, linear-gradient(90deg, #d3ffee 3.8000000000000003px, #ffffff 3.8000000000000003px) -1.9000000000000001px 0;
+        background-size: 95px 95px, 95px 95px, 47.5px 47.5px, 47.5px 47.5px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.61);
     }
     #about-text-wrap{
-        
         filter: drop-shadow(-1px 6px 6px rgba(50, 50, 0, 0.5));
     }
     #about-text{
         margin-top: 70px;
         clip-path: ellipse(47% 37% at 50% 50%);
-        background: #cccccc;
+        background: #f8f8f8;
         height: 500px;
         min-width: 500px;
         max-width: 500px;
@@ -89,13 +91,15 @@
         flex-direction: column;
         z-index: 1;
         transform: rotate(-20deg);
-        padding: 30px;
+        padding: 40px;
         box-shadow: 10px 10px 10px black;
         scale: 1.2;
+        animation: fade-up 1s;
     }
     #about-text > p{
         transform: rotate(20deg);
         padding-inline: 40px;
+        font-size: 0.9em;
     }
     #about-text > h2{
         transform: rotate(20deg);
@@ -110,6 +114,10 @@
         align-self: self-end;
         justify-self: center;
         margin-bottom: 100px;
+        animation: fade-up 0.5s;
+    }
+    #faqs{
+        height: 100vh;
     }
     @keyframes fade-up {
         0%{
