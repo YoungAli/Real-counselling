@@ -1,3 +1,5 @@
+//base scripts
+
 const menuBtn = document.querySelector('#menu-button');
 const mobileMenu = document.querySelector('#mobile-nav');
 const menuBack = document.querySelector("#back-button");
@@ -39,3 +41,5 @@ window.addEventListener('scroll', ()=>{
         navBar.classList.remove('main-nav-bg');  
     }
 })
+
+

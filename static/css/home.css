@@ -76,7 +76,7 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.61);
     }
     #about-text-wrap{
-        filter: drop-shadow(-1px 6px 6px rgba(50, 50, 0, 0.5));
+        filter: drop-shadow(-5px 5px 0 #1BB291);
     }
     #about-text{
         margin-top: 70px;
@@ -158,12 +158,16 @@
         box-shadow: 3px 3px 1px 1px #1BB291;
         border-radius: 2px;
         color: black;
-        padding: 5px 20px 5px 25px;
-        gap: 10px;
+        padding: 12px 20px 12px 25px;
+        gap: 15px;
     }
     #q-ans{
         max-width: 400px;
         min-width: 400px;
+        font-weight: 600;
+        font-size: 1.2em;
+        display: block;
+        padding-top: 25px;
     }
     .q-wraps > p{
         line-height: 1em;
@@ -173,6 +177,18 @@
         margin: 0;
         font-weight: 700;
         cursor: pointer;
+        height: 18%;
+    }
+    @keyframes flicker {
+        0%{
+            opacity: 1;
+        }
+        50%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
     }
     @keyframes fade-up {
         0%{
