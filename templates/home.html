@@ -19,9 +19,11 @@
         </div>
     </section>
     <section id="about">
+        <h2 class="seo-hidden">Contact Us</h2>
         <img src="{% static 'images\about-illustration.png' %}" alt="">
         <div id="about-text-wrap">
             <section id="about-text">
+                <img class="img-headers" src="{% static 'images\about.png' %}" alt="About us">
                 <h2>About</h2>
                 <p>This is Trinity University online counselling system, where students can visit the webpage, read articles related to counselling, watch helpful videos, ask questions and chat with the Counsellor. If they are not satisfied they can book an appointment with the Counsellor of the school who is a well trained professional counsellor and also the school Chaplain, here the students get to express themselves when they have a conversations with the counsellor. 
                 </p>
@@ -29,30 +31,51 @@
         </div>
     </section>
     <section id="faqs">
+        <h2 class="seo-hidden">Frequently Asked Questions</h2>
         <div id="faq-images">
-            <img id="faq-img-1" src="{% static 'images\faqs.png' %}" alt="frequently asked questions">
+            <img class="img-headers" src="{% static 'images\faqs.png' %}" alt="frequently asked questions">
             <img id="faq-img-2" src="{% static 'images\faq-illustration.png' %}" alt="">
         </div>
         <div id="faq-container">
             <div id="q-wrap-1" class="q-wraps">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
+                <p class="faq-tiles">What is counseling?</p>
+                <p class="faq-tiles">What kinds of issues can counseling help with?</p>
+                <p class="faq-tiles">How long does counseling last?</p>
+                <p class="faq-tiles">What happens during a counseling session?</p>
             </div>
             <div id="q-wrap-2" class="q-wraps">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, esse.</p>
+                <p class="faq-tiles">Is counseling confidential?</p>
+                <p class="faq-tiles">How can I find a counselor?</p>
+                <p class="faq-tiles">How much does counseling cost?</p>
+                <p class="faq-tiles">What if I don't feel comfortable with my counselor?</p>
             </div>
             <div id="q-ans" class="q-wraps">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus nulla, ullam maiores commodi aliquid porro eum ipsa placeat soluta iusto aliquam beatae sequi quia obcaecati, eligendi quibusdam architecto dolore excepturi, assumenda voluptatibus eos odit unde! Corporis deserunt autem ipsa molestiae officia quam aperiam quasi officiis accusamus. Deleniti commodi facilis aliquid.
+                <div id="faq-ans-tile">
+                Click a question to reaveal the answer!
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" style="height:100vh">
+        <img src="" alt="">
+        <h2 class="seo-hidden">Contact Us</h2>
+        <div id="con-wrapper">
+            <div>
+                <img src="" alt=""> 
+                Address
+            </div>
+            <div>
+                <img src="" alt=""> 
+                Phone
+            </div>
+            <div>
+                <img src="" alt=""> 
+                Email
             </div>
         </div>
     </section>
 </main>
 
-
+<script src="{% static 'js/home.js' %}"></script>
 
 {% endblock content %}
