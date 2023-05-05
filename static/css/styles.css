@@ -95,6 +95,11 @@
     #mobile-nav > a{
         transition: 0.3s;
     }
+    .center-img{
+        margin:0 auto;
+        display: block;
+        height: 70px;
+    }
     @keyframes slide-left {
         0%{
             transform: translateX(42vw);
