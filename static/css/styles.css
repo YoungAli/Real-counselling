@@ -1,3 +1,8 @@
+body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
 .nav--links{
     color:#1BB291;
     font-weight: 700;
@@ -19,6 +24,7 @@
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 1.2em;
         order: 1;
+        padding:20px ;
     }
     #main-nav{
         display: flex;
@@ -26,7 +32,7 @@
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 20px 10px 20px;
+        margin: 0;
         transition: 0.3s;
         z-index: 998;
     }
@@ -40,12 +46,12 @@
     }
     #home-link > img{
         height: 45px;
-        margin: -10px 0 0 0;
+        margin: -10px 40px 0 0;
     }
     #menu-button> img{
-        height: 45px;
         cursor:pointer;
         display: none;
+        padding: 15px;
     }
     #menu-button{
         order: 2;
@@ -59,7 +65,7 @@
     background: white;
     right: 0px;
     width: 50vw;
-    height: 100vh;
+    height: 100%;
     z-index: 999;
     animation: slide-left 0.7s;
     box-shadow: 0 0 1350px black;
@@ -84,7 +90,7 @@
         position: fixed;
         top: 0px;
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         backdrop-filter: blur(6px);
         z-index: 1;
         display: none;
@@ -127,4 +133,7 @@
         #menu-button{
         order: 1;
         }
+    }
+    @media (max-width: 420px) {
+       
     }
