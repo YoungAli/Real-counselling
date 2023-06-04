@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from .models import Article, Appointment
-from .forms import ArticleForm, AppointmentForm
+from .forms import ArticleForm, AppointmentForm, ScheduleAppointmentForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -101,6 +101,18 @@ def all_appointments(request):
     context = {'appointments': appointments}
     return render(request, 'appointments.html', context)
 
+@login_required(login_url='login')
+def booked_appointments(request):
+    search_input = request.GET.get('search-area')
+    print('search......',search_input)
+    if search_input == None:
+        appointments = Appointment.objects.all()
+    else:
+        appointments = Appointment.objects.filter(title__contains=search_input)
+    context = {'appointments': appointments}
+    return render(request, 'booked_appointments.html', context)
+
+
 
 @login_required(login_url='login')
 @for_admins
@@ -118,17 +130,18 @@ def create_appointment(request):
 
 
 @login_required(login_url='login')
-def schedule_appointment(request):
-    if request.method == 'GET':
-        form = AppointmentForm()
-        return render(request, 'schedule_appointment.html', context={'form': form})
-    elif request.method == 'POST':
-        form = AppointmentForm(request.POST)
+def schedule_appointment(request, slug):
+    appointment = get_object_or_404(Appointment, slug=slug)
+    form = ScheduleAppointmentForm(instance=appointment)
+    if request.method == 'POST':
+        form = ScheduleAppointmentForm(request.POST, instance=appointment)
         if form.is_valid():
+            appointment.booked_by = request.user
+            appointment.save()
             form.save()
-            return redirect('all_appointments')
-        else: return render(request, 'schedule_appointment.html', {'form': form})
-
+            print(f'Appointment booekd by {request.user.first_name} {request.user.last_name}: {appointment.date} - {appointment.start_time} {appointment.end_time}')
+            return redirect('appointments')
+    return render(request, 'edit_appointment.html', {'form': form, 'slug': slug})
 
 @login_required(login_url='login')
 @for_admins

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Appointments - TU Counsel{% endblock title %}</title>
+    <title>{% block title %}Booked Appointments - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
@@ -23,22 +23,13 @@
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;" id="btn">
         <div class="text" style="margin-left: 34px;">
-            <legend>Appointments<br /></legend>
+            <legend>Booked Appointments<br /></legend>
             {% for appointment in appointments %}
-                {% if request.user.is_superuser %}
-                    {% if appointment.booked %}
-                        <h2>Date: {{ appointment.date }} || Time: {{ appointment.start_time}} - {{appointment.end_time }} || Booked:
-                        {{appointment.booked}}</a></h2>
-                    {% else %}
-                    <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time: {{ appointment.start_time}} - {{appointment.end_time }} || Booked: {{appointment.booked}}</a></h2>
-                    {% endif %}
-                {% else %}
-                {% if not appointment.booked %}
-                    <h2><a href="{% url 'schedule_appointment' appointment.slug %}">{{ appointment.date }} || {{ appointment.start_time}}-{{appointment.end_time }}</a></h2>
-                {% endif %}
-                {% endif %}
-                <hr>
+            {% if appointment.booked == True %}
+            <h4>Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Date: {{ appointment.date }} || Time: {{ appointment.start_time }}-{{appointment.end_time }}</h4>
+            {% endif %}
             {% endfor %}
+            <hr>
         </div>
 
     </section>

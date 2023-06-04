@@ -27,3 +27,9 @@ class AppointmentForm(forms.ModelForm):
         model = Appointment
         fields = ['date', 'start_time', 'end_time']
 
+
+class ScheduleAppointmentForm(forms.ModelForm):
+    class Meta(forms.ModelForm):
+        model = Appointment
+        fields = ['booked']
+

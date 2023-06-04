@@ -7,7 +7,7 @@
         <li>
             <i class='bx bx-search'></i>
             <form method="GET" style="display: flex;">
-                <input type='text' name='search-area' placeholder="Search for an article..." value="{{search_input}}">
+                <input type='text' name='search-area' placeholder="Search..." value="{{search_input}}">
             </form>
             <span class="tooltip">Search</span>
         </li>
@@ -42,16 +42,30 @@
             <span class="tooltip">Videos</span>
         </li>
         {% if request.user.is_superuser %}
+        <li>
+            <a href="{% url 'create_appointment' %}">
+                <i class='bx bx-message-square-add'></i>
+                <span class="links_name">Create an appointment</span>
+            </a>
+            <span class="tooltip">Create an appointment</span>
+        </li>
         <li> 
             <a href="{% url 'appointments' %}">
                 <i class='bx bx-message-square-add'></i>
-                <span class="links_name">Appointments</span>
+                <span class="links_name">Created appointments</span>
             </a>
-            <span class="tooltip">Appointments</span> 
+            <span class="tooltip">Created appointments</span> 
+        </li>
+        <li>
+            <a href="{% url 'booked_appointments' %}">
+                <i class='bx bx-message-square-add'></i>
+                <span class="links_name">Booked appointments</span>
+            </a>
+            <span class="tooltip">Booked appointments</span>
         </li>
         {% else %}
         <li>
-            <a href="">
+            <a href="{% url 'appointments' %}">
                 <i class='bx bx-message-square-add'></i>
                 <span class="links_name">Book appointment</span>
             </a>
