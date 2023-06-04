@@ -29,16 +29,16 @@ class Article(models.Model):
         super(Article, self).save(*args, **kwargs)
 
 
-class Counsel(models.Model):
-    name = models.CharField(max_length=255, null=True, blank=True)
-    dept = models.CharField(max_length=255, null=True, blank=True)
+class Appointment(models.Model):
+    booked_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
     email_address = models.EmailField(unique=True, max_length=25, null=True, blank=True)
-    scheduled_date = models.DateField(null=True, blank=True)
-    scheduled_time = models.TimeField(null=True, blank=True)
-    attended_to = models.BooleanField(default=False)
+    date = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
+    booked = models.BooleanField(default=False)
+    month = models.CharField(max_length=255, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def  __str__(self):
-        return self.name
+        return self.booked_by
 

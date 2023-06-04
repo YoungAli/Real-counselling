@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from .models import Article, Counsel
-from .forms import ArticleForm, CounselForm
+from .models import Article, Appointment
+from .forms import ArticleForm, AppointmentForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -27,7 +27,7 @@ def all_videos(request):
     if search_input == None:
         keywords = ['anxiety', 'relationship', 'career', 'addiction','education', 'anger', 'mental health', 'spiritual']
         search_input = random.choice(keywords)
-        req = youtube.search().list(q=f'{search_input} counselling', part='snippet', type='video', maxResults=50)
+        req = youtube.search().list(q=f'{search_input} counselling', part='snippet', type='video', maxResults=5)
         res= req.execute()
     else:
         req = youtube.search().list(q=f'{search_input}', part='snippet', type='video', maxResults=50)
