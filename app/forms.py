@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article, Counsel
+from .models import Article, Appointment
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Enter the article's title"}))
@@ -9,7 +9,7 @@ class ArticleForm(forms.ModelForm):
         fields = ['title', 'subtitle', 'tags', 'content']
 
 
-class CounselForm(forms.ModelForm):
+class AppointmentForm(forms.ModelForm):
     class Meta:
-        model = Counsel
+        model = Appointment
         fields = '__all__'
