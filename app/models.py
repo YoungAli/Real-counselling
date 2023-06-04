@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.urls import reverse
 import string, random
+from django.utils.translation import gettext_lazy as _
 
 def random_slug():
     return ''.join(random.choice(string.digits) for i in range(12))
@@ -31,7 +32,7 @@ class Article(models.Model):
 
 class Appointment(models.Model):
     booked_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
-    email_address = models.EmailField(unique=True, max_length=25, null=True, blank=True)
+    email = models.EmailField(_("email address"),  max_length=50, null=False, blank=False, unique=True)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
     booked = models.BooleanField(default=False)

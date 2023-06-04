@@ -31,14 +31,14 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button type="submit" class="btn btn-success" box-shadow="none">Update</button>
-                    <button type="button" class="btn btn-danger" box-shadow="none"><a href="{% url 'articles' %}"
-                        style="text-decoration: none; color: white;">Cancel</a></button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" box-shadow="none"><a
+                            style="text-decoration: none; color: white;">Delete</a></button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Delete Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

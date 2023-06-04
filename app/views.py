@@ -22,7 +22,8 @@ class DashboardView(TemplateView):
 @login_required(login_url='login')
 def all_videos(request):
     search_input = request.GET.get('search-area')
-    youtube = build('youtube', 'v3', developerKey=config('YOUTUBE_API_KEY'))
+    # youtube = build('youtube', 'v3', developerKey=config('YOUTUBE_API_KEY'))
+    youtube = build('youtube', 'v3', developerKey='AIzaSyAdyL-dL2V5pB5I3qffkQ6sYSF07bslLmI')
     print('search...', search_input)
     if search_input == None:
         keywords = ['anxiety', 'relationship', 'career', 'addiction','education', 'anger', 'mental health', 'spiritual']
@@ -80,14 +81,6 @@ def edit_article(request, slug):
             form.save()
             return redirect('articles')
     return render(request, 'edit_article.html', {'form': form, 'slug': slug, 'article_title': article_title})
-
-@login_required(login_url='login')
-def article_detail(request, slug):
-    article = get_object_or_404(Article, slug=slug)
-    article_title = Article.objects.get(slug=slug)
-    form = ArticleForm(instance=article)
-    context = {'form':form, 'slug':slug, 'article_title':article_title}
-    return render(request, 'article_detail.html', context)
 
 @login_required(login_url='login')
 @for_admins
