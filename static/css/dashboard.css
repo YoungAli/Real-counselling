@@ -29,14 +29,17 @@ body {
     top: 0;
     height: 100%;
     width: 78px;
-    background: rgb(24, 245, 123);
+    background: #1BB291;
     padding: 6px 14px;
     z-index: 99;
     transition: all 0.5s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.466);
 }
 
 .sidebar.open {
     width: 250px;
+    background: #1bb29188;
+    backdrop-filter: blur(4px);
 }
 
 .sidebar .sidebar_btn {
@@ -124,7 +127,7 @@ body {
     border-radius: 12px;
     transition: all 0.5s ease;
     /* background: #1d1b31; */
-    background: rgb(0, 250, 96);
+    background: #07745c;
 }
 
 .sidebar.open input {
@@ -138,12 +141,12 @@ body {
     left: 0;
     transform: translateY(-50%);
     font-size: 22px;
-    background: rgb(0, 250, 96);
+    background: #07745c;
     color: #FFF;
 }
 
 .sidebar.open .bx-search:hover {
-    background: rgb(0, 250, 96);
+    background: #07745c;
     color: #FFF;
 }
 
@@ -160,7 +163,7 @@ body {
     align-items: center;
     text-decoration: none;
     transition: all 0.4s ease;
-    background: blueviolet;
+    background: #07745c;
 }
 
 .sidebar li a:hover {
@@ -238,4 +241,56 @@ body {
 ::placeholder {
     color: white;
     opacity: 1;
+}
+#welcome-message{
+    margin: 25px 0px 0px 30px;
+    font-size: 1.8rem;
+}
+#vid-slider{
+    width: 85%;
+    margin: 15px auto 10px auto;
+    height: 270px;
+    border-radius: 15px;
+    background: black;
+}
+#feat-articles{
+    display: grid;
+    width: 80%;
+    margin: 5px auto 10px auto;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 20px;
+    place-content: center;
+}
+#feat-articles > div{
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    min-height: 200px;
+    background: rgb(227, 255, 245);
+    box-shadow: 4px 4px 0 #1BB291;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#feat-articles > div:hover{
+    transform: translateY(-4px);
+    box-shadow: 5px 6px 0 #1BB291;
+}
+#feat-arts{
+    margin: 20px 0 10px 0;
+    text-align: center;
+    font-size: 1.8rem;
+}
+.article-title{
+    font-weight: 700;
+    font-size: 1.3em;
+    margin: 10px 0;
+}
+.article-intro{
+    margin: 0;
+}
+.card-article > img{
+    width: 100%;
+    border-radius: 10px;
+    height:80px;
+    object-fit: cover;
 }

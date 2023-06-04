@@ -1,7 +1,8 @@
  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&display=swap');
-    body{
-        margin: 0;
-    }
+
+ html{
+    scroll-behavior: smooth
+ }
      #hero{
         height: 100vh;
         background: url("/static/images/homebg.jpg") 0 no-repeat fixed;
@@ -10,7 +11,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 20px 0 0 30px;
+        padding: 0 30px;
     }
     #hero-txt{
         margin-left: 5%;
@@ -46,6 +47,10 @@
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         text-decoration: none;
         box-shadow: 0 5px 8px rgba(0, 0, 0, 0.329);
+        transition: 0.3s;
+    }
+    .hero-btn:hover{
+        scale:1.04
     }
     .seo-hidden{
         font-size: 0px;
@@ -65,8 +70,9 @@
         color: white;
     }
     #log-in{
-        border: 4px solid #1BB291;
+        border: 3px solid #1BB291;
         color: #1BB291;
+        background: white;
     }
     #about{
         height: 100vh;
@@ -77,43 +83,38 @@
         background-size: 95px 95px, 95px 95px, 47.5px 47.5px, 47.5px 47.5px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.61);
     }
-    #about-text-wrap{
-        filter: drop-shadow(-5px 5px 0 #1BB291);
-    }
     #about-text{
-        margin-top: 70px;
-        clip-path: ellipse(47% 37% at 50% 50%);
+        margin-top: 120px;
+        border-radius: 50%;
+        box-shadow: -5px 5px 0 #1BB291;
         background: #f8f8f8;
-        height: 500px;
-        min-width: 500px;
+        width: 100%;
         max-width: 500px;
+        height: 60%;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
         flex-direction: column;
         z-index: 1;
-        transform: rotate(-20deg);
         padding: 40px;
-        box-shadow: 10px 10px 10px black;
-        scale: 1.2;
         animation: fade-up 1s;
+        align-self: flex-end;
+        font-weight: 600;
     }
     #about-text > p{
-        transform: rotate(20deg);
         padding-inline: 40px;
-        font-size: 0.9em;
+        font-size: 1em;
     }
     #about-text > h2{
-        transform: rotate(20deg);
         font-family: Jost;
         font-weight: 900;
         font-size: 2.5em;
-        margin: -20px -10px 0 100px;
-        text-decoration: underline #1BB291 4px;
+        text-decoration: underline #5ab9a5 4px;
+        margin-block:0 ;
     }
     #about > img{
-        height: 300px;
+        height: 200px;
         align-self: self-end;
         justify-self: center;
         margin-bottom: 100px;
@@ -136,7 +137,7 @@
         height: 50px;
     }
     #faq-img-2{
-        height: 150px;
+        height: 100px;
     }
     #faq-container{
         min-height: 65vh;
@@ -152,8 +153,7 @@
         height:350px;
         background:rgb(216, 216, 216) ;
         width: 30%;
-        min-width: 270px;
-        max-width: 320px;
+        max-width: 250px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -162,9 +162,9 @@
         color: black;
         padding: 12px 20px 12px 25px;
         gap: 15px;
+        font-size: 0.95em;
     }
     #q-ans{
-        max-width: 400px;
         min-width: 400px;
         font-weight: 600;
         font-size: 1.2em;
@@ -181,10 +181,52 @@
         cursor: pointer;
         height: 18%;
     }
-    #contact > div {
-        margin-top: 30px;
-        background: green;
+    #contact {
+        padding: 70px 10px 0 10px;
+    }
+    #contact > h2{
+        font-family: Jost;
+        font-weight: 800;
+        font-size: 2.5em;
+        text-decoration: underline #1BB291 4px;
+        text-align: center;
+    }
+    #con-wrapper{
+        width: 90%;
+        height: fit-content;
         display: flex;
+        margin: 70px auto 0 auto;
+        max-width: 1000px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+    }
+    #con-wrapper > div{
+        width: 300px;
+        height: 330px;
+        border-radius: 15px;
+        background: #dafff7;
+        box-shadow: -4px 4px 1px 1px #1BB291;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #con-wrapper > div >img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 40px 0;
+        object-fit: cover;
+    }
+    #school-contact{
+        text-align: center;
+        margin-top: 40px;
+    }
+    #school-name{
+        font-weight: 700;
+        font-size: 2em;
+        margin-bottom: 4px;
     }
     @keyframes flicker {
         0%{
@@ -206,4 +248,81 @@
             opacity: 1;
             transform: translateY(0px);
         }
+    }
+    @media (max-width: 915px) {
+        #about-text{
+            align-self: flex-end;
+            margin-top:100px;
+            font-size: 0.9em;
+            max-width: 400px;
+            padding: 15px;
+        }
+        #about>img{
+            margin-bottom:30px;
+            height: 150px;
+            align-self: flex-start;
+        }
+        
+    }
+    @media (max-width: 550px){
+        #about-text{
+            width: 80%;
+            height: fit-content;
+            border-radius: 10%;
+            padding: 0;
+        }
+        #hero-txt{
+            margin: 0;
+        }
+        .hero-txt-small{
+            text-align: center;
+        }
+        .hero-txt-big{
+            font-size: 2.7em;
+            line-height: 1.2em;
+            text-align: center;
+        }
+        .hero-txt-big > span{
+            text-decoration: underline #1BB291;
+        }
+        #hero-btn-container{
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-btn{
+            width: 100%;
+            max-width: 400px;
+            margin-top: 5px;
+        }
+        #q-ans{
+            display:none;
+        }
+        .q-wraps{
+            width: 100%;
+            margin-bottom:20px ;
+        }
+        #faq-images{
+            justify-content: center;
+            margin: 30px auto;
+            padding:80px 0px 0px 20px;
+        }
+        #faq-img-2{
+            display: none;
+        }
+        #faq-container{
+            margin-bottom: 0px;
+        }
+    }
+    @media (max-width:450px) {
+        .hero-txt-big{
+            font-size: 2em;
+
+        }
+        .hero-btn{
+            width: 80%;
+        }
+        
     }
