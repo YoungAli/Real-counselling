@@ -90,9 +90,71 @@ def delete_article(request, slug):
     return redirect('articles')
 
 
+@login_required(login_url='login')
+def all_appointments(request):
+    search_input = request.GET.get('search-area')
+    print('search......',search_input)
+    if search_input == None:
+        appointments = Appointment.objects.all()
+    else:
+        appointments = Appointment.objects.filter(title__contains=search_input)
+    context = {'appointments': appointments}
+    return render(request, 'appointments.html', context)
+
+
+@login_required(login_url='login')
+@for_admins
+def create_appointment(request):
+    if request.method == 'GET':
+        form = AppointmentForm()
+        return render(request, 'create_appointment.html', context={'form': form})
+    elif request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print(dir(form), form.data)
+            return redirect('appointments')
+        else: return render(request, 'create_appointment.html', {'form': form})
+
+
+@login_required(login_url='login')
+def schedule_appointment(request):
+    if request.method == 'GET':
+        form = AppointmentForm()
+        return render(request, 'schedule_appointment.html', context={'form': form})
+    elif request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('all_appointments')
+        else: return render(request, 'schedule_appointment.html', {'form': form})
+
+
+@login_required(login_url='login')
+@for_admins
+def edit_appointment(request, slug):
+    appointment = get_object_or_404(Appointment, slug=slug)
+    appointment_title = Appointment.objects.get(slug=slug)
+    form = AppointmentForm(instance=appointment)
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, instance=appointment)
+        if form.is_valid():
+            form.save()
+            return redirect('appointments')
+    return render(request, 'edit_appointment.html', {'form': form, 'slug': slug, 'appointment_title': appointment_title})
+
+@login_required(login_url='login')
+@for_admins
+def delete_appointment(request, slug):
+    appointment = Appointment.objects.get(slug=slug)
+    appointment.delete()
+    return redirect('appointments')
+
+
 # def page_not_found(request, exception):
 #     return render(request, '404.html')
 
 
 # def server_error_page(request, exception):
 #     return render(request, '500.html')
+

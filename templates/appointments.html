@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Videos - TU Counsel{% endblock title %}</title>
+    <title>{% block title %}Appointments - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
@@ -23,20 +23,22 @@
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;" id="btn">
         <div class="text" style="margin-left: 34px;">
-            <legend>Videos<br /></legend>
-            {% for video in videos %}
-                <h2>{{ video.title }}</h2>
-                <p>{{ video.description }}</p>
-                <!-- <p>{{ video.thumbnail.url }}</p> -->
-                <iframe width="425" height="349" src="http://www.youtube.com/embed/{{ video.id }}" 
-                    frameborder="0" allowfullscreen></iframe>
-                <hr>
+            <legend>Appointments<br /></legend>
+            <h2><a href="{% url 'create_appointment' %}">Create Appointment</a></h2>
+            {% for appointment in appointments %}
+            {% if request.user.is_superuser %}
+            <h2><a href="{% url 'edit_appointment' appointment.slug %}">{{ appointment.date }} || {{ appointment.start_time }}-{{ appointment.end_time }} || {{appointment.booked}}</a></h2>
+            {% else %}
+            <h2>{{ appointment.date }} || {{ appointment.start_time }}-{{appointment.end_time }} || {{appointment.booked}}</h2>
+            {% endif %}
+            <div style="margin-left: 25.5px; color: lightslategrey;">{{ appointment.subtitle|truncatechars:50 }}</div>
+            <hr>
             {% endfor %}
         </div>
 
     </section>
 </body>
-<script src="{% static 'js/sidebar.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
