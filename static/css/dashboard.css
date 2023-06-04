@@ -38,7 +38,7 @@ body {
 
 .sidebar.open {
     width: 250px;
-    background: #1bb2916b;
+    background: #1bb29188;
     backdrop-filter: blur(4px);
 }
 
@@ -255,7 +255,7 @@ body {
 }
 #feat-articles{
     display: grid;
-    width: 85%;
+    width: 80%;
     margin: 5px auto 10px auto;
     grid-template-columns: repeat(auto-fill, 250px);
     gap: 20px;
