@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Articles- TU Counsel{% endblock title %}</title>
+    <title>{% block title %}Articles - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
@@ -25,7 +25,11 @@
         <div class="text" style="margin-left: 34px;">
             <legend>Articles<br /></legend>
             {% for article in articles %}
-                <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
+                {% if request.user.is_superuser %}
+                <h2><a href="{% url 'edit_article' article.slug %}">{{ article.title }}</a></h2>
+                {% else %}
+                <h2>{{ article.title }}</h2>
+                {% endif %}
                 <div style="margin-left: 25.5px; color: lightslategrey;">{{ article.subtitle|truncatechars:50 }}</div>
                 <p>{{ article.content }} || {{ article.tags }}</p>
                 <hr>

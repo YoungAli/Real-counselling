@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Videos - TU Counsel{% endblock title %}</title>
+    <title>{% block title %}Create an Appointment - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
@@ -19,24 +19,26 @@
 </head>
 
 <body>
-
     {% include 'sidebar.html' %}
-    <section class="home-section" style="background-color: white;" id="btn">
+    <section class="home-section" style="background-color: white;">
         <div class="text" style="margin-left: 34px;">
-            <legend>Videos<br /></legend>
-            {% for video in videos %}
-                <h2>{{ video.title }}</h2>
-                <p>{{ video.description }}</p>
-                <!-- <p>{{ video.thumbnail.url }}</p> -->
-                <iframe width="425" height="349" src="http://www.youtube.com/embed/{{ video.id }}" 
-                    frameborder="0" allowfullscreen></iframe>
-                <hr>
-            {% endfor %}
+            <h4>Create Appointment</h4>
         </div>
-
+        <div class="card"
+            style="margin-left: 8px;border-color: blueviolet; border-style: solid; border-radius: 23px; margin-right: 8px;">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-success" box-shadow="none">Save</button>
+                    <button type="button" class="btn btn-danger"><a href="{% url 'articles' %}"
+                            style="text-decoration: none; color: white;" box-shadow="none">Cancel</a></button>
+                </form>
+            </div>
+        </div>
     </section>
 </body>
-<script src="{% static 'js/sidebar.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>

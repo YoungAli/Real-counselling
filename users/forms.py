@@ -7,11 +7,11 @@ class CustomUserCreationForm(UserCreationForm):
     password2 = forms.CharField(label=("Password Confirmation"), strip=False, widget=forms.PasswordInput)
 
     class Meta:
-        fields = ('username', 'email')
+        fields = ('matric_number', 'first_name', 'last_name')
         model = CustomUser
 
 
-class CustomUserEditForm(UserChangeForm):
+class CustomUserChangeForm(UserChangeForm):
     class Meta:
-        fields = ('username', 'email')
+        fields = ('first_name', 'last_name')
         model = CustomUser

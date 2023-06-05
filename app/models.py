@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.urls import reverse
 import string, random
+from django.utils.translation import gettext_lazy as _
 
 def random_slug():
     return ''.join(random.choice(string.digits) for i in range(12))
@@ -31,14 +32,20 @@ class Article(models.Model):
 
 class Appointment(models.Model):
     booked_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
-    email_address = models.EmailField(unique=True, max_length=25, null=True, blank=True)
+    email = models.EmailField(_("email address"),  max_length=50, null=False, blank=False)
+    slug = models.SlugField(max_length=500, unique= True, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
-    time = models.TimeField(null=True, blank=True)
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
     booked = models.BooleanField(default=False)
-    month = models.CharField(max_length=255, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
-    def  __str__(self):
-        return self.booked_by
+    def get_absolute_url(self):
+        return reverse('appointments')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(random_slug())
+        super(Appointment, self).save(*args, **kwargs)
 
