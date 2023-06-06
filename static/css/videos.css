@@ -1,0 +1,122 @@
+#searchbar{
+    width: 80%;
+    max-width: 600px;
+    padding: 8px 10px;
+    margin:40px auto 25px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+#search_btn{
+    font-size: 1.5em;
+    margin-top: 2px;
+    transition: 0.2s;
+}
+#search_btn:hover{
+    color:#159277;
+    text-shadow: 0 0 1px #159277;
+}
+#searchbar>input{
+    border: none;
+    width: 100%;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: rgb(128, 128, 128);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+#searchbar>input:focus{
+    outline:0px;
+}
+#video_results{
+    width: 80%;
+    max-width: 700px;
+    margin: 70px auto 30px auto;
+}
+
+hr{
+    height: 1px;
+    width: 80%;
+    background: rgb(124, 124, 124);
+    margin: 0 auto;
+}
+#video_results hr{
+    width: 100% !important;
+}
+
+.video-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-wrapper>iframe{
+    border-radius: 15px;
+    width: 100%;
+    height: 300px;
+    margin: 10px 0;
+    max-width: 800px;
+    border:none;
+}
+.vid_title{
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 100%;
+    margin: 0;
+}
+.vid_desc{
+    width: 100%;
+    margin: 0;
+}
+
+#vid_preloader {
+    transition: 0.2s;
+    margin: 0 auto;
+    width: fit-content;
+}
+.ip {
+	width: 6em;
+	height: 3em;
+}
+.ip__track {
+	stroke: hsl(223,90%,90%);
+	transition: stroke 0.3s;
+}
+.ip__worm1,
+.ip__worm2 {
+	animation: worm1 1s linear infinite;
+}
+.ip__worm2 {
+	animation-name: worm2;
+}
+
+/* Animation */
+@keyframes worm1 {
+	from {
+		stroke-dashoffset: 0;
+	}
+	50% {
+		animation-timing-function: steps(1);
+		stroke-dashoffset: -358;
+	}
+	50.01% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 358;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes worm2 {
+	from {
+		stroke-dashoffset: 358;
+	}
+	50% {
+		stroke-dashoffset: 0;
+	}
+	to {
+		stroke-dashoffset: -358;
+	}
+}
