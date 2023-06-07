@@ -295,3 +295,45 @@ body {
     height:80px;
     object-fit: cover;
 }
+#console_msg{
+    position:absolute; 
+    top:88vh; 
+    left: 10vw; 
+    right: 0; 
+    width:fit-content; 
+    padding:10px; 
+    background:rgb(70, 70, 70); 
+    box-shadow:2px 2px 0 rgb(29, 29, 29); 
+    border-radius:5px;
+    font-weight: 600; 
+    margin:0 auto; 
+    z-index:99; 
+    border: 1px solid rgb(29, 29, 29); 
+    transition: 0.3s;
+    color: white;
+}
+
+@keyframes pop-up {
+    0%{
+        opacity: 0;
+        transform: translateY(50px);
+        scale: 0.7;
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+        scale: 1;
+    }
+}
+@keyframes pop-down {
+    0%{
+        opacity: 1;
+        transform: translateY(0px);
+        scale: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(50px);
+        scale: 0.7;
+    }
+}

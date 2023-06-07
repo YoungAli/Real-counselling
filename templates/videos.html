@@ -23,7 +23,7 @@
 
     {% include 'sidebar.html' %}
     <section id="btn" class="home-section" style="background-color: white;">
-        <div id="searchbar"><div id="search_btn" class="bx bx-search"></div><input id="search_input" type="search" placeholder="Search for Videos"></div>
+        <div id="searchbar"><div id="search_btn" class="bx bx-search"></div><input placeholder="Search for videos..." id="search_input" type="search" ></div>
         
         <div id="video_results">
         </div>
@@ -57,54 +57,8 @@
             </svg>
         </div>
     </section>
-    <script>
-        const vidArea = document.querySelector('#video_results');
-        const searchBtn = document.querySelector('#search_btn');
-        const searchInput = document.querySelector('#search_input');
-        let randomKeywords = ['anxiety', 'relationship', 'career', 'addiction','education', 'anger', 'mental health', 'spiritual'].sort(() => 0.5 - Math.random()).slice(0, 4).join();
-
-
-        async function fetchVids(isScrolling) {
-            let randomKeywords = ['anxiety', 'relationship', 'career', 'addiction','education', 'anger', 'mental health', 'spiritual'].sort(() => 0.5 - Math.random()).slice(0, 4).join();
-
-            let response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${searchInput.value? searchInput.value : randomKeywords}&videoEmbeddable=true&type=video&key=AIzaSyA4H_W3S25Jkov2f5uKxsjm_Vgmlz4Sv58`);
-
-            let results = await response.json();
-            
-            let videos = await results.items.map(video => {
-                return`<div class="video-wrapper">
-                    <hr>
-                    <p class="vid_title">${video.snippet.title}</p>
-                    <iframe src="https://www.youtube.com/embed/${video.id.videoId}"></iframe>
-                    <p class="vid_desc">${video.snippet.description}</p>
-                </div>`
-            }).join(' ');
-
-            if (isScrolling) {
-                vidArea.innerHTML += videos;
-            }
-            else{
-                vidArea.innerHTML = videos;
-            }
-
-        }
-        searchBtn.addEventListener('click', ()=>{
-            if (!searchInput.value) {
-                console.log("Error, no search query")
-            }
-            else{
-                fetchVids(false);
-            }
-        })
-        fetchVids(false);
-
-        document.addEventListener('scroll', () => {
-        if (window.scrollY >= (document.documentElement.scrollHeight - window.innerHeight)) {
-            fetchVids(true);
-        }
-    })
-    </script>
 </body>
+<script src="{% static 'js/videos.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>

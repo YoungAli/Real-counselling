@@ -56,6 +56,10 @@
             object-fit: cover;
         }
         .article_tags{
+           display: flex;
+           gap: 5px;
+        }
+        .article_tags > p{
             margin: 0;
             font-size: 0.8em;
             color: white;
@@ -79,7 +83,7 @@
         <h4 style="text-align: center; padding: 20px 0; font-size: 2em;">All Articles</h4>
         <div id="article_grid">
             {% for article in articles %}
-            <div class="card-article">
+            <div class="card-article" onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}')">
                 <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt="">
                 <div class="title_lnk">
                 <p class="article-title">{{ article.title }}</p>
@@ -88,14 +92,29 @@
                 {% else %}
                 {% endif %}
                 </div>
-                <p class="article_tags">{{ article.tags }}</p>
-                <p class="article-intro">{{ article.content|truncatechars:50 }}...</p>
+                <div class="article_tags">{{ article.tags }}</div>
+                <p class="article-intro">{{ article.content|truncatechars:50 }}</p>
             </div>
             {% endfor %}
         </div>
     </section>
+    <script>
+        function showArticle(title, tags, content){
+            console.log(title)
+            console.log(tags)
+            console.log(content)
+        }
+        let tagElements = document.getElementsByClassName('article_tags');
+
+        for(let i=0; i< tagElements.length; i++){
+            if(tagElements[i].textContent){
+                tagElements[i].innerHTML = tagElements[i].textContent.split(',').map(tag => {
+                    return `<p>${tag}</p>`
+                }).slice(0, 4).join(" ");
+            }
+        }
+    </script>
 </body>
-<script src="{% static 'js/script.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
