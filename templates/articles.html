@@ -38,9 +38,12 @@
                 <div id="article_grid">
                     {% for article in articles %}
                     <div class="card-article" onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}')">
+                        {% if article.image_url %}
                         <img src={{article.image_url}} alt="">
+                        {% endif %}
                         <div class="title_lnk">
                         <p class="article-title">{{ article.title }}</p>
+                        
                         {% if request.user.is_superuser %}
                         <a href="{% url 'edit_article' article.slug %}" class="edit_lnk">Edit</a>
                         {% else %}
