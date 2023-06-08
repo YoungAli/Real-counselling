@@ -25,10 +25,22 @@
         <div class="text" style="margin-left: 34px;">
             <legend>Booked Appointments<br /></legend>
             {% for appointment in appointments %}
-            {% if appointment.type %}
-            <h4>Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Type: {{appointment.type}} || Email: {{ appointment.booked_by.email }} || Schedule Date: {{ appointment.date }} || Schedule Time: {{ appointment.start_time }} - {{appointment.end_time }} || Date & Time booked : {{appointment.date_updated}}</h4>
-            <hr>
-            {% endif %}
+                {% if appointment.type %}
+                    {% if appointment.virtual %}
+                        <h4>
+                            Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Type:
+                            {{appointment.type}} || Email: {{ appointment.booked_by.email }} || Schedule Date: {{ appointment.date }} ||
+                            Schedule Time: {{ appointment.start_time }} - {{appointment.end_time }} || Date & Time booked :
+                            {{appointment.date_updated}} || Meeting Link: {{appointment.meeting_url}}
+                        </h4>
+                        <hr>
+                    {% else %}
+                        <h4>
+                            Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Type: {{appointment.type}} || Email: {{ appointment.booked_by.email }} || Schedule Date: {{ appointment.date }} || Schedule Time: {{ appointment.start_time }} - {{appointment.end_time }} || Date & Time booked : {{appointment.date_updated}}
+                        </h4>
+                        <hr>
+                    {% endif %}
+                {% endif %}
             {% endfor %}
         </div>
 

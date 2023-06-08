@@ -14,6 +14,7 @@ class Article(models.Model):
     content = models.CharField(max_length=50000, null=True, blank=True)
     tags = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(max_length=500, unique= True, null=True, blank=True)
+    image_url = models.CharField(max_length=500, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -34,6 +35,7 @@ class Appointment(models.Model):
     in_person = models.BooleanField(default=False)
     virtual = models.BooleanField(default=False)
     type = models.CharField(max_length=10, null=True, blank=True)
+    meeting_url = models.CharField(max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=500, unique= True, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     start_time = models.TimeField(null=True, blank=True)
