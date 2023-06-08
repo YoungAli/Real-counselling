@@ -27,7 +27,7 @@ def login_user(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            messages.error(request, "Invalid username or password")
+            messages.error(request, "Invalid matric number or password")
     return render(request, 'login.html')
 
 
