@@ -112,7 +112,7 @@ def format_session_interval(appointment_date, start_time, end_time):
 def send_mail_to_counsellor(first_name, last_name, appointment_type, scheduled_date, start_time , end_time, meet_code=None):
     """function to send email to counsellor informing about the scheduled session"""
     if meet_code:
-        message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+        message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
     else:
         message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
     subject = 'Counselling Session Alert'
@@ -125,9 +125,9 @@ def send_mail_to_counsellor(first_name, last_name, appointment_type, scheduled_d
 def send_mail_to_student(first_name, last_name, appointment_type, scheduled_date, start_time , end_time, student_email, meet_code=None):
     """function to send email to student informing them about the scheduled session"""
     if meet_code:
-        message_ = f"Hello {first_name} {last_name}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code}   \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+        message_ = f"Hello {first_name} {last_name}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code}   \n\n\n\nRegards, \n\n\nTU-Counsel Team"
     else:
-        message_ = f"Hello {first_name} {last_name}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\n\nKind regards, \n\n\nTU-Counsel Team"
+        message_ = f"Hello {first_name} {last_name}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
     subject = 'Counselling Session Confirmation'
     message = message_
     email_from = settings.EMAIL_HOST_USER
