@@ -1,13 +1,15 @@
 from __future__ import print_function
 
-import datetime, time
-import os.path
+import datetime, time, os.path
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 # If modifying these scopes, delete the file token.json.
 # SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -105,3 +107,30 @@ def format_session_interval(appointment_date, start_time, end_time):
     end_schedule_time = f"{end_time.split(':')[0]}:{end_time.split(':')[1]}:{end_time.split(':')[2]}"
     start_scheduled_datetime, end_scheduled_datetime = f"{appointment_date}T{start_schedule_time}", f"{appointment_date}T{end_schedule_time}"
     return start_scheduled_datetime, end_scheduled_datetime
+
+
+def send_mail_to_counsellor(first_name, last_name, appointment_type, scheduled_date, start_time , end_time, meet_code=None):
+    """function to send email to counsellor informing about the scheduled session"""
+    if meet_code:
+        message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+    else:
+        message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+    subject = 'Counselling Session Alert'
+    message = message_
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['emmanuel.tanimowo@trinityuniversity.edu.ng',]  # counsellor email here
+    send_mail(subject, message, email_from, recipient_list)
+
+
+def send_mail_to_student(first_name, last_name, appointment_type, scheduled_date, start_time , end_time, student_email, meet_code=None):
+    """function to send email to student informing them about the scheduled session"""
+    if meet_code:
+        message_ = f"Hello {first_name} {last_name}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code}   \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+    else:
+        message_ = f"Hello {first_name} {last_name}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment_type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\n\nKind regards, \n\n\nTU-Counsel Team"
+    subject = 'Counselling Session Confirmation'
+    message = message_
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [student_email]  # student email here
+    send_mail(subject, message, email_from, recipient_list)
+

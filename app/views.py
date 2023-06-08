@@ -14,7 +14,7 @@ import random, time, datetime
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
-from .common import add_to_calendar, format_scheduled_date, format_scheduled_time, format_session_interval
+from .common import add_to_calendar, format_scheduled_date, format_scheduled_time, format_session_interval, send_mail_to_counsellor, send_mail_to_student
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -150,9 +150,6 @@ def schedule_appointment(request, slug):
             if 'in_person' in request.POST and 'virtual' in request.POST:
                 messages.error(request, "Kindly select one counselling type (either in-person, or virtual)")
             else:
-                appointment.save()
-                form.save()
-                print(request.user.email)
                 # call function to format the scheduled date
                 scheduled_date = format_scheduled_date(appointment.date)
 
@@ -162,31 +159,29 @@ def schedule_appointment(request, slug):
                 # call function to format the session interval to be used for adding event to google calendar
                 session_start, session_end = format_session_interval(str(appointment.date), str(appointment.start_time), str(appointment.end_time))
 
-                # call function to add the counselling session to google calendar
                 if 'in_person' in request.POST:
+                    # call function to add the counselling session to google calendar
                     add_to_calendar(request.user.email, session_start, session_end)
+
+                    # send email to student and counsellor informing them about the scheduled seesion
+                    send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time)
+                    send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email)
                 elif 'virtual' in request.POST:
                     appointment.type = 'Virtual'
                     meet_codes = ['nkj-kiem-sps', 'ayw-iwdo-emm', 'cod-xsed-zzm', 'kmy-xatr-wvy', 'hba-xjgb-cwj', 'ueq-girz-xqh']
                     random_code = random.choice(meet_codes)
+                    # save the meeting link for that appointment
+                    appointment.meeting_url = f"https://meet.google.com/{random_code}"
+                    # call function to add the counselling session to google calendar
                     add_to_calendar(request.user.email, session_start, session_end, random_code)
 
-                # send email to counsellor informing about the the schdduled seesion
-                subject = 'Counselling Session Alert'
-                message = f'A counselling session has been booked by {request.user.first_name.title()} {request.user.last_name.title()}. \n\nType: {appointment.type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time}'
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = ['emmanuel.tanimowo@trinityuniversity.edu.ng',]  # counsellor email here
-                send_mail(subject, message, email_from, recipient_list)
-
-                # send email to student, reminding them about the just scheduled session
-                subject = 'Counselling Session Confirmation'
-                message = f"Hello {request.user.first_name.title()} {request.user.last_name.title()}, \n\nYour counselling session has been successfully booked. \n\n\nType: {appointment.type} \n\nScheduled date: {scheduled_date} \n\nScheduled time: {start_time} - {end_time} \n\n\n\nKind regards, \n\n\nTU-Counsel Team"
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = [request.user.email]  # student email here
-                send_mail( subject, message, email_from, recipient_list )
+                    # send email to student and counsellor informing about the the schdduled seesion
+                    send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time,  meet_code=random_code)
+                    send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email, meet_code=random_code)
 
                 print('Emails sent successfully!!')
-
+                appointment.save()
+                form.save()
                 return redirect('appointments')
     return render(request, 'schedule_appointment.html', {'form': form, 'slug': slug})
 

@@ -84,7 +84,8 @@
         <div id="article_grid">
             {% for article in articles %}
             <div class="card-article" onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}')">
-                <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt="">
+                <!-- <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt=""> -->
+                <img src={{article.image_url}} alt="">
                 <div class="title_lnk">
                 <p class="article-title">{{ article.title }}</p>
                 {% if request.user.is_superuser %}

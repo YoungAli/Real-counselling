@@ -4,9 +4,10 @@ from .models import Article, Appointment
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Enter the article's title"}))
     content = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': "Start typing..."}))
+    image_url = forms.CharField(required=False,widget=forms.TextInput(attrs={'placeholder': "Enter the image url"}))
     class Meta:
         model = Article
-        fields = ['title', 'tags', 'content']
+        fields = ['title', 'tags', 'image_url', 'content']
 
 
 class AppointmentForm(forms.ModelForm):
