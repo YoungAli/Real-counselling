@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Articles - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/articleslist.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -16,106 +17,46 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
 	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
 	<link rel="manifest" href="{% static 'favicons/site.webmanifest' %}"> -->
-    <style>
-        #article_grid{
-            display: grid;
-            width: 85%;
-            margin: 5px auto 10px auto;
-            grid-template-columns: repeat(auto-fill, 250px);
-            gap: 25px;
-            place-content: center;
-        }
-        #article_grid > div{
-            font-family: 'Trebuchet MS', Arial, sans-serif;
-            min-height: 200px;
-            background: rgb(227, 255, 245);
-            box-shadow: 4px 4px 0 #1BB291;
-            border: 1px solid #1BB291;
-            border-radius: 10px;
-            padding: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        #article_grid > div:hover{
-            transform: translateY(-4px);
-            box-shadow: 5px 6px 0 #1BB291;
-        }
-        .article-title{
-            font-weight: 700;
-            font-size: 1.3em;
-            margin: 10px 0;
-            display: inline;
-        }
-        .article-intro{
-            margin: 0;
-        }
-        .card-article > img{
-            width: 100%;
-            border-radius: 10px;
-            height:80px;
-            object-fit: cover;
-        }
-        .article_tags{
-           display: flex;
-           gap: 5px;
-        }
-        .article_tags > p{
-            margin: 0;
-            font-size: 0.8em;
-            color: white;
-            padding: 0 6px;
-            border-radius: 10px;
-            background: #1BB291;
-            width: fit-content;
-        }
-        .title_lnk{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
 </head>
 
 <body>
     
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;" id="btn;">
-        <h4 style="text-align: center; padding: 20px 0; font-size: 2em;">All Articles</h4>
-        <div id="article_grid">
-            {% for article in articles %}
-            <div class="card-article" onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}')">
-                <!-- <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt=""> -->
-                <img src={{article.image_url}} alt="">
-                <div class="title_lnk">
-                <p class="article-title">{{ article.title }}</p>
-                {% if request.user.is_superuser %}
-                <a href="{% url 'edit_article' article.slug %}" class="edit_lnk">Edit</a>
-                {% else %}
-                {% endif %}
-                </div>
-                <div class="article_tags">{{ article.tags }}</div>
-                <p class="article-intro">{{ article.content|truncatechars:50 }}</p>
+        <form method="GET" id="searchbar">
+            <div id="search_btn" class="bx bx-search"></div>
+            <input name="search-area" type="search" placeholder="Search articles..." id="search_input"/>
+        </form>
+        <section id="articles_main">
+            <div id="article_reader">
+                <h3 id="reader_title">Lorem Ipsum is the title</h3>
+                <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt="">
+                <p id="reader_tags">tag1,tag2,tag3,tag4</p>
+                <p id="reader_content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic fuga nostrum illo veniam quaerat fugit temporibus! Molestiae dolor fuga nesciunt accusantium reprehenderit fugit minima, aspernatur temporibus animi dolorum enim debitis Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, dolores.</p>
             </div>
-            {% endfor %}
-        </div>
-    </section>
-    <script>
-        function showArticle(title, tags, content){
-            console.log(title)
-            console.log(tags)
-            console.log(content)
-        }
-        let tagElements = document.getElementsByClassName('article_tags');
+            <div id="article_grid_wrapper">
+                <div id="article_grid">
+                    {% for article in articles %}
+                    <div class="card-article" onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}')">
+                        <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt="">
+                        <div class="title_lnk">
+                        <p class="article-title">{{ article.title }}</p>
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'edit_article' article.slug %}" class="edit_lnk">Edit</a>
+                        {% else %}
+                        {% endif %}
+                        </div>
+                        <div class="article_tags">{{ article.tags }}</div>
+                        <p class="article-intro">{{ article.content|truncatechars:50 }}</p>
+                    </div>
+                    {% endfor %}
 
-        for(let i=0; i< tagElements.length; i++){
-            if(tagElements[i].textContent){
-                tagElements[i].innerHTML = tagElements[i].textContent.split(',').map(tag => {
-                    return `<p>${tag}</p>`
-                }).slice(0, 4).join(" ");
-            }
-        }
-    </script>
+                </div>
+            </div>
+        </section>
+    </section>
 </body>
+<script src="{% static 'js/articleslist.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>

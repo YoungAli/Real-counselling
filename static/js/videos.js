@@ -39,7 +39,6 @@ function consolePop(text) {
             }
 
         }
-
         searchInput.addEventListener('keypress', (e)=>{
             if (e.keyCode == 13)
             searchBtn.click();
