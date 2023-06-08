@@ -15,7 +15,7 @@ closeBtn.addEventListener("click", () => {
     menuBtnChange();
 });
 
-sectionArea.addEventListener("click", () => {
+sectionArea && sectionArea.addEventListener("click", () => {
     sidebar.classList.remove("open");
     menuBtnChange();
 });

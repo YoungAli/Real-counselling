@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Edit article - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/articles.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -21,18 +22,16 @@
 <body>
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;">
-        <div class="text" style="margin-left: 34px;">
-            <h4>Update Task</h4>
-        </div>
-        <div class="card"
-            style="margin-left: 8px;border-color: blueviolet; border-style: solid; border-radius: 23px; margin-right: 8px;">
+        <h4 style="text-align: center; padding: 20px 0; font-size: 2em;">Edit Article</h4>
+        <div id="article_form">
             <div class="card-body">
                 <form action="" method="post">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-success" box-shadow="none">Update</button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" box-shadow="none"><a
-                            style="text-decoration: none; color: white;">Delete</a></button>
+                    <div id="form_btns">
+                        <button type="submit" class="btn btn-success" box-shadow="none">Update</button>
+                        <a style="text-decoration: none; color: white;"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" box-shadow="none">Delete</button></a>
+                        </div>
                 </form>
             </div>
         </div>

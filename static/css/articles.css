@@ -1,0 +1,21 @@
+.home-section{
+    background-color: #ffffff;
+    background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 52.5px 52.5px, linear-gradient(#d8fff6 4.2px, transparent 4.2px) 0 -2.1px, linear-gradient(90deg, #d8fff6 4.2px, #ffffff 4.2px) -2.1px 0;
+    background-size: 105px 105px, 105px 105px, 52.5px 52.5px, 52.5px 52.5px;
+    min-height: 110vh;
+}
+#article_form{
+    width: 80%;
+    max-width: 700px;
+    background: rgb(227, 255, 245);
+    box-shadow: 4px 4px 0 #1BB291;
+    margin: 0 auto;
+    border: 1px solid #1BB291;
+    border-radius: 15px;
+    height: fit-content;
+}
+#form_btns{
+    display: flex;
+    justify-content: space-between ;
+
+}
