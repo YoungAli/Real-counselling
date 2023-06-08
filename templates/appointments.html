@@ -26,16 +26,19 @@
             {% for appointment in appointments %}
                 {% if request.user.is_superuser %}
                     {% if appointment.type %}
-                        <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Type: {{appointment.type}}</h2>
+                        <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: True</h2>
+                        <hr>
                     {% else %}
-                        <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Type: {{appointment.type}}</a></h2>
+                        <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: False </a></h2>
+                        <hr>
                     {% endif %}
                 {% else %}
                 {% if not appointment.type %}
                 <h2><a href="{% url 'schedule_appointment' appointment.slug %}">{{ appointment.date }} || {{ appointment.start_time}}-{{appointment.end_time }}</a></h2>
-                {% endif %}
-                {% endif %}
                 <hr>
+                {% endif %}
+                {% endif %}
+
             {% endfor %}
         </div>
 
