@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Edit appointment - TU Counsel{% endblock title %}</title>
+    <title>{% block title %} Schedule Appointment - TU Counsel {% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
@@ -22,12 +22,19 @@
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;">
         <div class="text" style="margin-left: 34px;">
-            <h4>Edit Appointment</h4>
+            <h4>Schedule Appointment</h4>
+            {% for message in messages %}
+            <div class="alert alert-danger" id='alert_msg' style="box-sizing: border-box;">
+                {{ message }}
+            </div>
+            {% endfor %}
         </div>
         <div class="card"
             style="margin-left: 8px;border-color: blueviolet; border-style: solid; border-radius: 23px; margin-right: 8px;">
             <div class="card-body">
                 <form action="" method="post">
+                    <h5>Select your preferred counselling session</h5>
+                    <br>
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button type="submit" class="btn btn-success" box-shadow="none">Update</button>
@@ -60,7 +67,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         setTimeout(function () {
             if ($('#alert_msg').length > 0) {

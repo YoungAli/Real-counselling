@@ -3,11 +3,11 @@ from .models import Article, Appointment
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Enter the article's title"}))
-    tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': "Separate multiple tags with commas"}))
-    content = forms.CharField(widget=forms.Textarea(attrs={'placeholder': "Start typing..."}))
+    content = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': "Start typing..."}))
+    image_url = forms.CharField(required=False,widget=forms.TextInput(attrs={'placeholder': "Enter the image url"}))
     class Meta:
         model = Article
-        fields = ['title', 'tags', 'content']
+        fields = ['title', 'tags', 'image_url', 'content']
 
 
 class AppointmentForm(forms.ModelForm):
@@ -32,5 +32,5 @@ class AppointmentForm(forms.ModelForm):
 class ScheduleAppointmentForm(forms.ModelForm):
     class Meta(forms.ModelForm):
         model = Appointment
-        fields = ['booked']
+        fields = ['in_person', 'virtual']
 

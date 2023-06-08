@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&hm1&8fcx_z_myyn3z=-rbo^g0l!u9xv5cv$eh7qvytg1(s2^h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.8.10']
 
 
 # Application definition
@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -130,3 +130,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'oluwasegunprosperity@gmail.com'  # admin/support email here..e.g support@tucounsel.com
+ADMIN_EMAIL = 'admin@gmail.com'
+EMAIL_HOST_PASSWORD = 'chhdqndhrojirqul'
+

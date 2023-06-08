@@ -15,7 +15,7 @@ Change your directory to where you cloned the repository
 cd Real-counselling
 ```
 
-## Create a virtual environment in the cheqqit directory
+## Create a virtual environment in the Real-counselling directory
 Ensure you are in the cheqqit directory, run this command to create a virtual environment:
 ```
 python -m venv .\venv
