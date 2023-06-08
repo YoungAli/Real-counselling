@@ -25,8 +25,8 @@
         <div class="text" style="margin-left: 34px;">
             <legend>Booked Appointments<br /></legend>
             {% for appointment in appointments %}
-            {% if appointment.booked == True %}
-            <h4>Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Date: {{ appointment.date }} || Time: {{ appointment.start_time }}-{{appointment.end_time }}</h4>
+            {% if appointment.type %}
+            <h4>Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Type: {{appointment.type}} || Email: {{ appointment.booked_by.email }} || Schedule Date: {{ appointment.date }} || Schedule Time: {{ appointment.start_time }} - {{appointment.end_time }} || Date & Time booked : {{appointment.date_updated}}</h4>
             {% endif %}
             {% endfor %}
             <hr>

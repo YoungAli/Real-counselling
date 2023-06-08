@@ -7,7 +7,7 @@ class CustomUserCreationForm(UserCreationForm):
     password2 = forms.CharField(label=("Password Confirmation"), strip=False, widget=forms.PasswordInput)
 
     class Meta:
-        fields = ('matric_number', 'first_name', 'last_name')
+        fields = ('matric_number', 'email', 'first_name', 'last_name')
         model = CustomUser
 
 

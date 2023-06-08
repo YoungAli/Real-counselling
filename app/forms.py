@@ -25,11 +25,11 @@ class AppointmentForm(forms.ModelForm):
 
     class Meta(forms.ModelForm):
         model = Appointment
-        fields = ['date', 'start_time', 'end_time']
+        fields = ['date', 'start_time', 'end_time', 'in_person', 'virtual', 'type']
 
 
 class ScheduleAppointmentForm(forms.ModelForm):
     class Meta(forms.ModelForm):
         model = Appointment
-        fields = ['booked']
+        fields = ['in_person', 'virtual']
 

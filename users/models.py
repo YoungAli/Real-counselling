@@ -15,6 +15,7 @@ class CustomUserManager(BaseUserManager):
         """
         if not matric_number:
             raise ValueError(_("Enter a  Matric number"))
+
         # email = self.normalize_email(email)
         user = self.model(matric_number=matric_number, **extra_fields)
         user.set_password(password)
@@ -37,7 +38,8 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     username = None
-    matric_number = models.CharField(max_length=50, blank=True, null=True, unique=True)
+    matric_number = models.CharField(max_length=10, blank=True, null=True, unique=True)
+    email = models.EmailField(_("email address"),  max_length=50, null=True, blank=True, unique=True)
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -50,3 +52,4 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.matric_number
+
