@@ -3,10 +3,11 @@ from .models import Article, Appointment
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Enter the article's title"}))
-    content = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': "Start typing..."}))
+    tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': "Separate multiple tags with commas"}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'placeholder': "Start typing..."}))
     class Meta:
         model = Article
-        fields = ['title', 'subtitle', 'tags', 'content']
+        fields = ['title', 'tags', 'content']
 
 
 class AppointmentForm(forms.ModelForm):

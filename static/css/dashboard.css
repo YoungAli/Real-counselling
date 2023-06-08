@@ -13,6 +13,55 @@ body {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
+::-webkit-scrollbar{
+    width: 0.4em;
+    height: 0.3em;
+}
+::-webkit-scrollbar-track{
+    background: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb{
+    background: rgb(145, 142, 142);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: rgb(82, 82, 85);
+}
+#searchbar{
+    width: 80%;
+    max-width: 600px;
+    padding: 8px 10px;
+    margin:40px auto 25px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.308);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+#search_btn{
+    font-size: 1.5em;
+    margin-top: 2px;
+    transition: 0.2s;
+}
+#search_btn:hover{
+    color:#159277;
+    text-shadow: 0 0 1px #159277;
+}
+#searchbar>input{
+    border: none;
+    width: 100%;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: rgb(128, 128, 128);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+#searchbar>input:focus{
+    outline:0px;
+}
+input::-webkit-input-placeholder {
+    color: #8b8b8b !important;
+  }
 
 .navbar-nav li {
     padding-right: 30px;
