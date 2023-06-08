@@ -188,7 +188,7 @@ def schedule_appointment(request, slug):
                 print('Emails sent successfully!!')
 
                 return redirect('appointments')
-    return render(request, 'edit_appointment.html', {'form': form, 'slug': slug})
+    return render(request, 'schedule_appointment.html', {'form': form, 'slug': slug})
 
 @login_required(login_url='login')
 @for_admins

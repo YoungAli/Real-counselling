@@ -6,7 +6,7 @@ class ArticleForm(forms.ModelForm):
     content = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': "Start typing..."}))
     class Meta:
         model = Article
-        fields = ['title', 'subtitle', 'tags', 'content']
+        fields = ['title', 'tags', 'content']
 
 
 class AppointmentForm(forms.ModelForm):
@@ -25,7 +25,7 @@ class AppointmentForm(forms.ModelForm):
 
     class Meta(forms.ModelForm):
         model = Appointment
-        fields = ['date', 'start_time', 'end_time', 'in_person', 'virtual', 'type']
+        fields = ['date', 'start_time', 'end_time']
 
 
 class ScheduleAppointmentForm(forms.ModelForm):
