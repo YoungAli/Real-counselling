@@ -22,6 +22,7 @@
 }
 #article_grid_wrapper{
     width: 100%;
+    
 }
 .show_reader{
     max-width: 300px; 
@@ -31,14 +32,28 @@
     overflow-y: scroll; 
     margin-left: 8px;
 }
+#expand_grid{
+    margin: 0 0 0 50%;
+    display: none;
+    font-size: 0.7em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: fit-content;
+    background: rgb(255, 49, 49);
+    color: white;
+    padding: 2px 6px 4px 6px;
+    text-align: right;
+    border-radius: 15px;
+    cursor: pointer;
+}
 #article_grid{
     max-width: 1000px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 225px);
     gap: 25px;
     place-content: center;
-    /* margin: 15px 20px; */
     margin: 15px auto;
+    /* margin: 15px 20px; */
 }
 #article_grid > div{
     font-family: 'Trebuchet MS', Arial, sans-serif;

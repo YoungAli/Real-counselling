@@ -35,21 +35,28 @@
             <span class="tooltip">Videos</span>
         </li>
         {% if request.user.is_superuser %}
-        <li>
+        <li class="dropdown_margin" id="dropdown_btn">
+            <a href="#">
+                <i class='bx bx-message-square-add'></i>
+                <span class="links_name">Appointments</span>
+            </a>
+            <span class="tooltip">Appointments</span>
+        </li>
+        <li class="appt_menu_items">
             <a href="{% url 'create_appointment' %}">
                 <i class='bx bx-message-square-add'></i>
                 <span class="links_name">Create an appointment</span>
             </a>
             <span class="tooltip">Create an appointment</span>
         </li>
-        <li> 
+        <li class="appt_menu_items"> 
             <a href="{% url 'appointments' %}">
                 <i class='bx bx-message-square-add'></i>
                 <span class="links_name">Created appointments</span>
             </a>
             <span class="tooltip">Created appointments</span> 
         </li>
-        <li>
+        <li class="appt_menu_items">
             <a href="{% url 'booked_appointments' %}">
                 <i class='bx bx-message-square-add'></i>
                 <span class="links_name">Booked appointments</span>

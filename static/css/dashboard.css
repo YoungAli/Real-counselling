@@ -115,7 +115,9 @@ input::-webkit-input-placeholder {
 .sidebar.open .sidebar_btn #btn {
     text-align: right;
 }
-
+.sidebar_btn{
+    height: 40px !important;
+}
 .sidebar i {
     color: #fff;
     height: 60px;
@@ -134,8 +136,24 @@ input::-webkit-input-placeholder {
     position: relative;
     margin: 8px 0;
     list-style: none;
+    
 }
-
+.dropdown_margin{
+    margin-bottom: -25px !important;
+}
+.appt_menu_items{
+    opacity: 0;
+    height: 0px;
+    transition: 0.3s;
+    z-index: -10;
+    pointer-events: none;
+}
+.show_menu_items{
+    height: 50px;
+    opacity: 1;
+    z-index: 999;
+    pointer-events:auto;
+}
 .sidebar li .tooltip {
     position: absolute;
     top: -20px;
@@ -361,6 +379,17 @@ input::-webkit-input-placeholder {
     border: 1px solid rgb(29, 29, 29); 
     transition: 0.3s;
     color: white;
+}
+@keyframes flicker {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 @keyframes pop-up {
