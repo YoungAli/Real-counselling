@@ -27,17 +27,16 @@
             <div id="search_btn" class="bx bx-search"></div>
             <input name="search-area" type="search" placeholder="Search articles..." id="search_input"/>
         </form>
+        <hr style="width:
+        60%; margin: 30px auto;">
         <section id="articles_main">
             <div id="article_reader">
-                <h3 id="reader_title">Lorem Ipsum is the title</h3>
-                <img src="https://i.pinimg.com/originals/f1/10/c2/f110c2ba79792fce38427d2ad15acf6d.jpg" alt="">
-                <p id="reader_tags">tag1,tag2,tag3,tag4</p>
-                <p id="reader_content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic fuga nostrum illo veniam quaerat fugit temporibus! Molestiae dolor fuga nesciunt accusantium reprehenderit fugit minima, aspernatur temporibus animi dolorum enim debitis Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, dolores.</p>
             </div>
             <div id="article_grid_wrapper">
                 <div id="article_grid">
                     {% for article in articles %}
-                    <div class="card-article" onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}')">
+                    <div class="card-article" 
+                    onclick="showArticle('{{ article.title }}', '{{ article.tags }}', '{{ article.content }}', '{{ article.image_url }}')">
                         {% if article.image_url %}
                         <img src={{article.image_url}} alt="">
                         {% endif %}

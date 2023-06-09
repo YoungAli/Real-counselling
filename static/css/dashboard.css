@@ -18,10 +18,10 @@ body {
     height: 0.3em;
 }
 ::-webkit-scrollbar-track{
-    background: rgba(0, 0, 0, 0);
+    background: #e3ebe9;
 }
 ::-webkit-scrollbar-thumb{
-    background: rgb(145, 142, 142);
+    background: rgb(136, 131, 131);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover{
@@ -43,6 +43,7 @@ body {
     font-size: 1.5em;
     margin-top: 2px;
     transition: 0.2s;
+    cursor: pointer;
 }
 #search_btn:hover{
     color:#159277;
