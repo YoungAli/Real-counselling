@@ -18,10 +18,10 @@ body {
     height: 0.3em;
 }
 ::-webkit-scrollbar-track{
-    background: rgba(0, 0, 0, 0);
+    background: #e3ebe9;
 }
 ::-webkit-scrollbar-thumb{
-    background: rgb(145, 142, 142);
+    background: rgb(136, 131, 131);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover{
@@ -43,6 +43,7 @@ body {
     font-size: 1.5em;
     margin-top: 2px;
     transition: 0.2s;
+    cursor: pointer;
 }
 #search_btn:hover{
     color:#159277;
@@ -114,7 +115,9 @@ input::-webkit-input-placeholder {
 .sidebar.open .sidebar_btn #btn {
     text-align: right;
 }
-
+.sidebar_btn{
+    height: 40px !important;
+}
 .sidebar i {
     color: #fff;
     height: 60px;
@@ -133,8 +136,24 @@ input::-webkit-input-placeholder {
     position: relative;
     margin: 8px 0;
     list-style: none;
+    
 }
-
+.dropdown_margin{
+    margin-bottom: -25px !important;
+}
+.appt_menu_items{
+    opacity: 0;
+    height: 0px;
+    transition: 0.3s;
+    z-index: -10;
+    pointer-events: none;
+}
+.show_menu_items{
+    height: 50px;
+    opacity: 1;
+    z-index: 999;
+    pointer-events:auto;
+}
 .sidebar li .tooltip {
     position: absolute;
     top: -20px;
@@ -351,8 +370,8 @@ input::-webkit-input-placeholder {
     right: 0; 
     width:fit-content; 
     padding:10px; 
-    background:rgb(70, 70, 70); 
-    box-shadow:2px 2px 0 rgb(29, 29, 29); 
+    background:#1BB291; 
+    box-shadow:2px 2px 0 #07745c; 
     border-radius:5px;
     font-weight: 600; 
     margin:0 auto; 
@@ -360,6 +379,20 @@ input::-webkit-input-placeholder {
     border: 1px solid rgb(29, 29, 29); 
     transition: 0.3s;
     color: white;
+}
+#console_msg a{
+    color: white;
+}
+@keyframes flicker {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 @keyframes pop-up {

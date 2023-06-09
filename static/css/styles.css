@@ -71,6 +71,7 @@ body{
     box-shadow: 0 0 1350px black;
     display: none;
     }
+    
     #mobile-nav > ul{
         text-align: center;
         display: flex;
