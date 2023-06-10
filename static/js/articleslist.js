@@ -70,7 +70,7 @@ function closeReader(){
     } else{
         setTimeout(() => {
             mobileReader.style.display = "none";
-            articleGrid.style.display = "unset";
+            articleGrid.style.display = "grid";
         }, 500);
     }
     
@@ -88,11 +88,16 @@ function showArticle(title, tags, content, img){
         }, 500);
     } else{
         setTimeout(() => {
-            mobileReader.innerHTML = `<h3 id="mobile_title">${title}</h3> ${img? (`<img id="mobile_img" src="${img}" alt="${title}">`) : ""}
+            mobileReader.innerHTML = `<div id="close_mobile_btn">&#8592; Back</div><h3 id="mobile_title">${title}</h3> ${img? (`<img id="mobile_img" src="${img}" alt="${title}">`) : ""}
             <div class="article_tags">
             ${tags.split(',').map(tag =>`<p>${tag}</p>`).join(" ")}
             </div>
             <p id="reader_content">${content}</p>`;
+
+            document.querySelector('#close_mobile_btn').addEventListener('click', ()=>{
+                closeReader();
+                console.log('hello');
+            })
         }, 500);
     }
 }
@@ -108,11 +113,11 @@ searchBtn.addEventListener('click', ()=>{
         consolePop("Error: no search query");
     }
     else{
-        closeReader()
         searchBar.submit()
     }
 })
 
 expandGrid.addEventListener('click', ()=>{
     closeReader();
-})
+});
+

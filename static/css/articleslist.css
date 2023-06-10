@@ -29,7 +29,7 @@
     width: 100%;
     background: rgb(255, 255, 255);
     z-index: 11;
-    padding: 8px 20px;
+    padding: 8px 25px;
     display: none;
 }
 #mobile_img{
@@ -60,6 +60,23 @@
     text-align: right;
     border-radius: 15px;
     cursor: pointer;
+}
+#close_mobile_btn{
+    margin: 0 0 15px 0;
+    font-size: 0.7em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: fit-content;
+    background: rgb(255, 49, 49);
+    color: white;
+    padding: 2px 6px;
+    text-align: right;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#close_mobile_btn:hover{
+    background: rgb(221, 2, 2);
 }
 #article_grid{
     max-width: 1000px;
