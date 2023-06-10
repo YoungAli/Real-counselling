@@ -139,7 +139,6 @@ def schedule_appointment(request, slug):
     if request.method == 'POST':
         form = ScheduleAppointmentForm(request.POST, instance=appointment)
         if form.is_valid():
-            print(request.POST, 'in_person' in request.POST, appointment.type)
             appointment.booked_by = request.user
             if 'in_person' in request.POST:
                 appointment.type = 'In-person'
