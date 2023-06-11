@@ -25,17 +25,20 @@
         <div class="text" style="margin-left: 34px;">
             <legend>Appointments<br /></legend>
             {% for appointment in appointments %}
-                {% if appointment.type %}
-                <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: True</h2>
-                <hr>
-                {% else %}
-                {% endif %}
                 {% if request.user.is_superuser %}
-                <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: False </a></h2>
-                <hr>
+                    {% if appointment.type %}
+                        <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: True</h2>
+                    {% else %}
+                        <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time:
+                            {{appointment.start_time}} - {{appointment.end_time }} || Booked: False </a></h2>
+                    {% endif %}
                 {% else %}
-                <h2><a href="{% url 'schedule_appointment' appointment.slug %}">{{ appointment.date }} || {{ appointment.start_time }}-{{appointment.end_time }}</a></h2>
-                <hr>
+                    {% if appointment.type %}
+                        <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: True</h2>
+                    {% else %}
+                        <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time:
+                            {{appointment.start_time}} - {{appointment.end_time }} || Booked: False </a></h2>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </div>
