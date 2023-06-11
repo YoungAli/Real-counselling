@@ -1,9 +1,64 @@
-.home-section> h4{
-    padding: 30px;
+.home-section> h2{
+    margin: 40px 0 0 0;
     text-align: center;
     font-size: 2em;
 }
-#main_content{
-    max-width: 1000px;
-    padding: 20px;
+#appointments_wrapper{
+    max-width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.dates{
+    font-size: 1.2em;
+    color: rgb(63, 63, 63);
+}
+.appt_card{
+    padding: 8px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 0 #0e9779;
+    font-weight: 600;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+}
+.appt_card:hover{
+    transform: translateY(-4px);
+    box-shadow: 5px 6px 0 #0e9779;
+}
+.booked_tag, .notbooked_tag{
+    border-radius: 30px;
+    width: fit-content;
+    padding: 1px 6px;
+    font-size: 0.8em;
+    margin: 0;
+}
+.booked_tag{
+    background: white;
+}
+
+.notbooked_tag{
+    background:rgb(63, 63, 63);
+    color: white;
+}
+.appt_time{
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0;
+}
+.edit_icon{
+    margin: 0;
+    text-align: right;
+    padding: 1px 8px;
+    border-radius: 20px;
+    width: fit-content;
+    align-self: flex-end;
+    transition: 0.2;
+}
+.edit_icon:hover{
+    scale: 1.02;
+}
+.edit_icon i{
+    font-size: 1.2em;
 }

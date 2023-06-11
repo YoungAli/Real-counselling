@@ -22,24 +22,50 @@
 <body>
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;" id="btn">
-        <div class="text" style="margin-left: 34px;">
-            <legend>Appointments<br /></legend>
+        <h2>Appointments</h2>
+        <div id="appointments_wrapper">
             {% for appointment in appointments %}
+                <h3 class="dates">{{ appointment.date }}</h3>
                 {% if request.user.is_superuser %}
                     {% if appointment.type %}
-                        <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: True</h2>
+                        <div class="appt_card" style="background: rgb(44, 243, 183);">
+                            <p class="booked_tag">Booked</p>
+                            <p class="appt_time">
+                                {{appointment.start_time}} - {{appointment.end_time }}
+                            </p>
+                        </div>
                     {% else %}
-                        <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time:
-                            {{appointment.start_time}} - {{appointment.end_time }} || Booked: False </a></h2>
+                        <div class="appt_card" style="background: rgb(226, 226, 226); box-shadow: 4px 4px 0 #585858;">
+                            <p class="notbooked_tag">Not booked</p>
+                            <p class="appt_time">
+                                {{appointment.start_time}} - {{appointment.end_time }}
+                            </p>
+                            <p class="edit_icon" style="background: rgb(63, 63, 63);">
+                                <a href="{% url 'edit_appointment' appointment.slug %}" style="color: rgb(255, 255, 255);">Edit <i class="bx bxs-edit-alt"></i></a>
+                            </p> 
+                        </div>
                     {% endif %}
                 {% else %}
                     {% if appointment.type %}
-                        <h2>Date: {{ appointment.date }} || Time: {{appointment.start_time}} - {{appointment.end_time }} || Booked: True</h2>
+                        <div class="appt_card" style="background: rgb(201, 201, 201); box-shadow: 4px 4px 0 #585858;">
+                            <p class="booked_tag">Booked</p>
+                            <p class="appt_time">
+                                {{appointment.start_time}} - {{appointment.end_time }}
+                            </p>
+                        </div>
                     {% else %}
-                        <h2><a href="{% url 'edit_appointment' appointment.slug %}">Date: {{ appointment.date }} || Time:
-                            {{appointment.start_time}} - {{appointment.end_time }} || Booked: False </a></h2>
+                        <div class="appt_card" style="background: rgb(44, 243, 183);">
+                            <p class="notbooked_tag">Not booked</p>
+                            <p class="appt_time">
+                                {{appointment.start_time}} - {{appointment.end_time }}
+                            </p>
+                            <p class="edit_icon" style="background: white;">
+                                <a href="{% url 'schedule_appointment' appointment.slug %}" style="color: rgb(0, 0, 0);">Schedule<i class="bx bx-list-check"></i></a>
+                            </p> 
+                        </div>
                     {% endif %}
                 {% endif %}
+                <hr>
             {% endfor %}
         </div>
 
