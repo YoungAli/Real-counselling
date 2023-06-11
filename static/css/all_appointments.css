@@ -23,16 +23,27 @@
     flex-direction: column;
     transition: 0.2s;
 }
+.greyed_out{
+    background: rgb(218, 218, 218); 
+    box-shadow: 4px 4px 0 #585858 ;
+}
+.greyed_out:hover{
+    box-shadow: 4px 4px 0 #585858 !important;
+    background: rgb(201, 200, 200); 
+    transform: translateY(0px) !important;
+}
 .appt_card:hover{
     transform: translateY(-4px);
     box-shadow: 5px 6px 0 #0e9779;
 }
+
 .booked_tag, .notbooked_tag{
     border-radius: 30px;
     width: fit-content;
     padding: 1px 6px;
     font-size: 0.8em;
     margin: 0;
+    font-weight: 700 !important;
 }
 .booked_tag{
     background: white;

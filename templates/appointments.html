@@ -35,7 +35,7 @@
                             </p>
                         </div>
                     {% else %}
-                        <div class="appt_card" style="background: rgb(226, 226, 226); box-shadow: 4px 4px 0 #585858;">
+                        <div class="appt_card greyed_out">
                             <p class="notbooked_tag">Not booked</p>
                             <p class="appt_time">
                                 {{appointment.start_time}} - {{appointment.end_time }}
@@ -47,7 +47,7 @@
                     {% endif %}
                 {% else %}
                     {% if appointment.type %}
-                        <div class="appt_card" style="background: rgb(201, 201, 201); box-shadow: 4px 4px 0 #585858;">
+                        <div class="appt_card greyed_out">
                             <p class="booked_tag">Booked</p>
                             <p class="appt_time">
                                 {{appointment.start_time}} - {{appointment.end_time }}
@@ -55,7 +55,7 @@
                         </div>
                     {% else %}
                         <div class="appt_card" style="background: rgb(44, 243, 183);">
-                            <p class="notbooked_tag">Not booked</p>
+                            <p class="notbooked_tag" style="background: rgb(4, 124, 88);">Not booked</p>
                             <p class="appt_time">
                                 {{appointment.start_time}} - {{appointment.end_time }}
                             </p>
