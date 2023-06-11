@@ -107,9 +107,9 @@ def format_session_interval(appointment_date, start_time, end_time):
 def send_mail_to_counsellor(first_name, last_name, appointment_type, scheduled_date, start_time , end_time, meet_code=None):
     """function to send email to counsellor informing about the scheduled session"""
     if meet_code:
-        message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nDate: {scheduled_date} \n\nTime: {start_time} - {end_time} \n\n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+        message_ = f"A counselling session has been scheduled by {first_name} {last_name}. \n\nType: {appointment_type} \n\nDate: {scheduled_date} \n\nTime: {start_time} - {end_time} \n\n\nKindly use this link to join the session:\n\nhttps://meet.google.com/{meet_code} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
     else:
-        message_ = f"A counselling session has been booked by {first_name} {last_name}. \n\nType: {appointment_type} \n\nDate: {scheduled_date} \n\nTime: {start_time} - {end_time} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
+        message_ = f"A counselling session has been scheduled by {first_name} {last_name}. \n\nType: {appointment_type} \n\nDate: {scheduled_date} \n\nTime: {start_time} - {end_time} \n\n\n\nRegards, \n\n\nTU-Counsel Team"
     subject = 'Counselling Session Alert'
     message = message_
     email_from = settings.EMAIL_HOST_USER
