@@ -15,17 +15,25 @@
             <li>
                 <a href="{% url 'create_article' %}">
                     <i class='bx bx-plus' style="font-size: 29px;"></i>
-                    <span class="links_name">Write an Article</span>
+                    <span class="links_name">Publish an Article</span>
                 </a>
-                <span class="tooltip">Write an Article</span>
+                <span class="tooltip">Publish an Article</span>
             </li>
         {% endif %}
         <li>
             <a href="{% url 'articles' %}">
                 <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 20px;"></i>
+                {% if request.user.is_superuser %}
+                <span class="links_name">View all Articles</span>
+                {% else %}
                 <span class="links_name">Articles</span>
+                {% endif %}
             </a>
+            {% if request.user.is_superuser %}
+            <span class="tooltip">View all Articles</span>
+            {% else %}
             <span class="tooltip">Articles</span>
+            {% endif %}
         </li>
         <li>
             <a href="{% url 'videos' %}">
@@ -37,39 +45,40 @@
         {% if request.user.is_superuser %}
         <li class="dropdown_margin" id="dropdown_btn">
             <a href="#">
-                <i class='bx bx-message-square-add'></i>
+                <!-- <i class='bx bxs-calendar'></i> -->
+                <i class='bx bx-calendar'></i>
                 <span class="links_name">Appointments</span>
             </a>
             <span class="tooltip">Appointments</span>
         </li>
         <li class="appt_menu_items">
             <a href="{% url 'create_appointment' %}">
-                <i class='bx bx-message-square-add'></i>
-                <span class="links_name">Create an appointment</span>
+                <i class='bx bx-calendar-plus'></i>
+                <span class="links_name">Create an Appointment</span>
             </a>
-            <span class="tooltip">Create an appointment</span>
+            <span class="tooltip">Create an Appointment</span>
         </li>
         <li class="appt_menu_items"> 
             <a href="{% url 'appointments' %}">
-                <i class='bx bx-message-square-add'></i>
-                <span class="links_name">Created appointments</span>
+                <i class='bx bx-calendar-event'></i>
+                <span class="links_name">Created Appointments</span>
             </a>
-            <span class="tooltip">Created appointments</span> 
+            <span class="tooltip">Created Appointments</span> 
         </li>
         <li class="appt_menu_items">
             <a href="{% url 'booked_appointments' %}">
-                <i class='bx bx-message-square-add'></i>
-                <span class="links_name">Booked appointments</span>
+                <i class='bx bx-calendar-check'></i>
+                <span class="links_name">Booked Appointments</span>
             </a>
-            <span class="tooltip">Booked appointments</span>
+            <span class="tooltip">Booked Appointments</span>
         </li>
         {% else %}
         <li>
             <a href="{% url 'appointments' %}">
-                <i class='bx bx-message-square-add'></i>
-                <span class="links_name">Book appointment</span>
+                <i class='bx bxs-calendar-check'></i>
+                <span class="links_name">Schedule Appointment</span>
             </a>
-            <span class="tooltip">Book appointment</span>
+            <span class="tooltip">Schedule Appointment</span>
         </li>
         {% endif %}
         <li>

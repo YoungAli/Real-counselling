@@ -51,5 +51,5 @@ class Appointment(models.Model):
             self.slug = slugify(random_slug())
         super(Appointment, self).save(*args, **kwargs)
 
-    # def __str__(self):
-    #     return self.date
+    class Meta:
+        ordering = ['date',]
