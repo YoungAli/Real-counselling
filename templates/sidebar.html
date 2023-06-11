@@ -23,9 +23,17 @@
         <li>
             <a href="{% url 'articles' %}">
                 <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 20px;"></i>
+                {% if request.user.is_superuser %}
                 <span class="links_name">View all Articles</span>
+                {% else %}
+                <span class="links_name">Articles</span>
+                {% endif %}
             </a>
+            {% if request.user.is_superuser %}
             <span class="tooltip">View all Articles</span>
+            {% else %}
+            <span class="tooltip">Articles</span>
+            {% endif %}
         </li>
         <li>
             <a href="{% url 'videos' %}">
