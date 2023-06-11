@@ -1,0 +1,9 @@
+.home-section> h4{
+    padding: 30px;
+    text-align: center;
+    font-size: 2em;
+}
+#main_content{
+    max-width: 1000px;
+    padding: 20px;
+}
