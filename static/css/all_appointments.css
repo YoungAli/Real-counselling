@@ -13,6 +13,13 @@
     font-size: 1.2em;
     color: rgb(63, 63, 63);
 }
+.appts_link{
+    color: black;
+}
+.appts_link:hover{
+    text-decoration: none;
+    color: black;
+}
 .appt_card{
     padding: 8px;
     border-radius: 15px;

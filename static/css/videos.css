@@ -1,7 +1,7 @@
 #video_results{
     width: 80%;
     max-width: 700px;
-    margin: 70px auto 30px auto;
+    margin: 50px auto 30px auto;
 }
 
 hr{
@@ -60,6 +60,11 @@ hr{
 	animation-name: worm2;
 }
 
+@media (max-width:500px) {
+    .video-wrapper>iframe{
+		height: 200px;
+	}
+}
 /* Animation */
 @keyframes worm1 {
 	from {

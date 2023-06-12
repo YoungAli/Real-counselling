@@ -25,13 +25,16 @@
     <section class="home-section" style="background-color: white;" id="btn">
         <h2>Booked Appointments</h2>
         <div id="main_content">
-            <hr>
+            <hr style="height: 3px; background: rgb(241, 241, 241);">
+            <div id="appointments_wrapper">
             {% for appointment in appointments %}
                 {% if appointment.type %}
                     {% if appointment.virtual %}
-                        <div class="booked_card" title="Date scheduled: {{appointment.date_updated}}">
+                        <div class="booked_card" title="Date scheduled:{{ appointment.date_updated }}">
                             <div class="card_date">
-                                {{ appointment.date }}
+                                <p class="date_p">
+                                    {{ appointment.date }}
+                                </p>
                             </div>
                             <div class="booked_name">
                                 <p>
@@ -55,7 +58,9 @@
                     {% else %}
                     <div class="booked_card" title="Date scheduled: {{appointment.date_updated}}">
                         <div class="card_date">
-                            {{ appointment.date }}
+                            <p class="date_p">
+                                {{ appointment.date }}
+                            </p>
                         </div>
                         <div class="booked_name">
                             <p>
@@ -75,6 +80,7 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
+            </div>
         </div>
 
     </section>
