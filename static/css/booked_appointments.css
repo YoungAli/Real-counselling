@@ -1,0 +1,95 @@
+.home-section> h2{
+    margin: 40px 0 0 0;
+    text-align: center;
+    font-size: 2em;
+}
+#main_content{
+    max-width: 1000px;
+    padding: 30px;
+    margin: 0 auto;
+}
+#main_content hr{
+    margin-block: 10px;
+}
+
+.booked_card div{
+    width: 100%;
+    margin: 0;
+    font-weight: 600;
+    height: 100%;
+    padding: 5px;
+}
+
+.card_date{
+    font-size: 1.2em;
+    background: rgb(240, 240, 240);
+    color: rgb(63, 63, 63);
+    height: 100%;
+    padding: 10px;
+    font-weight: 800;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    max-width: 160px;
+}
+
+.booked_card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    gap: 0px;
+    text-align: center;
+}
+.booked_card p{
+    margin: 0;
+}
+.booked_type > p{
+    display: block;
+}
+.booked_name{
+    background: #137d73;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+.booked_time{
+    font-weight: 700 !important;
+    background: #21deb5;
+    color: #043d1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.booked_type{
+    font-weight: 700 !important;
+    color: rgb(5, 80, 49);
+    background: #90eeda;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    line-height: 1.4em;
+    font-size: 0.9em;
+}
+.v_meetink_link{
+    color: rgb(10, 111, 158);
+    text-decoration: underline;
+    transition: 0.2s;
+    vertical-align: middle;
+}
+.booked_type i{
+    font-size: 1.7em;
+    padding: 10px 0px 2px w;
+}
+.link_icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: fit-content;
+}

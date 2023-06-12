@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Booked Appointments - TU Counsel{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booked_appointments.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -22,22 +23,54 @@
 
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;" id="btn">
-        <div class="text" style="margin-left: 34px;">
-            <legend>Booked Appointments<br /></legend>
+        <h2>Booked Appointments</h2>
+        <div id="main_content">
+            <hr>
             {% for appointment in appointments %}
                 {% if appointment.type %}
                     {% if appointment.virtual %}
-                        <h4>
-                            Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Type:
-                            {{appointment.type}} || Email: {{ appointment.booked_by.email }} || Schedule Date: {{ appointment.date }} ||
-                            Schedule Time: {{ appointment.start_time }} - {{appointment.end_time }} || Date & Time booked :
-                            {{appointment.date_updated}} || Meeting Link: {{appointment.meeting_url}}
-                        </h4>
+                        <div class="booked_card" title="Date scheduled: {{appointment.date_updated}}">
+                            <div class="card_date">
+                                {{ appointment.date }}
+                            </div>
+                            <div class="booked_name">
+                                <p>
+                                    {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }}     
+                                </p>
+                            </div>
+                            <div class="booked_time">
+                                <p>
+                                    {{ appointment.start_time }} - {{appointment.end_time }}
+                                </p>
+                            </div>
+                            <div class="booked_type">
+                                <p>Type: Virtual</p>
+                                <div class="link_icon">
+                                    <a class="v_meetink_link" href="{{appointment.meeting_url}}">Join Meeting</a>
+                                    <i class='bx bx-video-plus'></i>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
                     {% else %}
-                        <h4>
-                            Booked by: {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }} || Type: {{appointment.type}} || Email: {{ appointment.booked_by.email }} || Schedule Date: {{ appointment.date }} || Schedule Time: {{ appointment.start_time }} - {{appointment.end_time }} || Date & Time booked : {{appointment.date_updated}}
-                        </h4>
+                    <div class="booked_card" title="Date scheduled: {{appointment.date_updated}}">
+                        <div class="card_date">
+                            {{ appointment.date }}
+                        </div>
+                        <div class="booked_name">
+                            <p>
+                                {{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }}     
+                            </p>
+                        </div>
+                        <div class="booked_time">
+                            <p>
+                                {{ appointment.start_time }} - {{appointment.end_time }}
+                            </p>
+                        </div>
+                        <div class="booked_type">
+                            <p>Type: In Person</p>
+                        </div>
+                    </div>
                         <hr>
                     {% endif %}
                 {% endif %}
