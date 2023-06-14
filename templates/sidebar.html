@@ -82,15 +82,17 @@
         </li>
         {% endif %}
         <li>
+            {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
             <a href="{% url 'chats' %}">
-            {% else %}
-            <a href="{% url 'chat' request.user.id 1 %}">
-            {% endif %}
-                <i class="bx bx-chat" aria-hidden="true"></i>
-                <span class="links_name">Live chat</span>
-            </a>
-            <span class="tooltip">Live chat</span>
+                {% else %}
+                <a href="{% url 'chat' request.user.id 1 %}">
+                    {% endif %}
+                    <i class="bx bx-chat" aria-hidden="true"></i>
+                    <span class="links_name">Live chat</span>
+                </a>
+                <span class="tooltip">Live chat</span>
+                {% endif %}
         </li>
         <li class="" user_profile>
             <a href="{% url 'logout' %}">
