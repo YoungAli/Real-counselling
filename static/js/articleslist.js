@@ -9,6 +9,7 @@ const mainWrapper = document.querySelector('#articles_main');
 const expandGrid = document.querySelector('#expand_grid');
 const articleCards = document.getElementsByClassName('card-article');
 let tagElements = document.getElementsByClassName('article_tags');
+let contentArray = document.getElementsByClassName('content_parameter');
 
 function consolePop(text, dur) {
     let popDiv = document.createElement('div');
@@ -33,6 +34,7 @@ if (!articleCards.length) {
 for(let i=0; i< tagElements.length; i++){
     if(tagElements[i].textContent){
         tagElements[i].innerHTML = tagElements[i].textContent.split(',').map(tag => {
+            if(tag != "" && tag != " ")
             return `<p>${tag}</p>`
         }).slice(0, 4).join(" ");
     }
@@ -61,22 +63,34 @@ function openReader(){
 function closeReader(){
     mainWrapper.style.animation = "flicker 1s"
     setTimeout(() => {mainWrapper.style.animation = "none"}, 1000);
-    if (window.innerWidth >= 800){
-        setTimeout(() => {
-            gridWrapper.classList.remove('show_reader');
-            reader.style.display = "none";
-            expandGrid.style.display = 'none';
-        }, 500);
-    } else{
-        setTimeout(() => {
-            mobileReader.style.display = "none";
-            articleGrid.style.display = "grid";
-        }, 500);
-    }
-    
+    //Uncomment this in case of unforseen disaster
+    // if (window.innerWidth >= 800){
+    //     setTimeout(() => {
+    //         gridWrapper.classList.remove('show_reader');
+    //         reader.style.display = "none";
+    //         expandGrid.style.display = 'none';
+    //     }, 500);
+    // } else{
+    //     setTimeout(() => {
+    //         mobileReader.style.display = "none";
+    //         articleGrid.style.display = "grid";
+    //     }, 500);
+    // }
+    setTimeout(() => {
+                gridWrapper.classList.remove('show_reader');
+                reader.style.display = "none";
+                expandGrid.style.display = 'none';
+                mobileReader.style.display = "none";
+                articleGrid.style.display = "grid";
+            }, 500);
 }
-
-function showArticle(title, tags, content, img){
+function showArticle(title, tags, img){
+    let content = "Content Error";
+    for (let i = 0; i < contentArray.length; i++) {
+        let contentTitle = contentArray[i].textContent.split('&s#3DEMACATION');
+        console.log(contentTitle);
+        if(contentTitle[1] == title){content = contentTitle[0]}
+    }
     openReader();
     if (window.innerWidth >= 800){
         setTimeout(() => {
@@ -84,7 +98,8 @@ function showArticle(title, tags, content, img){
             <div class="article_tags">
             ${tags.split(',').map(tag =>`<p>${tag}</p>`).join(" ")}
             </div>
-            <p id="reader_content">${content}</p>`;
+            <p id="reader_content"></p>`;
+            document.querySelector('#reader_content').textContent = content;
         }, 500);
     } else{
         setTimeout(() => {
@@ -92,7 +107,9 @@ function showArticle(title, tags, content, img){
             <div class="article_tags">
             ${tags.split(',').map(tag =>`<p>${tag}</p>`).join(" ")}
             </div>
-            <p id="reader_content">${content}</p>`;
+            <p id="mobile_Reader_content"></p>`;
+
+            document.querySelector('#mobile_Reader_content').textContent = content;
 
             document.querySelector('#close_mobile_btn').addEventListener('click', ()=>{
                 closeReader();

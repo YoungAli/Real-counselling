@@ -22,9 +22,9 @@ sectionArea && sectionArea.addEventListener("click", () => {
     menuBtnChange();
 });
 
-appointMenu.addEventListener('click', ()=>{
+appointMenu && appointMenu.addEventListener('click', ()=>{
     for (let i = 0; i < appointMenuItems.length; i++) {
         appointMenuItems[i].classList.toggle("show_menu_items");
         appointMenu.classList.toggle("dropdown_margin");
     }
-})
+});

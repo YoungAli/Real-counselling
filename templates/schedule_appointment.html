@@ -23,7 +23,7 @@
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;">
             <h4>Schedule Appointment</h4>
-        <div id="appointment_form" class="card">
+        <div id="appointment_form" class="card" style="max-width: 600px;">
             <div class="card-body">
                 <form action="" method="post">
                     <h5>Select your preferred counselling session</h5>
@@ -37,6 +37,13 @@
             </div>
         </div>
     </section>
+
+    {% for message in messages %}
+            <div class="alert alert-danger" id="console_msg" style="background: rgb(255, 139, 139);
+            border: 2px solid rgb(87, 3, 3); box-shadow: 2px 2px 0 rgb(87, 3, 3) ; color: rgb(87, 3, 3);">
+                {{ message }}
+            </div>
+            {% endfor %}
 
     <!-- Delete Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,10 +70,11 @@
 
     <script>
         setTimeout(function () {
-            if ($('#alert_msg').length > 0) {
-                $('#alert_msg').remove();
+            if ($('#console_msg').length > 0) {
+                $('#console_msg').remove();
             }
-        }, 8000)
+        }, 4500);
+
     </script>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
