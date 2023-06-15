@@ -33,5 +33,5 @@ class AppointmentForm(forms.ModelForm):
 class ScheduleAppointmentForm(forms.ModelForm):
     class Meta(forms.ModelForm):
         model = Appointment
-        fields = ['in_person', 'virtual']
+        fields = ['session_type']
 
