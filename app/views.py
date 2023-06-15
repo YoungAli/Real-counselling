@@ -163,8 +163,8 @@ def schedule_appointment(request, slug):
                     add_to_calendar(request.user.email, session_start, session_end)
 
                     # send email to student and counsellor informing them about the scheduled seesion
-                    send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time)
-                    send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email)
+                    # send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time)
+                    # send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email)
                 elif 'virtual' in request.POST:
                     appointment.type = 'Virtual'
                     meet_codes = ['nkj-kiem-sps', 'ayw-iwdo-emm', 'cod-xsed-zzm', 'kmy-xatr-wvy', 'hba-xjgb-cwj', 'ueq-girz-xqh']
@@ -175,8 +175,8 @@ def schedule_appointment(request, slug):
                     add_to_calendar(request.user.email, session_start, session_end, random_code)
 
                     # send email to student and counsellor informing about the the schdduled seesion
-                    send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time,  meet_code=random_code)
-                    send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email, meet_code=random_code)
+                    # send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time,  meet_code=random_code)
+                    # send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email, meet_code=random_code)
 
                 print('Emails sent successfully!!')
                 appointment.save()
