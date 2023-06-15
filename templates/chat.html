@@ -29,37 +29,39 @@
     {% include 'sidebar.html' %}
     {% block body %}
     <section class="home-section" style="background-color: white;" id="btn;">
-        {% if request.user.is_superuser %}
-            <h4 style="margin-left: 70px;">Select a student to chat with</h4>
-            {% for user in users %}
-            <div style="margin-left: 70px;">
-                <a href="{% url 'chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row">
-                    <div class="col s3">
-                        <span class="title" style="font-weight: bolder"><i class='bx bx-user'></i>{{ user.first_name }}</span>
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
-        {% endif %}
-        <div id="board" class="section grey lighten-3" style="height: 68vh; padding: 5px; overflow-y: scroll">
-            {% block messages %}
+        <div id="chat_main">
+            {% if request.user.is_superuser %}
+                <div id="student_selection" style="width: 50%; min-width:250px; padding:10px 0 20px 20px;">
+                    <h4 style="margin-bottom:15px ;">Chat with a student</h4>
+                    {% for user in users %}
+                        <a href="{% url 'chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row" style="color:white; width: 100%;">
+                            <div class="col s3" style="background: rgb(33, 219, 163); padding:10px; max-width: 100%; border-radius: 10px;">
+                                <span class="title" style="font-weight: bolder"><i class='bx bx-user'></i>{{ user.first_name }} {{ user.last_name }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div id="board" class="section grey lighten-3" style="height: 68vh; padding: 5px; overflow-y: scroll; width:100%;">
+                {% block messages %}
 
-            {% endblock %}
-        </div>
-        <form id="chat-box" class="form-group {% block hide %}hide{% endblock %}" method="post">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col s11">
-                    <div class="input-field">
-                        <input id="id_message" name="message" type="text" placeholder="Type your message..">
+                {% endblock %}
+            </div>
+            <form id="chat-box" class="form-group {% block hide %}hide{% endblock %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col s11">
+                        <div class="input-field">
+                            <input id="id_message" name="message" type="text" placeholder="Type your message..">
+                        </div>
+                    </div>
+                    <div class="col s1" style="line-height: 80px">
+                        <button class="btn btn-floating lighten-2 waves-effect waves-light"
+                            style="background-color: gray"><i class="material-icons">send</i></button>
                     </div>
                 </div>
-                <div class="col s1" style="line-height: 80px">
-                    <button class="btn btn-floating lighten-2 waves-effect waves-light"
-                        style="background-color: gray"><i class="material-icons">send</i></button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </section>
     <script src="{% static 'js/chat.js' %}"></script>
     <script>

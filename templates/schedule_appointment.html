@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Schedule Appointment - TU Counsel {% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/createappointment.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -21,25 +22,17 @@
 <body>
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;">
-        <div class="text" style="margin-left: 34px;">
             <h4>Schedule Appointment</h4>
-            {% for message in messages %}
-            <div class="alert alert-danger" id='alert_msg' style="box-sizing: border-box;">
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        <div class="card"
-            style="margin-left: 8px;border-color: blueviolet; border-style: solid; border-radius: 23px; margin-right: 8px;">
+        <div id="appointment_form" class="card">
             <div class="card-body">
                 <form action="" method="post">
                     <h5>Select your preferred counselling session</h5>
                     <br>
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-success" box-shadow="none">Update</button>
+                    <button type="submit" class="btn btn-success" box-shadow="none">Book Appointment</button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        box-shadow="none"><a style="text-decoration: none; color: white;">Delete</a></button>
+                        box-shadow="none"><a style="text-decoration: none; color: white;">Cancel</a></button>
                 </form>
             </div>
         </div>
@@ -54,7 +47,7 @@
                         style="font-size: 34px; margin-left: 420px;"></i>
                 </div>
                 <div class="modal-body">
-                    <b>Are you sure you want to delete this appointment?</b>
+                    <b>Are you sure you want to cancel this appointment?</b>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><a
