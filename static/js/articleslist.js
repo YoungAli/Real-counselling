@@ -36,7 +36,7 @@ for(let i=0; i< tagElements.length; i++){
         tagElements[i].innerHTML = tagElements[i].textContent.split(',').map(tag => {
             if(tag != "" && tag != " ")
             return `<p>${tag}</p>`
-        }).slice(0, 4).join(" ");
+        }).slice(0, 2).join(" ");
     }
 }
 
@@ -96,20 +96,26 @@ function showArticle(title, tags, img){
         setTimeout(() => {
             reader.innerHTML = `<h3 id="reader_title">${title}</h3> ${img? (`<img src="${img}" alt="${title}">`) : ""}
             <div class="article_tags">
-            ${tags.split(',').map(tag =>`<p>${tag}</p>`).join(" ")}
+            ${tags.split(',').map(tag =>{
+                if(tag != "" && tag != " ")
+                return `<p>${tag}</p>`
+            }).join(" ")}
             </div>
             <p id="reader_content"></p>`;
-            document.querySelector('#reader_content').textContent = content;
+            document.querySelector('#reader_content').innerHTML = content.split('\n').join('<br />');
         }, 500);
     } else{
         setTimeout(() => {
             mobileReader.innerHTML = `<div id="close_mobile_btn">&#8592; Back</div><h3 id="mobile_title">${title}</h3> ${img? (`<img id="mobile_img" src="${img}" alt="${title}">`) : ""}
             <div class="article_tags">
-            ${tags.split(',').map(tag =>`<p>${tag}</p>`).join(" ")}
+            ${tags.split(',').map(tag =>{
+                if(tag != "" && tag != " ")
+                return `<p>${tag}</p>`
+            }).join(" ")}
             </div>
-            <p id="mobile_Reader_content"></p>`;
+            <p id="mobile_reader_content"></p>`;
 
-            document.querySelector('#mobile_Reader_content').textContent = content;
+            document.querySelector('#mobile_reader_content').innerHTML = content.split('\n').join('<br />');
 
             document.querySelector('#close_mobile_btn').addEventListener('click', ()=>{
                 closeReader();
