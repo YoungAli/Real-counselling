@@ -22,7 +22,7 @@
 <body>
     {% include 'sidebar.html' %}
     <section class="home-section" style="background-color: white;" id="btn">
-        <h2>All Appointments</h2>
+        <h2>Appointment Slots</h2>
         <div id="appointments_wrapper">
             {% for appointment in appointments %}
                 <h3 class="dates">{{ appointment.date }}</h3>
@@ -38,7 +38,7 @@
                     </a>
                     {% else %}
                         <div class="appt_card greyed_out">
-                            <p class="notbooked_tag">Not booked</p>
+                            <p class="notbooked_tag">Available</p>
                             <p class="appt_time">
                                 {{appointment.start_time}} - {{appointment.end_time }}
                             </p>
@@ -57,7 +57,7 @@
                         </div>
                     {% else %}
                         <div class="appt_card" style="background: rgb(44, 243, 183);">
-                            <p class="notbooked_tag" style="background: rgb(4, 124, 88);">Not booked</p>
+                            <p class="notbooked_tag" style="background: rgb(4, 124, 88);">Available</p>
                             <p class="appt_time">
                                 {{appointment.start_time}} - {{appointment.end_time }}
                             </p>
