@@ -39,11 +39,7 @@ def chat_view(request):
             chats = Message.objects.filter(sender=user, is_read=False).count()
             unread_chats_count += chats
             unread_chats.update({user.first_name: chats})
-        request.session['all_unread_chats_count'] = unread_chats_count
-        request.session.update({'unread_chats': 5})
-        request.session.save()
-        # print('----.', unread_chats)
-        print('......', unread_chats_count)
+
         return render(request, 'chat.html', {"users": CustomUser.objects.exclude(first_name=request.user.first_name), "unread_chats":unread_chats})
 
 @login_required(login_url='login')
@@ -54,9 +50,6 @@ def view_message(request, sender, receiver):
             chats = Message.objects.filter(sender=user, is_read=False).count()
             unread_chats_count += chats
             unread_chats.update({user.first_name: chats})
-        request.session['all_unread_chats_count'] = unread_chats_count
-        request.session.update({'unread_chats': 5})
-        request.session.save()
         print('=====', unread_chats_count)
 
 

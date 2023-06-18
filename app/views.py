@@ -43,7 +43,8 @@ def dashboard(request):
         for user in CustomUser.objects.all().exclude(first_name='Counsellor'):
             chats = Message.objects.filter(sender=user, is_read=False).count()
             unread_chats_count += chats
-            unread_chats.update({f'{user.first_name.title} {user.last_name.title()}': chats})
+            unread_chats.update({f'{user.first_name.title()} {user.last_name.title()}': chats})
+        print(articles, appointments, unread_chats)
         return render(request, "dashboard.html",
             {
                 'articles': articles,
