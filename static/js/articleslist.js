@@ -88,7 +88,6 @@ function showArticle(title, tags, img){
     let content = "Content Error";
     for (let i = 0; i < contentArray.length; i++) {
         let contentTitle = contentArray[i].textContent.split('&s#3DEMACATION');
-        console.log(contentTitle);
         if(contentTitle[1] == title){content = contentTitle[0]}
     }
     openReader();
@@ -119,7 +118,6 @@ function showArticle(title, tags, img){
 
             document.querySelector('#close_mobile_btn').addEventListener('click', ()=>{
                 closeReader();
-                console.log('hello');
             })
         }, 500);
     }

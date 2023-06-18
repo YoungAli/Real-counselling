@@ -7,11 +7,12 @@
 }
 #article_reader{
     width: 80%;
-    padding: 8px 32px;
-    border-right: 2px solid rgb(180, 180, 180);
+    padding: 20px 32px;
     max-width: 900px;
     transition: 0.3s;
     display: none;
+    height: 82vh;
+    overflow-y: scroll;
 }
 #article_reader > img{
     margin: 20px 0 20px 0;
@@ -43,9 +44,10 @@
     max-width: 300px; 
     min-width: 270px;
     width: 60%;
-    height: 82vh;
     overflow-y: scroll; 
     margin-left: 8px;
+    position: relative;
+    height: 78vh;
 }
 #expand_grid{
     margin: 0 0 0 50%;
@@ -60,6 +62,9 @@
     text-align: right;
     border-radius: 15px;
     cursor: pointer;
+    position: sticky;
+    top: 8px;
+    z-index: 40;
 }
 #close_mobile_btn{
     margin: 0 0 15px 0;
@@ -89,7 +94,7 @@
 }
 #article_grid > div{
     font-family: 'Trebuchet MS', Arial, sans-serif;
-    min-height: 200px;
+    min-height: 275px;
     background: rgb(227, 255, 245);
     box-shadow: 4px 4px 0 #1BB291;
     border: 1px solid #1BB291;
