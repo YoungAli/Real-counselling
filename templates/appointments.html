@@ -27,7 +27,7 @@
             {% for appointment in appointments %}
                 <h3 class="dates">{{ appointment.date }}</h3>
                 {% if request.user.is_superuser %}
-                    {% if appointment.type %}
+                    {% if appointment.session_type %}
                     <a href="{% url 'booked_appointments' %}" class="appts_link">
                         <div class="appt_card" style="background: rgb(44, 243, 183); cursor: pointer;">
                             <p class="booked_tag">Booked</p>
@@ -48,7 +48,7 @@
                         </div>
                     {% endif %}
                 {% else %}
-                    {% if appointment.type %}
+                    {% if appointment.session_type %}
                         <div class="appt_card greyed_out">
                             <p class="booked_tag">Booked</p>
                             <p class="appt_time">

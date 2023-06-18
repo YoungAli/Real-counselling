@@ -59,8 +59,9 @@ def add_to_calendar(student_email, start_time, end_time, meet_code=None):
             },
 
             'attendees': [ # put counsellor and student's email here
-                {'email': "tucounsel01@gmail.com"},
+                {'email': "oluwasegunprosperity@gmail.com"},
                 {'email': student_email},
+                {'email': 'tucounsel01@gmail.com'}
 
             ],
             'reminders': {
