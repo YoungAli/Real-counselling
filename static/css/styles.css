@@ -38,7 +38,7 @@ body{
     }
     .main-nav-bg{
         background: rgba(255, 255, 255, 0.795);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.644);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.185);
         backdrop-filter: blur(10px);
     }
     #home-link{
