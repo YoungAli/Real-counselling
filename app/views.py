@@ -10,11 +10,15 @@ from django.views.generic import TemplateView
 from .decorators import for_admins
 from googleapiclient.discovery import build
 from decouple import config
-import random, time, datetime
+import random, time, datetime, string
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
 from .common import add_to_calendar, format_scheduled_date, format_scheduled_time, format_session_interval, send_mail_to_counsellor, send_mail_to_student
+from django.db.models import Q
+from chat.models import Message
+from users.models import CustomUser
+
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -23,8 +27,30 @@ class HomePageView(TemplateView):
 @login_required(login_url='login')
 def dashboard(request):
     if request.method == "GET":
-        articles = Appointment.objects.all()
-        return render(request, 'dashboard.html')
+        # randomly pick four articles to be displayed
+        num = int(random.choice(string.digits))
+        # random_slice = random.choice([':4', '4:'])
+        # articles = Article.objects.all()[num:num+4]
+        articles = Article.objects.all()[:4]
+
+        # randomly pick four booked appointments to be displayed
+        num = int(random.choice(string.digits))
+        # appointments = Appointment.objects.filter(Q(session_type='virtual') | Q(session_type='in_person')).order_by('date')[num:num+4]
+        appointments = Appointment.objects.filter(Q(session_type='virtual') | Q(session_type='in_person')).order_by('date')[:4]
+
+        # get the no_of_unread chats counsellor hasn't read for each student
+        unread_chats_count, unread_chats = 0, {}
+        for user in CustomUser.objects.all().exclude(first_name='Counsellor'):
+            chats = Message.objects.filter(sender=user, is_read=False).count()
+            unread_chats_count += chats
+            unread_chats.update({f'{user.first_name.title} {user.last_name.title()}: chats})
+        return render(request, "dashboard.html",
+            {
+                'articles': articles,
+                'appointments': appointments,
+                'unread_chats': unread_chats
+            }
+        )
 
 @login_required(login_url='login')
 @login_required(login_url='login')

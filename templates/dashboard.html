@@ -28,13 +28,23 @@
         </div>
 		<div id="dashboard_main">
             <div id="appts_dash" class="dash_cards">
-
+                {% if request.user.is_superuser %}
+                    {% for appointments in appointments %}
+                    {{ appointment }}
+                    {% endfor %}
+                {% endif %}
             </div>
             <div id="chat_dash" class="dash_cards">
-                
+                {% if request.user.is_superuser %}
+                    {% for i,j in unread_chats.items %}
+                    {{ i }} {{ j }}
+                    {% endfor %}
+                {% endif %}
             </div>
             <div id="articles_dash" class="dash_cards">
-                
+                {% for article in articles %}
+                {{ article }}
+                {% endfor %}
             </div>
             <div id="vids_dash" class="dash_cards">
                 
