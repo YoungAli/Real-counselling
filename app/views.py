@@ -18,14 +18,19 @@ from .common import add_to_calendar, format_scheduled_date, format_scheduled_tim
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
-class DashboardView(TemplateView):
-    template_name = 'dashboard.html'
 
 
+@login_required(login_url='login')
+def dashboard(request):
+    if request.method == "GET":
+        return render(request, 'dashboard.html')
+
+@login_required(login_url='login')
 @login_required(login_url='login')
 def all_videos(request):
     if request.method == "GET":
         return render(request, 'videos.html')
+
 
 @login_required(login_url='login')
 def all_articles(request):
@@ -84,6 +89,7 @@ def all_appointments(request):
         appointments = Appointment.objects.filter(title__contains=search_input)
     context = {'appointments': appointments}
     return render(request, 'appointments.html', context)
+
 
 @login_required(login_url='login')
 def booked_appointments(request):
