@@ -29,22 +29,24 @@
 		<div id="dashboard_main">
             <div id="appts_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
-                    {% for appointments in appointments %}
-                    {{ appointment }}
+                    {% for appointment in appointments %}
+                    Booked by:{{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }}  || Session type:{{ appointment.session_type }} || booked date: {{ appointment.date }}
+                    <hr>
                     {% endfor %}
                 {% endif %}
             </div>
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
                     {% for i,j in unread_chats.items %}
-                    {{ i }} {{ j[0] }} {{ j[1] }}
-                    {}
+                    Name: {{ i }} || Unread: {{ j.0 }} || user_id: {{ j.1 }}
+                    <hr>
                     {% endfor %}
                 {% endif %}
             </div>
             <div id="articles_dash" class="dash_cards">
                 {% for article in articles %}
-                {{ article }}
+                Title: {{ article.title }} || content: {{ article.content }}
+                <hr>
                 {% endfor %}
             </div>
             <div id="vids_dash" class="dash_cards">
