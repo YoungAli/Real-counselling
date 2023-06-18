@@ -1,7 +1,9 @@
  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&display=swap');
 
  html{
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    height: max-content;
  }
      #hero{
         height: 100vh;
@@ -12,6 +14,7 @@
         flex-direction: column;
         justify-content: center;
         padding: 0 30px;
+        scroll-snap-align: start none;
     }
     #hero-txt{
         margin-left: 5%;
@@ -81,7 +84,8 @@
         justify-content: space-evenly;
         background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 47.5px 47.5px, linear-gradient(#d3ffee 3.8000000000000003px, transparent 3.8000000000000003px) 0 -1.9000000000000001px, linear-gradient(90deg, #d3ffee 3.8000000000000003px, #ffffff 3.8000000000000003px) -1.9000000000000001px 0;
         background-size: 95px 95px, 95px 95px, 47.5px 47.5px, 47.5px 47.5px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.61);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.315);
+        scroll-snap-align: start none;
     }
     #about-text{
         margin-top: 120px;
@@ -126,6 +130,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        scroll-snap-align: start none;
     }
     #faq-images{
         display: flex;
@@ -149,6 +154,111 @@
         padding-inline: 20px;
         flex-wrap: wrap;
     }
+    .mobile_faq_container {
+        margin: 0 auto;
+        padding: 2rem;
+        width: 48rem;
+        display: none;
+      }
+      
+      .accordion .accordion-item {
+        border: none;
+        border-bottom: 1px solid #5ab9a5;
+      }
+      
+      .accordion .accordion-item button[aria-expanded='true'] {
+        border: none;
+        border-bottom: 3px solid #05a776;
+      }
+      
+      .accordion button {
+        position: relative;
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 1em 0;
+        color: #000000;
+        font-size: 1.15rem;
+        font-weight: 600;
+        border: 0px;
+        background: none;
+        outline: none;
+        transition: 0.3s;
+      }
+      
+      .accordion button:hover,
+      .accordion button:focus {
+        cursor: pointer;
+        color: #05a776;
+      }
+      
+      .accordion button:hover::after,
+      .accordion button:focus::after {
+        cursor: pointer;
+        color: #05a776;
+      }
+      
+      .accordion button .accordion-title {
+        padding: 1em 1.5em 1em 0;
+      }
+      
+      .accordion button .icon {
+        display: inline-block;
+        position: absolute;
+        top: 18px;
+        right: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+      }
+      
+      .accordion button .icon::before {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 9px;
+        left: 5px;
+        width: 10px;
+        height: 2px;
+        background: currentColor;
+      }
+      .accordion button .icon::after {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 5px;
+        left: 9px;
+        width: 2px;
+        height: 10px;
+        background: currentColor;
+      }
+      
+      .accordion button[aria-expanded='true'] {
+        color: #05a776;
+      }
+      .accordion button[aria-expanded='true'] .icon::after {
+        width: 0;
+      }
+      .accordion button[aria-expanded='true'] + .accordion-content {
+        opacity: 1;
+        max-height: 9em;
+        transition: all 200ms linear;
+        will-change: opacity, max-height;
+      }
+      .accordion .accordion-content {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 200ms linear, max-height 200ms linear;
+        will-change: opacity, max-height;
+      }
+      .accordion .accordion-content p {
+        font-size: 1rem;
+        font-weight: 300;
+        margin: 2em 0;
+        color: black;
+        font-weight: 400;
+      }
     .q-wraps{
         height:350px;
         background:rgb(216, 216, 216) ;
@@ -163,6 +273,7 @@
         padding: 12px 20px 12px 25px;
         gap: 15px;
         font-size: 0.95em;
+        transition: 0.2s;
     }
     #q-ans{
         min-width: 400px;
@@ -183,6 +294,8 @@
     }
     #contact {
         padding: 70px 10px 0 10px;
+        min-height: 100vh;
+        scroll-snap-align: start none;
     }
     #contact > h2{
         font-family: Jost;
@@ -219,9 +332,23 @@
         margin: 40px 0;
         object-fit: cover;
     }
-    #school-contact{
-        text-align: center;
-        margin-top: 40px;
+    #footer{
+        margin-top: 50px;
+        padding: 20px;
+        background: #eefffa;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.247);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        scroll-snap-align: start none;
+    }
+    #footer > img{
+        width: 150px;
+        height: 50px;
+        object-fit: cover;
     }
     #school-name{
         font-weight: 700;
@@ -262,7 +389,15 @@
             height: 150px;
             align-self: flex-start;
         }
-        
+        #q-ans{
+            display:none;
+        }
+        .q-wraps{
+            display: none;
+        }
+        .mobile_faq_container {
+            display: unset;
+          }
     }
     @media (max-width: 550px){
         #about-text{
@@ -297,13 +432,7 @@
             max-width: 400px;
             margin-top: 5px;
         }
-        #q-ans{
-            display:none;
-        }
-        .q-wraps{
-            width: 100%;
-            margin-bottom:20px ;
-        }
+        
         #faq-images{
             justify-content: center;
             margin: 30px auto;
@@ -315,6 +444,7 @@
         #faq-container{
             margin-bottom: 0px;
         }
+       
     }
     @media (max-width:450px) {
         .hero-txt-big{

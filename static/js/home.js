@@ -16,7 +16,7 @@ const faqAnswers = {
 for (let i = 0; i < faqTiles.length; i++) {
     faqTiles[i].addEventListener('click', ()=>{
         setTimeout(()=>{
-            faqAnsTile.textContent = faqAnswers[i]
+            faqAnsTile.textContent = faqAnswers[i];
         }, 250);
         faqAnsTile.style.animation = 'flicker 0.5s';
         setTimeout(()=>{
@@ -25,3 +25,19 @@ for (let i = 0; i < faqTiles.length; i++) {
         
     })
 }
+
+const items = document.querySelectorAll('.accordion button');
+
+function toggleAccordion() {
+  const itemToggle = this.getAttribute('aria-expanded');
+
+  for (i = 0; i < items.length; i++) {
+    items[i].setAttribute('aria-expanded', 'false');
+  }
+
+  if (itemToggle == 'false') {
+    this.setAttribute('aria-expanded', 'true');
+  }
+}
+
+items.forEach((item) => item.addEventListener('click', toggleAccordion));
