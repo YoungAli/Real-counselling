@@ -37,7 +37,8 @@
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
                     {% for i,j in unread_chats.items %}
-                    {{ i }} {{ j }}
+                    {{ i }} {{ j[0] }} {{ j[1] }}
+                    {}
                     {% endfor %}
                 {% endif %}
             </div>
