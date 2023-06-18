@@ -84,9 +84,9 @@
     background: rgb(221, 2, 2);
 }
 #article_grid{
-    max-width: 1000px;
+    max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 225px);
+    grid-template-columns: repeat(auto-fill, 250px);
     gap: 25px;
     place-content: center;
     margin: 15px auto;

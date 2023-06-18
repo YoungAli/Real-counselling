@@ -311,43 +311,39 @@ input::-webkit-input-placeholder {
     opacity: 1;
 }
 #welcome-message{
-    margin: 25px 0px 0px 30px;
+    margin: 20px auto 5px auto;
+    width: 100%;
+    max-width: 1000px;
+    padding-left: 30px;
     font-size: 1.8rem;
 }
-#vid-slider{
-    width: 85%;
-    margin: 15px auto 10px auto;
-    height: 270px;
-    border-radius: 15px;
-    background: black;
+#dashboard_main{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 20px;
 }
-#feat-articles{
-    display: grid;
-    width: 85%;
-    margin: 5px auto 10px auto;
-    grid-template-columns: repeat(auto-fill, 250px);
-    gap: 25px;
-    place-content: center;
+.dash_cards{
+    height: 250px;
+    background: rgb(255, 184, 29);
+    width: 45%;
+    min-width: 260px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.199);
 }
-#feat-articles > div{
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    min-height: 200px;
-    background: rgb(227, 255, 245);
-    box-shadow: 4px 4px 0 #1BB291;
-    border: 1px solid #1BB291;
-    border-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+#appts_dash{
+    background: rgb(39, 123, 250);
 }
-#feat-articles > div:hover{
-    transform: translateY(-4px);
-    box-shadow: 5px 6px 0 #1BB291;
+#articles_dash{
+    background: rgb(250, 39, 92);
 }
-#feat-arts{
-    margin: 20px 0;
-    text-align: center;
-    font-size: 1.8rem;
+#vids_dash{
+    background: #1BB291;
 }
 .article-title{
     font-weight: 700;
