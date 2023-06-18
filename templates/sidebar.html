@@ -84,15 +84,18 @@
         <li>
             {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
-            <a href="{% url 'chats' %}">
-                {% else %}
-                <a href="{% url 'chat' request.user.id 1 %}">
-                    {% endif %}
+                <a href="{% url 'chats' %}">
                     <i class="bx bx-chat" aria-hidden="true"></i>
-                    <span class="links_name">Live chat {{request.session.unread_chats_count}}</span>
+                    <span class="links_name">Live chat </span>
                 </a>
-                <span class="tooltip">Live chat</span>
-                {% endif %}
+            {% else %}
+            <a href="{% url 'chat' request.user.id 1 %}">
+                <i class="bx bx-chat" aria-hidden="true"></i>
+                <span class="links_name">Live chat </span>
+            </a>
+            {% endif %}
+            {% endif %}
+            <span class="tooltip">Live chat</span>
         </li>
         <li class="" user_profile>
             <a href="{% url 'logout' %}">

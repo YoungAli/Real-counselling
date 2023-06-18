@@ -24,27 +24,8 @@ class DashboardView(TemplateView):
 
 @login_required(login_url='login')
 def all_videos(request):
-    search_input = request.GET.get('search-area')
-    # youtube = build('youtube', 'v3', developerKey=config('YOUTUBE_API_KEY'))
-    youtube = build('youtube', 'v3', developerKey='AIzaSyAdyL-dL2V5pB5I3qffkQ6sYSF07bslLmI')
-    print('search...', search_input)
-    if search_input == None:
-        keywords = ['anxiety', 'relationship', 'career', 'addiction','education', 'anger', 'mental health', 'spiritual']
-        search_input = random.choice(keywords)
-        req = youtube.search().list(q=f'{search_input} counselling', part='snippet', type='video', maxResults=5)
-        res= req.execute()
-    else:
-        req = youtube.search().list(q=f'{search_input}', part='snippet', type='video', maxResults=50)
-        res = req.execute()
-    videos = []
-    for i in res['items']:
-        video_id = i['id']['videoId']
-        video_title = i['snippet']['title']
-        video_description = i['snippet']['description']
-        video_thumbnail = i['snippet']['thumbnails']['default']
-        videos.append({'id': video_id, 'title': video_title, 'description': video_description, 'thumbnail': video_thumbnail})
-    context = {'videos': videos}
-    return render(request, 'videos.html', context)
+    if request.method == "GET":
+        return render(request, 'videos.html')
 
 @login_required(login_url='login')
 def all_articles(request):

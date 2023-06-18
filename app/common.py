@@ -59,7 +59,7 @@ def add_to_calendar(student_email, start_time, end_time, meet_code=None):
             },
 
             'attendees': [ # put counsellor and student's email here
-                {'email': "emmanuel.tanimowo@trinityuniversity.edu.ng"},
+                {'email': "tucounsel01@gmail.com"},
                 {'email': student_email},
 
             ],
@@ -94,7 +94,7 @@ def format_scheduled_time(start_time, end_time):
 
 
 def format_session_interval(appointment_date, start_time, end_time):
-    """unction to format the session interval to be used for adding event to google calendar"""
+    """function to format the session interval to be used for adding event to google calendar"""
     start_schedule_time = f"{start_time.split(':')[0]}:{start_time.split(':')[1]}:{start_time.split(':')[2]}"
     end_schedule_time = f"{end_time.split(':')[0]}:{end_time.split(':')[1]}:{end_time.split(':')[2]}"
     start_scheduled_datetime, end_scheduled_datetime = f"{appointment_date}T{start_schedule_time}", f"{appointment_date}T{end_schedule_time}"
@@ -110,7 +110,7 @@ def send_mail_to_counsellor(first_name, last_name, appointment_type, scheduled_d
     subject = 'Counselling Session Alert'
     message = message_
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['emmanuel.tanimowo@trinityuniversity.edu.ng',]  # counsellor email here
+    recipient_list = ['tucounsel01@gmail.com',]  # counsellor email here
     send_mail(subject, message, email_from, recipient_list)
 
 
