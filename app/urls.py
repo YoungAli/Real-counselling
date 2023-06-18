@@ -14,11 +14,8 @@ urlpatterns = [
     path('appointment/create', create_appointment, name='create_appointment'),
     path('appointment/edit/<slug:slug>', edit_appointment, name='edit_appointment'),
     path('appointment/schedule/<slug:slug>', schedule_appointment, name='schedule_appointment'),
-    # path('appointment/re_schedule/<slug:slug>', re_schedule_appointment, name='re_schedule_appointment'),
     path('appointment/delete/<slug:slug>', delete_appointment, name='delete_appointment'),
     path('videos', all_videos, name='videos'),
-    # path('request_counsel', RequestCounselView.as_view(), name='request_counsel'),
-
 ]
 
 # handler404 = 'app.views.page_not_found'

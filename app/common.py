@@ -78,12 +78,10 @@ def add_to_calendar(student_email, start_time, end_time, meet_code=None):
         print('An error occurred: %s' % error)
 
 
-
 def format_scheduled_date(date_):
     """function used to format the scheduled date"""
     appointment_date = f"{date_.strftime('%A')} {date_.strftime('%B')} {date_.day}, {date_.year}"
     return appointment_date
-
 
 
 def format_scheduled_time(start_time, end_time):
@@ -93,7 +91,6 @@ def format_scheduled_time(start_time, end_time):
     f_start_time_ , f_end_time_ = time.strptime(start_time_, "%H:%M"), time.strptime(end_time_, "%H:%M")
     start_time_value, end_time_value = time.strftime( "%I:%M %p", f_start_time_), time.strftime( "%I:%M %p", f_end_time_)
     return start_time_value, end_time_value
-
 
 
 def format_session_interval(appointment_date, start_time, end_time):

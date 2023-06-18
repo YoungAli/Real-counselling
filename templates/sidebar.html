@@ -89,7 +89,7 @@
                 <a href="{% url 'chat' request.user.id 1 %}">
                     {% endif %}
                     <i class="bx bx-chat" aria-hidden="true"></i>
-                    <span class="links_name">Live chat</span>
+                    <span class="links_name">Live chat {{request.session.unread_chats_count}}</span>
                 </a>
                 <span class="tooltip">Live chat</span>
                 {% endif %}

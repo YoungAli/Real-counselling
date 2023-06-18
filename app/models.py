@@ -5,6 +5,7 @@ from django.urls import reverse
 import string, random
 
 def random_slug():
+    """used to generate a 12-digit slug"""
     return ''.join(random.choice(string.digits) for i in range(12))
 
 class Article(models.Model):

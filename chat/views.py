@@ -31,20 +31,31 @@ def get_send_message(request, sender=None, receiver=None):
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
-
 @login_required(login_url='login')
 def chat_view(request):
     if request.method == "GET":
-        return render(request, 'chat.html', {'users': CustomUser.objects.exclude(first_name=request.user.first_name)})
-
+        unread_chats_count, unread_chats = 0, {}
+        for user in CustomUser.objects.all().exclude(first_name="Counsellor"):
+            chats = Message.objects.filter(sender=user, is_read=False).count()
+            unread_chats_count += chats
+            unread_chats.update({user.first_name: chats})
+        request.session['unread_chats_count'] = unread_chats_count
+        return render(request, 'chat.html', {"users": CustomUser.objects.exclude(first_name=request.user.first_name), "unread_chats":unread_chats})
 
 @login_required(login_url='login')
 def view_message(request, sender, receiver):
     if request.method == "GET":
+        unread_chats_count, unread_chats = 0, {}
+        for user in CustomUser.objects.all().exclude(first_name="Counsellor"):
+            chats = Message.objects.filter(sender=user, is_read=False).count()
+            unread_chats_count += chats
+            unread_chats.update({user.first_name: chats})
+        request.session['unread_chats_count'] = unread_chats_count
         return render(request, "messages.html",
             {
                 'users': CustomUser.objects.exclude(first_name=request.user.first_name),
                 'receiver': CustomUser.objects.get(id=receiver),
-                'messages': Message.objects.filter(sender_id=sender, receiver_id=receiver) | Message.objects.filter(sender_id=receiver, receiver_id=sender)
+                'messages': Message.objects.filter(sender_id=sender, receiver_id=receiver) | Message.objects.filter(sender_id=receiver, receiver_id=sender),
+                'unread_chats': unread_chats
             }
         )

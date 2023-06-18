@@ -53,3 +53,5 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.matric_number
 
+    class Meta:
+        unique_together = ['matric_number', 'email']

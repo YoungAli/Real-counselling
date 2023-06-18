@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Live Chat - TU Counsel</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -36,7 +36,12 @@
                     {% for user in users %}
                         <a href="{% url 'chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row student_list" style="color:white; width: 90%; margin: 3px auto; transition: 0.2s; background: rgb(23, 190, 140); border-radius: 10px;">
                             <div class="col s3" style="padding:10px; max-width: 100%;">
-                                <span class="title" style="font-weight: bolder"><i class='bx bx-user'></i>  {{ user.first_name }} {{ user.last_name }}</span>
+                                <span class="title" style="font-weight: bolder"><i class='bx bx-user'></i>  {{ user.first_name }} {{ user.last_name }} 
+                                    {% for i,j in unread_chats.items %}
+                                    {% if i == user.first_name %}
+                                    {{ j }}
+                                    {% endif %}
+                                    {% endfor %}
                             </div>
                         </a>
                     {% endfor %}
