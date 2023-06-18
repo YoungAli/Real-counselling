@@ -9,8 +9,7 @@ def random_slug():
 
 class Article(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
-    title = models.CharField(max_length=255, null=True, blank=True)
-    subtitle = models.CharField(max_length=255, null=True, blank=True)
+    title = models.CharField(max_length=50, null=True, blank=True)
     content = models.CharField(max_length=50000, null=True, blank=True)
     tags = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(max_length=500, unique= True, null=True, blank=True)
@@ -31,10 +30,12 @@ class Article(models.Model):
 
 
 class Appointment(models.Model):
+    appointment_choices = [
+        ('in_person', 'In Person'),
+        ('virtual', 'Virtual')
+    ]
     booked_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
-    in_person = models.BooleanField(default=False)
-    virtual = models.BooleanField(default=False)
-    type = models.CharField(max_length=10, null=True, blank=True)
+    session_type = models.CharField("Select your preferred counselling type", choices=appointment_choices, max_length=15, null=True, blank=True)
     meeting_url = models.CharField(max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=500, unique= True, null=True, blank=True)
     date = models.DateField(null=True, blank=True)

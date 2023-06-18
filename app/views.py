@@ -140,48 +140,39 @@ def schedule_appointment(request, slug):
         form = ScheduleAppointmentForm(request.POST, instance=appointment)
         if form.is_valid():
             appointment.booked_by = request.user
-            if 'in_person' in request.POST:
-                appointment.type = 'In-person'
-            elif 'virtual' in request.POST:
-                appointment.type = 'Virtual'
 
-            # ensure nobody selects both options..you can only pick one at a time
-            if 'in_person' in request.POST and 'virtual' in request.POST:
-                messages.error(request, "Kindly select one counselling type (either in-person, or virtual)")
-            else:
-                # call function to format the scheduled date
-                scheduled_date = format_scheduled_date(appointment.date)
+            # call function to format the scheduled date
+            scheduled_date = format_scheduled_date(appointment.date)
 
-                # call function to format the scheduled time
-                start_time, end_time = format_scheduled_time(str(appointment.start_time), str(appointment.end_time))
+            # call function to format the scheduled time
+            start_time, end_time = format_scheduled_time(str(appointment.start_time), str(appointment.end_time))
 
-                # call function to format the session interval to be used for adding event to google calendar
-                session_start, session_end = format_session_interval(str(appointment.date), str(appointment.start_time), str(appointment.end_time))
+            # call function to format the session interval to be used for adding event to google calendar
+            session_start, session_end = format_session_interval(str(appointment.date), str(appointment.start_time), str(appointment.end_time))
 
-                if 'in_person' in request.POST:
-                    # call function to add the counselling session to google calendar
-                    add_to_calendar(request.user.email, session_start, session_end)
+            if request.POST['session_type'] == 'in_person':
+                # call function to add the counselling session to google calendar
+                add_to_calendar(request.user.email, session_start, session_end)
 
-                    # send email to student and counsellor informing them about the scheduled seesion
-                    # send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time)
-                    # send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email)
-                elif 'virtual' in request.POST:
-                    appointment.type = 'Virtual'
-                    meet_codes = ['nkj-kiem-sps', 'ayw-iwdo-emm', 'cod-xsed-zzm', 'kmy-xatr-wvy', 'hba-xjgb-cwj', 'ueq-girz-xqh']
-                    random_code = random.choice(meet_codes)
-                    # save the meeting link for that appointment
-                    appointment.meeting_url = f"https://meet.google.com/{random_code}"
-                    # call function to add the counselling session to google calendar
-                    add_to_calendar(request.user.email, session_start, session_end, random_code)
+                # send email to student and counsellor informing them about the scheduled seesion
+                # send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time)
+                # send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email)
+            elif request.POST['session_type'] == 'virtual':
+                meet_codes = ['nkj-kiem-sps', 'ayw-iwdo-emm', 'cod-xsed-zzm', 'kmy-xatr-wvy', 'hba-xjgb-cwj', 'ueq-girz-xqh']
+                random_code = random.choice(meet_codes)
+                # save the meeting link for that appointment
+                appointment.meeting_url = f"https://meet.google.com/{random_code}"
+                # call function to add the counselling session to google calendar
+                add_to_calendar(request.user.email, session_start, session_end, random_code)
 
-                    # send email to student and counsellor informing about the the schdduled seesion
-                    # send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time,  meet_code=random_code)
-                    # send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email, meet_code=random_code)
+                # send email to student and counsellor informing about the the schdduled seesion
+                # send_mail_to_counsellor(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time,  meet_code=random_code)
+                # send_mail_to_student(request.user.first_name.title(), request.user.last_name.title(), appointment.type, scheduled_date, start_time , end_time, request.user.email, meet_code=random_code)
 
-                print('Emails sent successfully!!')
-                appointment.save()
-                form.save()
-                return redirect('appointments')
+            print('Emails sent successfully!!')
+            appointment.save()
+            form.save()
+            return redirect('appointments')
     return render(request, 'schedule_appointment.html', {'form': form, 'slug': slug})
 
 @login_required(login_url='login')
