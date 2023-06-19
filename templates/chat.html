@@ -31,12 +31,12 @@
     <section class="home-section" style="background-color: white;" id="btn;">
         <div id="chat_main">
             {% if request.user.is_superuser %}
-                <div id="student_selection" style="width: 40%; min-width:250px; padding:10px 0 20px 20px; background:white; box-shadow:  0 0 15px rgba(0, 0, 0, 0.123); border-radius: 20px; height: fit-content; max-height: 80vh;">
+                <div id="student_selection" style="width: 40%; min-width:250px; padding:10px 0 20px 20px; background:white; box-shadow:  0 0 15px rgba(0, 0, 0, 0.247); border-radius: 20px; height: fit-content; max-height: 80vh;">
                     <h4 style="margin-bottom:15px ;">Students List</h4>
                     {% for user in users %}
                         <a href="{% url 'chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row student_list" style="color:white; width: 90%; margin: 3px auto; transition: 0.2s; background: rgb(23, 190, 140); border-radius: 10px;">
                             <div class="col s3" style="padding:10px; max-width: 100%;">
-                                <div class="number_badge" style="position: absolute; right: 5px; background: rgb(9, 105, 77); border-radius: 5px; padding: 0px 5px;">
+                                <div class="number_badge" style="position: absolute; right: 5px; background: rgb(255, 255, 255); color:black; font-weight:700; border-radius: 5px; padding: 0px 4px;">
                                     {% for i,j in unread_chats.items %}
                                     {% if i == user.first_name %}
                                     {% if j != 0 %}
