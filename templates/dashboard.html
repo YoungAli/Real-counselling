@@ -61,7 +61,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                    <p class="tile_heading">You have no booked appointments, book an appointment <a href="{% url 'schedule_appointment' %}">here</a></p>
+                    <p class="tile_heading">You have no booked appointments, book an appointment <a style="background: white; padding: 0 5px; border-radius: 5px;"href="{% url 'schedule_appointment' %}">here</a></p>
                     {% endif %}
                     
                 {% endif %}
@@ -83,9 +83,10 @@
                     {% endif %}
                 {% else %}
                     {% if student_unread_chats %}
-                        <h2>You have {{ student_unread_chats }} new message{{ student_unread_chats| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 24px;"></i></h2>
+                        <p class="tile_heading centered">You have {{ student_unread_chats }} new message{{ student_unread_chats| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
+                        <a href="{% url 'chat' request.user.id 1 %}" id="chat_link">Click here to view your messages</a>
                     {% else %}
-                        <h2>You have no unread messages</h2>
+                        <h2 class="tile_heading centered">You have no unread messages</h2>
                     {% endif %}
                 {% endif %}
             </div>

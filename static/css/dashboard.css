@@ -337,6 +337,26 @@ input::-webkit-input-placeholder {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.199);
     padding: 8px;
 }
+.centered{
+    text-align: center;
+    margin-top: 50px !important;
+}
+
+#chat_link{
+    text-align: center;
+    display: block;
+    margin: 15px auto;
+    background: white;
+    border-radius: 10px;
+    border-bottom: 3px solid #000000;
+    padding: 10px;
+    font-weight: 700;
+    color: black;
+    width: 80%;
+}
+#chat_link:hover{
+    text-decoration: none !important;
+}
 #appts_dash{
     background: rgb(39, 123, 250);
     padding-left: 14px;
@@ -356,7 +376,8 @@ input::-webkit-input-placeholder {
 #articles_dash{
     background: rgb(250, 39, 92);
     padding-left: 14px;
-    overflow: auto;
+    height: fit-content;
+    min-height: 250px;
 }
 #vids_dash{
     background: #1BB291;
