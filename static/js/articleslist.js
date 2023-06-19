@@ -28,7 +28,7 @@ function consolePop(text, dur) {
 
 if (!articleCards.length) {
     console.log(articleCards.length);
-    consolePop(`<a href="http://127.0.0.1:8000/articles">No search result, click to refresh articles</a>`, 'infinite')
+    consolePop(`<a href="http://127.0.0.1:8000/articles">No search result, click to view articles</a>`, 'infinite')
 }
 
 for(let i=0; i< tagElements.length; i++){

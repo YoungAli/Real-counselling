@@ -30,7 +30,7 @@
             {% for appointment in appointments %}
                 {% if appointment.booked_by %}
                     {% if appointment.session_type == 'virtual' %}
-                        <div class="booked_card" title="Date scheduled:{{ appointment.date_updated }}">
+                        <div class="booked_card" title="Date scheduled: {{ appointment.date_updated }}">
                             <div class="card_date">
                                 <p class="date_p">
                                     {{ appointment.date }}

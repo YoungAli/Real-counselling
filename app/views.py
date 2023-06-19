@@ -69,7 +69,6 @@ def all_videos(request):
 @login_required(login_url='login')
 def all_articles(request):
     search_input = request.GET.get('search-area')
-    print('search......',search_input)
     if search_input == None:
         articles = Article.objects.all()
     else:
@@ -116,7 +115,6 @@ def delete_article(request, slug):
 @login_required(login_url='login')
 def all_appointments(request):
     search_input = request.GET.get('search-area')
-    print('search......',search_input)
     if search_input == None:
         appointments = Appointment.objects.all()
     else:
@@ -128,7 +126,6 @@ def all_appointments(request):
 @login_required(login_url='login')
 def booked_appointments(request):
     search_input = request.GET.get('search-area')
-    print('search......',search_input)
     if search_input == None:
         appointments = Appointment.objects.all()
     else:
@@ -147,7 +144,6 @@ def create_appointment(request):
         form = AppointmentForm(request.POST)
         if form.is_valid():
             form.save()
-            print(dir(form), form.data)
             return redirect('appointments')
         else: return render(request, 'create_appointment.html', {'form': form})
 
@@ -164,7 +160,6 @@ def schedule_appointment(request, slug):
                 appointment_type = 'Virtual'
             else: appointment_type = 'In-Person'
             first_name, last_name, user_email = request.user.first_name.title(), request.user.last_name.title(), request.user.email
-            print(first_name, last_name, user_email)
             # call function to format the scheduled date
             scheduled_date = format_scheduled_date(appointment.date)
 
@@ -181,7 +176,6 @@ def schedule_appointment(request, slug):
                 # send email to student and counsellor informing them about the scheduled seesion
                 send_mail_to_counsellor(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time)
                 send_mail_to_student(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time, user_email)
-                print('..in person')
             elif request.POST['session_type'] == 'virtual':
                 meet_codes = ['nkj-kiem-sps', 'ayw-iwdo-emm', 'cod-xsed-zzm', 'kmy-xatr-wvy', 'hba-xjgb-cwj', 'ueq-girz-xqh']
                 random_code = random.choice(meet_codes)
@@ -193,9 +187,7 @@ def schedule_appointment(request, slug):
                 # send email to student and counsellor informing about the the schdduled seesion
                 send_mail_to_counsellor(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time, meet_code=random_code)
                 send_mail_to_student(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time, user_email, meet_code=random_code)
-                print('...virtual')
 
-            print('Emails sent successfully!!')
             appointment.save()
             form.save()
             return redirect('appointments')

@@ -73,7 +73,7 @@
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
                     {% if unread_chats.total_unread_chats > 0 %}
-                        <p class="tile_heading centered">You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}}</p>
+                        <p class="tile_heading centered">You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
                         {% for i,j in unread_chats.items %}
                             {% if i != 'total_unread_chats' %}
                             <a href="{% url 'chat' 1 j.1 %}" class="row_card">
@@ -83,7 +83,7 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <p class="tile_heading centered">You have no unread messages</>
+                        <p class="tile_heading centered">You have no unread messages <i class='bx bx-message-dots' style="font-size: 18px;"></i><p/>
                     {% endif %}
                 {% else %}
                     {% if student_unread_chats %}
