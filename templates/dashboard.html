@@ -22,11 +22,15 @@
 <body>
 	{% include 'sidebar.html' %}
 	<section class="home-section" style="background-color: white;" id="btn">
-        <div id="welcome-message">
-            <h2>
-                Welcome {{ request.user.first_name|title }} {{ request.user.last_name|title }}
-            </h2>
-        </div>
+            <div id="welcome-message">
+                {% if not request.user.is_superuser %}
+                    <h2>
+                        Welcome {{ request.user.first_name|title }} {{ request.user.last_name|title }} <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px">
+                    </h2>
+                {% else %}
+                <h2>Admin Dashboard</h2>
+                {% endif %}
+            </div>
 		<div id="dashboard_main">
             <div id="appts_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
