@@ -24,7 +24,7 @@
 	<section class="home-section" style="background-color: white;" id="btn">
         <div id="welcome-message">
             <h2>
-                Welcome John Doe
+                Welcome {{ request.user.first_name|title }} {{ request.user.last_name|title }}
             </h2>
         </div>
 		<div id="dashboard_main">
@@ -32,16 +32,38 @@
                 {% if request.user.is_superuser %}
                     {% if appointments|length %}
                         <p class="tile_heading">Recently Booked Appointments <i class='bx bx-calendar-check' style="font-size: 24px;"></i></p>
+                        <div>
+                            {% for appointment in appointments %}
+                                <a href="{% url 'booked_appointments' %}" class="row_card">
+                                    <div>{{ appointment.booked_by.first_name|title }} {{ appointment.booked_by.last_name|title }}</div>
+                                    <div> - </div>
+                                    <div>{{ appointment.date }}</div>
+                                </a>
+                            {% endfor %}
+                        </div>
                     {% else %}
                         <p class="tile_heading">You have no booked appointments yet</p>
                     {% endif %}
-                    <div>
-                    {% for appointment in appointments %}
-                    <a href="{% url 'booked_appointments' %}" class="row_card">
-                            <div>{{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }}</div> <div> - </div> <div>{{ appointment.date }}</div>
-                    </a>
-                    {% endfor %}
-                    </div>
+                {% else %}
+                    {% if user_appointments|length %}
+                        <p class="tile_heading">Your Recently Booked Appointments <i class='bx bx-calendar-check' style="font-size: 24px;"></i></p>
+                        <div>
+                            {% for appointment in user_appointments %}
+                                <a href="" class="row_card">
+                                    <div>{{ appointment.date }}</div>
+                                    <div> - </div>
+                                    {% if appointment.session_type == "in_person" %}
+                                        <div>In-Person</div>
+                                    {% else %}
+                                        <div>Virtual</div>
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                    <p class="tile_heading">You have no booked appointments, book an appointment <a href="{% url 'schedule_appointment' %}">here</a></p>
+                    {% endif %}
+                    
                 {% endif %}
             </div>
             <div id="chat_dash" class="dash_cards">
@@ -54,6 +76,12 @@
                             <hr>
                             {% endif %}
                         {% endfor %}
+                    {% else %}
+                        <h2>You have no unread messages</h2>
+                    {% endif %}
+                {% else %}
+                    {% if student_unread_chats %}
+                        <h2>You have {{ student_unread_chats }} new message{{ student_unread_chats| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 24px;"></i></h2>
                     {% else %}
                         <h2>You have no unread messages</h2>
                     {% endif %}
