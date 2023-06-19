@@ -47,15 +47,17 @@
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
                     {% if unread_chats.total_unread_chats > 0 %}
-                        <h2>You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}}</h2>
+                        <p class="tile_heading">You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}}</p>
                         {% for i,j in unread_chats.items %}
                             {% if i != 'total_unread_chats' %}
-                                Name: {{ i }} || Unread: {{ j.0 }} || user_id: {{ j.1 }}
-                            <hr>
+                            <a href="{% url 'chat' j.1 1 %}" class="row_card">
+                                {{ i }}  <div >{{ j.0 }}</div>
+                            </a>
+                            
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <h2>You have no unread messages</h2>
+                        <p class="tile_heading">You have no unread messages</>
                     {% endif %}
                 {% endif %}
             </div>

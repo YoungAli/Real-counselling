@@ -33,6 +33,10 @@
 
 .card-panel{
    border-radius: 8px !important;
+   height: auto !important;
+   min-height: 50px !important;
+   word-break: break-all;
+
 }
 #chat-box .row{
    align-items: center;

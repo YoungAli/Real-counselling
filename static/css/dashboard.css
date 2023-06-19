@@ -362,6 +362,23 @@ input::-webkit-input-placeholder {
     background: #1BB291;
     position: relative;
 }
+#chat_dash .row_card{
+    display: flex;
+    justify-content: space-between;
+}
+#chat_dash{
+    padding-left: 14px;
+}
+#chat_dash .tile_heading{
+    color: black;
+}
+#chat_dash .row_card> div{
+    color: black;
+    background: white;
+    padding: 0 4px;
+    border-radius: 5px;
+    font-weight: 900;
+}
 .vid_controls{
     position:absolute;
     top:53%;
