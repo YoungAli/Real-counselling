@@ -28,14 +28,9 @@ class HomePageView(TemplateView):
 def dashboard(request):
     if request.method == "GET":
         # randomly pick four articles to be displayed
-        num = int(random.choice(string.digits))
-        # random_slice = random.choice([':4', '4:'])
-        # articles = Article.objects.all()[num:num+4]
         articles = Article.objects.all()[:4]
 
-        # randomly pick four booked appointments to be displayed
-        num = int(random.choice(string.digits))
-        # appointments = Appointment.objects.filter(Q(session_type='virtual') | Q(session_type='in_person')).order_by('date')[num:num+4]
+        # get the first four booked appointments
         appointments = Appointment.objects.filter(Q(session_type='virtual') | Q(session_type='in_person')).order_by('date')[:4]
 
         # get the no_of_unread chats counsellor hasn't read for each student
@@ -44,12 +39,21 @@ def dashboard(request):
             chats = Message.objects.filter(sender=user, is_read=False).count()
             unread_chats_count += chats
             unread_chats.update({f'{user.first_name.title()} {user.last_name.title()}': [chats, user.id]})
-        print(articles, appointments, unread_chats)
+
+        # get all appointments a user booked
+        user_appointments = Appointment.objects.filter(booked_by=request.user).order_by('date')[:4]
+
+        # get the no_of_unread chats a student has from the counsellor
+        counsellor = CustomUser.objects.all().first()
+        student_unread_chats = Message.objects.filter(sender=counsellor, is_read=False).count()
+
         return render(request, "dashboard.html",
             {
                 'articles': articles,
                 'appointments': appointments,
-                'unread_chats': unread_chats
+                'unread_chats': unread_chats,
+                'user_appointments': user_appointments,
+                'student_unread_chats': student_unread_chats
             }
         )
 
