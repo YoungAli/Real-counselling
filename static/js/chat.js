@@ -1,4 +1,6 @@
 
+
+
 function scrolltoend() {
     $('#board').stop().animate({
         scrollTop: $('#board')[0].scrollHeight
@@ -27,6 +29,7 @@ function receive() {
         console.log(data);
         if (data.length !== 0)
         {   
+            console.log(data, "in condition")
             for(var i=0;i<data.length;i++) {
                 console.log(data[i]);
                 let time = parseInt(data[i].timestamp.slice(11, 13));

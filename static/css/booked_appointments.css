@@ -69,8 +69,6 @@
     flex-direction: column;
     width: 80% !important;
     min-width: 138px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
 }
 .booked_type{
     width: 70% !important;

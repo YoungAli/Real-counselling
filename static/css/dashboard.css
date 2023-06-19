@@ -341,6 +341,9 @@ input::-webkit-input-placeholder {
     text-align: center;
     margin-top: 50px !important;
 }
+.appt_dash_link:hover{
+    text-decoration: none !important;
+}
 
 #chat_link{
     text-align: center;

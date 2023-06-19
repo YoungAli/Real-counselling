@@ -47,7 +47,7 @@
                                 </div>
                                 <span class="title" style="font-weight: bolder; ">
                                     <i class='bx bx-user'></i>
-                                        {{ user.first_name }} {{ user.last_name }}
+                                        {{ user.first_name|title}} {{ user.last_name|title }}
                                 </span>
                             </div>
                         </a>
@@ -61,7 +61,11 @@
                         <div id="msg_placeholder" style="color: rgb(82, 82, 82); text-align: center; margin: 140px auto;">
                             <i class='bx bx-message-detail' style="font-size: 3em;"></i>
                             <h2>Nothing to Show Yet</h2>
+                            {% if  request.user.is_superuser %}
                             <p>Click on a student to send and recieve messages</p>
+                            {% else %}
+                            <p>Send a message to the counsellor</p>
+                            {% endif %}
                         </div>
                         {% block messages %}
                         
@@ -92,7 +96,13 @@
         sender_id = "{{ receiver.id }}";
         receiver_id = "{{ request.user.id }}";
 
+        let cards = document.getElementsByClassName('card-panel');
         //For sending
+        function removePlaceholder() {
+            document.querySelector('#recent_msg').style.display = 'block';
+            document.querySelector('#msg_placeholder').style.display = 'none';
+        }
+
         $(function () {
             scrolltoend();
             $('#chat-box').on('submit', function (event) {
@@ -100,15 +110,15 @@
                 var message = $('#id_message');
                 send('{{ request.user.first_name }}', '{{ receiver.first_name }}', message.val());
                 message.val('');
+                removePlaceholder();
             })
         })
 
-        let cards = document.getElementsByClassName('card-panel');
 
         if(cards.length){
-            document.querySelector('#recent_msg').style.display = 'block';
-            document.querySelector('#msg_placeholder').style.display = 'none';
+            removePlaceholder();
         }
+
 
     </script>
     {% endblock %}

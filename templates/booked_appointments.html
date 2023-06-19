@@ -28,8 +28,35 @@
             <hr style="height: 3px; background: rgb(241, 241, 241);">
             <div id="appointments_wrapper">
             {% for appointment in appointments %}
-                {% if appointment.session_type == 'virtual' %}
-                    <div class="booked_card" title="Date scheduled:{{ appointment.date_updated }}">
+                {% if appointment.booked_by %}
+                    {% if appointment.session_type == 'virtual' %}
+                        <div class="booked_card" title="Date scheduled:{{ appointment.date_updated }}">
+                            <div class="card_date">
+                                <p class="date_p">
+                                    {{ appointment.date }}
+                                </p>
+                            </div>
+                            <div class="booked_name">
+                                <p>
+                                    {{ appointment.booked_by.first_name|title }} {{ appointment.booked_by.last_name|title|title }}     
+                                </p>
+                            </div>
+                            <div class="booked_time">
+                                <p>
+                                    {{ appointment.start_time }} - {{appointment.end_time }}
+                                </p>
+                            </div>
+                            <div class="booked_type">
+                                <p>Type: Virtual</p>
+                                <div class="link_icon">
+                                    <a class="v_meetink_link" href="{{appointment.meeting_url}}">Join Meeting</a>
+                                    <i class='bx bx-video-plus'></i>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    {% else %}
+                    <div class="booked_card" title="Date scheduled: {{appointment.date_updated}}">
                         <div class="card_date">
                             <p class="date_p">
                                 {{ appointment.date }}
@@ -37,7 +64,7 @@
                         </div>
                         <div class="booked_name">
                             <p>
-                                {{ appointment.booked_by.first_name|title }} {{ appointment.booked_by.last_name|title|title }}     
+                                {{ appointment.booked_by.first_name|title }} {{ appointment.booked_by.last_name|title }}     
                             </p>
                         </div>
                         <div class="booked_time">
@@ -46,37 +73,12 @@
                             </p>
                         </div>
                         <div class="booked_type">
-                            <p>Type: Virtual</p>
-                            <div class="link_icon">
-                                <a class="v_meetink_link" href="{{appointment.meeting_url}}">Join Meeting</a>
-                                <i class='bx bx-video-plus'></i>
-                            </div>
+                            <p>Type: In Person</p>
                         </div>
                     </div>
                     <hr>
-                {% else %}
-                <div class="booked_card" title="Date scheduled: {{appointment.date_updated}}">
-                    <div class="card_date">
-                        <p class="date_p">
-                            {{ appointment.date }}
-                        </p>
-                    </div>
-                    <div class="booked_name">
-                        <p>
-                            {{ appointment.booked_by.first_name|title }} {{ appointment.booked_by.last_name|title }}     
-                        </p>
-                    </div>
-                    <div class="booked_time">
-                        <p>
-                            {{ appointment.start_time }} - {{appointment.end_time }}
-                        </p>
-                    </div>
-                    <div class="booked_type">
-                        <p>Type: In Person</p>
-                    </div>
-                </div>
-                <hr>
-                {% endif %}
+                    {% endif %}
+                {% endif %}    
             {% endfor %}
             </div>
         </div>

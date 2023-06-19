@@ -25,7 +25,7 @@
             <div id="welcome-message">
                 {% if not request.user.is_superuser %}
                     <h2>
-                        Welcome {{ request.user.first_name|title }} {{ request.user.last_name|title }} <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px">
+                        Welcome {{ request.user.first_name|title }} {{ request.user.last_name|title }} <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px" style="padding-bottom: 13px;">
                     </h2>
                 {% else %}
                 <h2>Admin Dashboard</h2>
@@ -65,7 +65,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                    <p class="tile_heading">You have no booked appointments, book an appointment <a style="background: white; padding: 0 5px; border-radius: 5px;"href="{% url 'schedule_appointment' %}">here</a></p>
+                    <p class="tile_heading" style="text-align: center;">You have no booked appointments, book an appointment <br> <a class="appt_dash_link" style="background: white; padding: 0 5px; border-radius: 5px;"href="{% url 'appointments' %}">here</a></p>
                     {% endif %}
                     
                 {% endif %}
@@ -73,24 +73,24 @@
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
                     {% if unread_chats.total_unread_chats > 0 %}
-                        <p class="tile_heading">You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}}</p>
+                        <p class="tile_heading centered">You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}}</p>
                         {% for i,j in unread_chats.items %}
                             {% if i != 'total_unread_chats' %}
-                            <a href="{% url 'chat' j.1 1 %}" class="row_card">
+                            <a href="{% url 'chat' 1 j.1 %}" class="row_card">
                                 {{ i }}  <div >{{ j.0 }}</div>
                             </a>
                             
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <p class="tile_heading">You have no unread messages</>
+                        <p class="tile_heading centered">You have no unread messages</>
                     {% endif %}
                 {% else %}
                     {% if student_unread_chats %}
                         <p class="tile_heading centered">You have {{ student_unread_chats }} new message{{ student_unread_chats| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
                         <a href="{% url 'chat' request.user.id 1 %}" id="chat_link">Click here to view your messages</a>
                     {% else %}
-                        <h2 class="tile_heading centered">You have no unread messages</h2>
+                        <p class="tile_heading centered">You have no unread messages <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
                     {% endif %}
                 {% endif %}
             </div>

@@ -50,7 +50,11 @@
                 {% else %}
                     {% if appointment.session_type %}
                         <div class="appt_card greyed_out">
+                            {% if appointment.booked_by == request.user %}
+                            <p class="booked_tag">Booked by you</p>
+                            {% else %}
                             <p class="booked_tag">Booked</p>
+                            {% endif %}
                             <p class="appt_time">
                                 {{appointment.start_time}} - {{appointment.end_time }}
                             </p>
