@@ -335,29 +335,101 @@ input::-webkit-input-placeholder {
     min-width: 260px;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.199);
+    padding: 8px;
 }
 #appts_dash{
     background: rgb(39, 123, 250);
+    padding-left: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: fit-content;
+    min-height: 250px;
+}
+#appts_dash .row_card{
+    display: flex;
+    justify-content: space-between;
+}
+#appts_dash> p{
+    line-height: 1.4em;
 }
 #articles_dash{
     background: rgb(250, 39, 92);
+    padding-left: 14px;
+    overflow: auto;
 }
 #vids_dash{
     background: #1BB291;
+    position: relative;
 }
-.article-title{
-    font-weight: 700;
+.vid_controls{
+    position:absolute;
+    top:53%;
+    padding: 5px 10px;
+    font-weight: 900;
+    border-radius: 6px;
+    background: rgba(65, 65, 65, 0.575);
+    color: antiquewhite;
+    font-size: 1.5em;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.vid_controls:hover{
+    background: rgba(29, 29, 29, 0.808);
+}
+#prev_vid{
+    left: 10px
+}
+#next_vid{
+    right: 10px;
+}
+.tile_heading{
     font-size: 1.3em;
-    margin: 10px 0;
-}
-.article-intro{
+    font-weight: 700;
     margin: 0;
+    line-height: 1.6em;
+    color: white;
 }
-.card-article > img{
+#vids_dash > iframe{
+    border: none;
+    border-radius: 15px;
+    background: black;
     width: 100%;
-    border-radius: 10px;
-    height:80px;
-    object-fit: cover;
+    height: 85%;
+    margin-right:10px ;
+}
+#vid_link{
+    font-weight: 700;
+    font-size: 1em;
+    background: #07745c65;
+    color: #fff;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+#vid_link:hover{
+    text-decoration: none;
+    background: #045e4acc;
+}
+.row_card{
+    padding: 6px 7px;
+    border-radius: 5px;
+    color: white;
+    background: rgba(0, 0, 0, 0.541);
+    margin: 6px 0;
+    box-shadow: -4px 0 0 #fff;
+    display: block;
+    transition: 0.2s;
+    font-weight: 600;
+}
+.row_card:hover{
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.74);
 }
 #console_msg{
     position:absolute; 

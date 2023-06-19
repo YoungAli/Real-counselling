@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/109fe23f15.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"> </script>
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
@@ -29,32 +30,75 @@
 		<div id="dashboard_main">
             <div id="appts_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
+                    {% if appointments|length %}
+                        <p class="tile_heading">Recently Booked Appointments <i class='bx bx-calendar-check' style="font-size: 24px;"></i></p>
+                    {% else %}
+                        <p class="tile_heading">You have no booked appointments yet</p>
+                    {% endif %}
+                    <div>
                     {% for appointment in appointments %}
-                    Booked by:{{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }}  || Session type:{{ appointment.session_type }} || booked date: {{ appointment.date }}
-                    <hr>
+                    <a href="{% url 'booked_appointments' %}" class="row_card">
+                            <div>{{ appointment.booked_by.first_name }} {{ appointment.booked_by.last_name }}</div> <div> - </div> <div>{{ appointment.date }}</div>
+                    </a>
                     {% endfor %}
+                    </div>
                 {% endif %}
             </div>
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
-                    {% for i,j in unread_chats.items %}
-                    Name: {{ i }} || Unread: {{ j.0 }} || user_id: {{ j.1 }}
-                    <hr>
-                    {% endfor %}
+                    {% if unread_chats.total_unread_chats > 0 %}
+                        <h2>You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}}</h2>
+                        {% for i,j in unread_chats.items %}
+                            {% if i != 'total_unread_chats' %}
+                                Name: {{ i }} || Unread: {{ j.0 }} || user_id: {{ j.1 }}
+                            <hr>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <h2>You have no unread messages</h2>
+                    {% endif %}
                 {% endif %}
             </div>
-            <div id="articles_dash" class="dash_cards">
-                {% for article in articles %}
-                Title: {{ article.title }} || content: {{ article.content }}
-                <hr>
-                {% endfor %}
-            </div>
-            <div id="vids_dash" class="dash_cards">
-                
+                <div id="articles_dash" class="dash_cards">
+                    <p class="tile_heading" >Featured Articles <i class="fa fa-list-alt"  style="font-size: 20px;"></i></p>
+                    {% for article in articles %}
+                    <a class="row_card" href="{% url 'articles' %}">
+                        {{ article.title }} 
+                    </a>
+                    {% endfor %}
+                </div>
+            <div id="vids_dash" class="dash_cards" style="
+            position: relative;">
+                    <div id="prev_vid" class="vid_controls"><</div>
+                    <p class="tile_heading">Featured Videos <i class='bx bx-video' style="font-size: 20px;"></i></p>
+                    <iframe id="vidFrame" src="https://www.youtube.com/embed/76yqErAib5g"></iframe>
+                    <div id="next_vid" class="vid_controls">></div>
+                    <a id="vid_link" href="{% url 'videos' %}">View more videos</a>
             </div>
         </div>
 	</section>
+    <script>
+        const prevBtn = document.querySelector('#prev_vid');
+        const nextBtn = document.querySelector('#next_vid');
+        const videoFrame = document.querySelector('#vidFrame');
 
+        const vidArray = ['76yqErAib5g', '6sjvCx2o76M', 'XWr0AEWUY5M', 'VgdAcENXy84']
+
+        let vidIndex = 0;
+
+        prevBtn.addEventListener('click', ()=>{
+            vidIndex--;
+            if(vidIndex < 0){vidIndex = vidArray.length - 1};
+            videoFrame.src = `https://www.youtube.com/embed/${vidArray[vidIndex]}`;
+            console.log(vidIndex)
+        })
+        nextBtn.addEventListener('click', ()=>{
+            vidIndex++;
+            if(vidIndex > vidArray.length - 1){vidIndex = 0};
+            videoFrame.src = `https://www.youtube.com/embed/${vidArray[vidIndex]}`;
+            console.log(vidIndex)
+        })
+    </script>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

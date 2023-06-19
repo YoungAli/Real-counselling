@@ -36,12 +36,19 @@
                     {% for user in users %}
                         <a href="{% url 'chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row student_list" style="color:white; width: 90%; margin: 3px auto; transition: 0.2s; background: rgb(23, 190, 140); border-radius: 10px;">
                             <div class="col s3" style="padding:10px; max-width: 100%;">
-                                <span class="title" style="font-weight: bolder"><i class='bx bx-user'></i>  {{ user.first_name }} {{ user.last_name }} 
+                                <div class="number_badge" style="position: absolute; right: 5px; background: rgb(9, 105, 77); border-radius: 5px; padding: 0px 5px;">
                                     {% for i,j in unread_chats.items %}
                                     {% if i == user.first_name %}
+                                    {% if j != 0 %}
                                     {{ j }}
                                     {% endif %}
+                                    {% endif %}
                                     {% endfor %}
+                                </div>
+                                <span class="title" style="font-weight: bolder; ">
+                                    <i class='bx bx-user'></i>
+                                        {{ user.first_name }} {{ user.last_name }}
+                                </span>
                             </div>
                         </a>
                     {% endfor %}
