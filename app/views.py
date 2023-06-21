@@ -31,7 +31,7 @@ def dashboard(request):
         articles = Article.objects.all()[:4]
 
         # get the first four booked appointments
-        appointments = Appointment.objects.filter(Q(session_type='virtual') | Q(session_type='in_person')).order_by('date')[:4]
+        appointments = Appointment.objects.filter(Q(session_type='virtual') | Q(session_type='in_person')).order_by('-date')[:4]
 
         # get the no_of_unread chats counsellor hasn't read for each student
         unread_chats_count, unread_chats = 0, {}
@@ -43,7 +43,7 @@ def dashboard(request):
             unread_chats.update({"total_unread_chats": unread_chats_count})
 
         # get all appointments a user booked
-        user_appointments = Appointment.objects.filter(booked_by=request.user).order_by('date')[:4]
+        user_appointments = Appointment.objects.filter(booked_by=request.user).order_by('-date')[:4]
 
         # get the no_of_unread chats a student has from the counsellor
         counsellor = CustomUser.objects.all().first()
@@ -173,7 +173,7 @@ def schedule_appointment(request, slug):
                 # call function to add the counselling session to google calendar
                 add_to_calendar(user_email, session_start, session_end)
 
-                # send email to student and counsellor informing them about the scheduled seesion
+                # send email to student and counsellor informing them about the scheduled session
                 send_mail_to_counsellor(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time)
                 send_mail_to_student(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time, user_email)
             elif request.POST['session_type'] == 'virtual':
