@@ -50,12 +50,10 @@ def view_message(request, sender, receiver):
             chats = Message.objects.filter(sender=user, is_read=False).count()
             unread_chats_count += chats
             unread_chats.update({user.first_name: chats})
-        print('=====', unread_chats_count)
-
 
         return render(request, "messages.html",
             {
-                'users': CustomUser.objects.exclude(first_name=request.user.first_name),
+                'users': CustomUser.objects.exclude(first_name=request.user.first_name).order_by('first_name'),
                 'receiver': CustomUser.objects.get(id=receiver),
                 'messages': Message.objects.filter(sender_id=sender, receiver_id=receiver) | Message.objects.filter(sender_id=receiver, receiver_id=sender),
                 'unread_chats': unread_chats
