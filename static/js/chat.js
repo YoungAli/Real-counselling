@@ -24,12 +24,14 @@ function send(sender, receiver, message) {
     })
 }
 
+let isJustReloaded = false;
+setTimeout(() => {isJustReloaded = true}, 2000);
+
 function receive() {
     $.get('/api/messages/'+ sender_id + '/' + receiver_id, function (data) {
-        console.log(data);
-        if (data.length !== 0)
+        // console.log(data);
+        if (data.length !== 0 && isJustReloaded)
         {   
-            console.log(data, "in condition")
             for(var i=0;i<data.length;i++) {
                 console.log(data[i]);
                 let time = parseInt(data[i].timestamp.slice(11, 13));

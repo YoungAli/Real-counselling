@@ -88,9 +88,11 @@
                 {% else %}
                     {% if student_unread_chats %}
                         <p class="tile_heading centered">You have {{ student_unread_chats }} new message{{ student_unread_chats| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
-                        <a href="{% url 'chat' request.user.id 1 %}" id="chat_link">Click here to view your messages</a>
+                        <a href="{% url 'chat' request.user.id 1 %}" id="chat_link" style="font-size: 0.8em; line-height: 1.4em;">Click here to view your messages</a>
                     {% else %}
-                        <p class="tile_heading centered">You have no unread messages <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
+                        <p class="tile_heading centered">You have no unread messages <i class='bx bx-message-dots' style="font-size: 18px;"></i>
+                            <a href="{% url 'chat' request.user.id 1%}" id="chat_link" style="font-size: 0.8em; line-height: 1.4em;">Click here to chat with the Counsellor</a>
+                        </p>
                     {% endif %}
                 {% endif %}
             </div>
@@ -102,8 +104,7 @@
                     </a>
                     {% endfor %}
                 </div>
-            <div id="vids_dash" class="dash_cards" style="
-            position: relative;">
+            <div id="vids_dash" class="dash_cards" style="position: relative;">
                     <div id="prev_vid" class="vid_controls"><</div>
                     <p class="tile_heading">Featured Videos <i class='bx bx-video' style="font-size: 20px;"></i></p>
                     <iframe id="vidFrame" src="https://www.youtube.com/embed/76yqErAib5g"></iframe>
