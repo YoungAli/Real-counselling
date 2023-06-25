@@ -23,7 +23,7 @@ function send(sender, receiver, message) {
         scrolltoend();
     })
 }
-
+//stop recieve function from displaying unread messages
 let isJustReloaded = false;
 setTimeout(() => {isJustReloaded = true}, 2000);
 
