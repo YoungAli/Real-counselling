@@ -59,7 +59,7 @@ def dashboard(request):
             }
         )
 
-@login_required(login_url='login')
+
 @login_required(login_url='login')
 def all_videos(request):
     if request.method == "GET":
@@ -177,7 +177,7 @@ def schedule_appointment(request, slug):
                 send_mail_to_counsellor(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time)
                 send_mail_to_student(first_name, last_name, appointment_type.title(), scheduled_date, start_time , end_time, user_email)
             elif request.POST['session_type'] == 'virtual':
-                meet_codes = ['nkj-kiem-sps', 'ayw-iwdo-emm', 'cod-xsed-zzm', 'kmy-xatr-wvy', 'hba-xjgb-cwj', 'ueq-girz-xqh']
+                meet_codes = ['pke-vbud-cjt', 'nvd-sccj-jrn', 'muq-kjfs-qfx', 'yov-kmjy-brp', 'zhx-fyio-ccd']
                 random_code = random.choice(meet_codes)
                 # save the meeting link for that appointment
                 appointment.meeting_url = f"https://meet.google.com/{random_code}"
@@ -212,12 +212,4 @@ def delete_appointment(request, slug):
     appointment = Appointment.objects.get(slug=slug)
     appointment.delete()
     return redirect('appointments')
-
-
-# def page_not_found(request, exception):
-#     return render(request, '404.html')
-
-
-# def server_error_page(request, exception):
-#     return render(request, '500.html')
 

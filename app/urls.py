@@ -17,6 +17,3 @@ urlpatterns = [
     path('appointment/delete/<slug:slug>', delete_appointment, name='delete_appointment'),
     path('videos', all_videos, name='videos'),
 ]
-
-# handler404 = 'app.views.page_not_found'
-# handler500 = 'app.views.server_error_page'

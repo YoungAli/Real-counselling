@@ -23,8 +23,7 @@ def add_to_calendar(student_email, start_time, end_time, meet_code=None):
     """
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
+    # created automatically when the authorization flow completes for the first time.
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     # If there are no (valid) credentials available, let the user log in.
@@ -43,7 +42,7 @@ def add_to_calendar(student_email, start_time, end_time, meet_code=None):
         if meet_code:
             location = f"Virtual - Google Meet Link: https://meet.google.com/{meet_code}"
         else:
-            location = "Counsellor's Office",
+            location = "In-Person - Counsellor's Office",
 
         events = {
             'summary': 'Counselling Session',
@@ -58,11 +57,9 @@ def add_to_calendar(student_email, start_time, end_time, meet_code=None):
                 'timeZone': 'Africa/Lagos',
             },
 
-            'attendees': [ # put counsellor and student's email here
-                {'email': "oluwasegunprosperity@gmail.com"},
+            'attendees': [
                 {'email': student_email},
                 {'email': 'tucounsel01@gmail.com'}
-
             ],
             'reminders': {
                 'useDefault': False,

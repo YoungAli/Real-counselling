@@ -55,3 +55,4 @@ class Appointment(models.Model):
 
     class Meta:
         ordering = ['date',]
+        unique_together = ['date', 'start_time', 'end_time']

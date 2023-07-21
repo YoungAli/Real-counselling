@@ -16,7 +16,6 @@ class CustomUserManager(BaseUserManager):
         if not matric_number:
             raise ValueError(_("Enter a  Matric number"))
 
-        # email = self.normalize_email(email)
         user = self.model(matric_number=matric_number, **extra_fields)
         user.set_password(password)
         user.save()
