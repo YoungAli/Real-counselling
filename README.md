@@ -1,4 +1,13 @@
-## TU Counsel
+<div align="center">
+<img src="static/images/tucounsel-logo.png" alt="TU Counsel" style="display: block; margin: 0 auto width="150" height="150"/>
+</div>
+
+<div align="center">
+<hr>
+<p style="font-size:15px;">An online counseling system designed to offer accessible and convenient counseling services to students. 
+Through its web-based resources, live chat feature, and appointment booking options, students can access guidance, support, and professional assistance.</p>
+</div>
+
 
 # Guidelines on how to run locally 💻
 
@@ -16,7 +25,7 @@ cd Real-counselling
 ```
 
 ## Create a virtual environment in the Real-counselling directory
-Ensure you are in the cheqqit directory, run this command to create a virtual environment:
+Ensure you are in the Real-counselling directory, run this command to create a virtual environment:
 ```
 python -m venv .\venv
 ```
@@ -40,19 +49,6 @@ Then run the command to activate the virtual environment
 ```
 pip install -r requirements.txt
 ```
-## Update the database 
-Copy this snippet and replace it with the database configuration settings, or if you are familiar with Postgres, create a new database and connect it to the app.
-
-```
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-```
-## Generate a new secret key
-Make use of [Djecrety](https://djecrety.ir/) to generate your secret key.
 
 ## Make migrations
 Run the following commands separately to make migrations
@@ -65,23 +61,37 @@ Run the following command to create a new superuser
 ```
 python manage.py createsuperuser
 ```
-## Update debug settings in the project folder
-
-```
-if os.environ.get('DEBUG')=='TRUE':
-    DEBUG = True
-elif os.environ.get('DEBUG') =='False':
-    DEBUG = False
-```
-Comment out the above snippet and add this below it   **DEBUG = True**
 
 ## Run the project
 
 ```
 python manage.py runserver
 ```
-# Contribution 🌟
-Are you interested in making any contribution to the project?. Be sure to follow the [contribution guidelines](CONTRIBUTING.md) while making your contributions. If you love this project, kindly give it a star ⭐ and share it with others 🤗.
+
+<details><summary><b style="font-size:21px;">Screenshots</summary></b>
+    <details><summary><b>Home Page</summary>
+        <div align="center">
+        <img src="static/images/live-preview.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
+        </div>
+    </details>
+    <details><summary><b>Counsellor's Dashboard</summary>
+        <div align="center">
+        <img src="static/images/dashboard.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
+        </div>
+    </details>
+    <details><summary><b>Counsellor's Booked Appointments View</summary>
+        <div align="center">
+        <img src="static/images/booked-appointments-preview.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
+        </div>
+    </details>
+    <details><summary><b>Counsellor's Live Chat View</summary>
+        <div align="center">
+        <img src="static/images/live-chat-preview.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
+        </div>
+    </details>
+</details>
+<hr>
 
 # License 🔐
-Thsi project is under an [MIT LICENSE](LICENSE)
+This project is under an [MIT LICENSE](LICENSE)
+
