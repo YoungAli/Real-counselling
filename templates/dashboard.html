@@ -24,7 +24,7 @@
                         Welcome {{ request.user.first_name|title }} {{ request.user.last_name|title }} <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px" style="padding-bottom: 13px;">
                     </h2>
                 {% else %}
-                <h2>Admin Dashboard</h2>
+                <h2>Dashboard</h2>
                 {% endif %}
             </div>
 		<div id="dashboard_main">
@@ -63,19 +63,17 @@
                     {% else %}
                     <p class="tile_heading" style="text-align: center;">You have no booked appointments. <br> Book an appointment <br> <a class="appt_dash_link" style="background: white; padding: 0 5px; border-radius: 5px;"href="{% url 'appointments' %}">here</a></p>
                     {% endif %}
-                    
                 {% endif %}
             </div>
             <div id="chat_dash" class="dash_cards">
                 {% if request.user.is_superuser %}
                     {% if unread_chats.total_unread_chats > 0 %}
-                        <p class="tile_heading centered">You have {{ unread_chats.total_unread_chats }} new message{{ j| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
+                        <p class="tile_heading centered">You have {{ unread_chats.total_unread_chats }} new message{{ unread_chats.total_unread_chats| pluralize:'s'}} <i class='bx bx-message-dots' style="font-size: 18px;"></i></p>
                         {% for i,j in unread_chats.items %}
                             {% if i != 'total_unread_chats' %}
                             <a href="{% url 'chat' 1 j.1 %}" class="row_card">
                                 {{ i }}  <div >{{ j.0 }}</div>
                             </a>
-                            
                             {% endif %}
                         {% endfor %}
                     {% else %}
@@ -131,7 +129,6 @@
             console.log(vidIndex)
         })
     </script>
-    <!-- <script src="{% static 'js/script.js' %}"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
