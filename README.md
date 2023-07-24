@@ -32,6 +32,7 @@ Through its web-based resources, live chat feature, and appointment booking opti
     </details>
 </details>
 <hr>
+
 # Guidelines on how to run locally 💻
 
 ## Clone this repository
