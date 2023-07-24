@@ -79,14 +79,14 @@ python manage.py runserver
         <img src="static/images/dashboard.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
         </div>
     </details>
+    <details><summary><b>Student's Live Chat View</summary>
+        <div align="center">
+        <img src="static/images/student-live-chat.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
+        </div>
+    </details>
     <details><summary><b>Counsellor's Booked Appointments View</summary>
         <div align="center">
         <img src="static/images/booked-appointments-preview.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
-        </div>
-    </details>
-    <details><summary><b>Counsellor's Live Chat View</summary>
-        <div align="center">
-        <img src="static/images/live-chat-preview.png" alt="TU Counsel" style="display: block; margin: 0 auto width="200" height="200"/>
         </div>
     </details>
 </details>
